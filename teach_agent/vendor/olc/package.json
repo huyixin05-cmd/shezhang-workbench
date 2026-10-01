@@ -1,0 +1,88 @@
+{
+  "name": "@itkdm/open-lab-components",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "version": "0.2.0",
+  "description": "Open protocol and runtime-ready component library for composable STEM interactive objects with locale-aware metadata and MCP support.",
+  "author": "itkdm (https://github.com/itkdm)",
+  "license": "MIT",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "lib/**/*.js",
+    "components/**/*.html",
+    "registry/*.json",
+    "visuals/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itkdm/open-lab-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/itkdm/open-lab-components/issues"
+  },
+  "homepage": "https://github.com/itkdm/open-lab-components#readme",
+  "keywords": [
+    "components",
+    "html",
+    "fragment",
+    "protocol",
+    "manifest",
+    "registry",
+    "mcp",
+    "i18n",
+    "localization",
+    "physics",
+    "chemistry",
+    "biology",
+    "math",
+    "education",
+    "stem",
+    "lab",
+    "apparatus",
+    "interactive",
+    "svg",
+    "science",
+    "simulation"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "check:docs": "node tools/check-docs/index.js",
+    "check:scripts": "node tools/check-scripts/index.js",
+    "check:text": "node tools/check-text/index.js",
+    "check:generated": "node tools/check-generated/index.js",
+    "check:root": "node tools/check-root/index.js",
+    "test:root": "node tests/root-api.test.js",
+    "test:runtime": "npm --prefix tools/runtime-harness test",
+    "validate": "node tools/validate/index.js",
+    "build:quality-report": "node tools/build-quality-report/index.js",
+    "build:registry": "node tools/build-registry/index.js && node tools/build-quality-report/index.js",
+    "build:site": "node tools/build-site/index.js",
+    "check:registry": "node tools/check-registry/index.js",
+    "check:release": "node tools/release-smoke/index.js",
+    "mcp:start": "npm --prefix mcp-server start",
+    "mcp:check:docs": "npm --prefix mcp-server run check:docs",
+    "mcp:start:http": "npm --prefix mcp-server run start:http",
+    "mcp:check:scripts": "npm --prefix mcp-server run check:scripts",
+    "mcp:test": "npm --prefix mcp-server test",
+    "mcp:test:remote": "npm --prefix mcp-server run test:remote",
+    "build": "npm run build:registry && npm run build:site",
+    "test": "npm run check:root && npm run mcp:test",
+    "pack:check": "npm pack --dry-run",
+    "mcp:pack:check": "cd mcp-server && npm pack --dry-run",
+    "release:check": "npm run validate && npm run build:registry && npm run mcp:test && npm run build:site",
+    "release:pack": "npm run pack:check && npm run mcp:pack:check",
+    "release:ready": "npm run release:check && npm run release:pack",
+    "dev:site": "node tools/dev-site/index.js",
+    "prepublishOnly": "npm run build:registry && npm run check:registry"
+  },
+  "devDependencies": {
+    "parse5": "^7.3.0"
+  }
+}

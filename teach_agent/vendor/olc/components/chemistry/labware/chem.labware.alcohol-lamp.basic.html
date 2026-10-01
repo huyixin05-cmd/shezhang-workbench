@@ -1,0 +1,319 @@
+<!-- @cmp-manifest
+{
+  "schema": "cmp-manifest/v2",
+  "id": "chem.labware.alcohol-lamp.basic",
+  "name": "酒精灯",
+  "nameEn": "Alcohol Lamp",
+  "category": "chemistry/labware",
+  "version": "1.0.0",
+  "viewport": {
+    "w": 100,
+    "h": 120
+  },
+  "tags": [
+    "chemistry",
+    "labware",
+    "lamp",
+    "heat",
+    "flame"
+  ],
+  "props": [
+    {
+      "key": "size",
+      "type": "number(px)",
+      "default": 120,
+      "min": 80,
+      "max": 200,
+      "desc": "组件高度"
+    },
+    {
+      "key": "alcoholLevel",
+      "type": "number(0-1)",
+      "default": 0.5,
+      "min": 0,
+      "max": 0.8,
+      "desc": "酒精液面"
+    },
+    {
+      "key": "alcoholColor",
+      "type": "color",
+      "default": "#b3e5fc",
+      "desc": "酒精颜色"
+    },
+    {
+      "key": "flameOn",
+      "type": "enum",
+      "default": "on",
+      "enum": [
+        "on",
+        "off"
+      ],
+      "desc": "火焰开关"
+    },
+    {
+      "key": "stroke",
+      "type": "color",
+      "default": "#8b7355",
+      "desc": "描边颜色"
+    }
+  ],
+  "cssVars": {
+    "size": "--cmp-size",
+    "alcoholLevel": "--cmp-alcohol-level",
+    "alcoholColor": "--cmp-alcohol",
+    "stroke": "--cmp-stroke"
+  },
+  "locales": {
+    "zh-CN": {
+      "name": "酒精灯",
+      "tags": [
+        "chemistry",
+        "labware",
+        "lamp",
+        "heat",
+        "flame"
+      ],
+      "ariaLabel": "酒精灯",
+      "props": {
+        "size": {
+          "label": "size",
+          "desc": "组件高度"
+        },
+        "alcoholLevel": {
+          "label": "alcoholLevel",
+          "desc": "酒精液面"
+        },
+        "alcoholColor": {
+          "label": "alcoholColor",
+          "desc": "酒精颜色"
+        },
+        "flameOn": {
+          "label": "flameOn",
+          "desc": "火焰开关"
+        },
+        "stroke": {
+          "label": "stroke",
+          "desc": "描边颜色"
+        }
+      },
+      "events": {}
+    },
+    "en": {
+      "name": "Alcohol Lamp",
+      "tags": [
+        "chemistry",
+        "labware",
+        "lamp",
+        "heat",
+        "flame"
+      ],
+      "ariaLabel": "Alcohol Lamp",
+      "props": {
+        "size": {
+          "label": "Size",
+          "desc": "Sets the overall rendered size of the component in pixels."
+        },
+        "alcoholLevel": {
+          "label": "Alcohol Level",
+          "desc": "Sets the fill level of the alcohol reservoir."
+        },
+        "alcoholColor": {
+          "label": "Alcohol Color",
+          "desc": "Sets the color of the alcohol reservoir."
+        },
+        "flameOn": {
+          "label": "Flame On",
+          "desc": "Toggles whether the flame is visible."
+        },
+        "stroke": {
+          "label": "Outline Color",
+          "desc": "Sets the outline color used for the main shape."
+        }
+      },
+      "events": {}
+    }
+  }
+}
+-->
+<div class="cmp" data-cmp-id="chem.labware.alcohol-lamp.basic" role="img" aria-label="酒精灯">
+  <svg class="lamp__svg" viewBox="0 0 100 120" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <!-- 火焰 -->
+    <path class="lamp__flame" d="M50,5 Q58,18 55,28 Q52,22 50,25 Q48,22 45,28 Q42,18 50,5" fill="#ffa726"/>
+    <!-- 灯芯（露出部分） -->
+    <rect x="48" y="28" width="4" height="10" fill="#8b7355"/>
+    <!-- 灯芯座 -->
+    <path d="M42,38 L42,44 Q42,48 50,48 Q58,48 58,44 L58,38 Q58,36 50,36 Q42,36 42,38" fill="#7a6548" stroke="var(--cmp-stroke, #8b7355)" stroke-width="1.5"/>
+    <!-- 瓶盖边缘 -->
+    <ellipse cx="50" cy="52" rx="22" ry="5" fill="none" stroke="var(--cmp-stroke, #8b7355)" stroke-width="2"/>
+    <!-- 玻璃瓶身 -->
+    <path class="lamp__body" d="M28,52 Q15,65 15,85 Q15,110 50,110 Q85,110 85,85 Q85,65 72,52" fill="rgba(255,255,255,0.3)" stroke="var(--cmp-stroke, #8b7355)" stroke-width="2"/>
+    <!-- 酒精 -->
+    <path class="lamp__alcohol" d="M22,75 Q18,90 50,95 Q82,90 78,75 Q75,65 50,68 Q25,65 22,75" fill="var(--cmp-alcohol, #b3e5fc)"/>
+    <!-- 灯芯（浸入部分） -->
+    <path class="lamp__wick" d="M50,48 L50,70 Q48,80 52,88 Q50,85 48,88" fill="none" stroke="#8b7355" stroke-width="2" stroke-linecap="round"/>
+    <!-- 高光 -->
+    <path d="M30,60 Q28,75 32,85" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<script>
+(() => {
+  const root = document.currentScript?.previousElementSibling;
+  if (!root || root.getAttribute("data-cmp-id") !== "chem.labware.alcohol-lamp.basic") return;
+
+  const flame = root.querySelector(".lamp__flame");
+  const alcoholPath = root.querySelector(".lamp__alcohol");
+
+  function parseDataProps() {
+    const raw = root.getAttribute("data-props");
+    if (!raw) return {};
+    try { const p = JSON.parse(raw); return p && typeof p === "object" ? p : {}; } catch (e) { return {}; }
+  }
+
+  function readNumber(props, key, cssVar, fallback) {
+    if (Number.isFinite(Number(props[key]))) return Number(props[key]);
+    const v = getComputedStyle(root).getPropertyValue(cssVar).trim();
+    const n = Number.parseFloat(v);
+    return Number.isFinite(n) ? n : fallback;
+  }
+
+  /* 瓶身轮廓: M28,52 Q15,65 15,85 Q15,110 50,110 Q85,110 85,85 Q85,65 72,52
+     二次贝塞尔 Q: B(t) = (1-t)²P0 + 2t(1-t)Pc + t²P1
+     需要从 y 反解 t，再用 t 求 x。
+
+     左侧两段:
+       段1: P0=(28,52) Pc=(15,65) P1=(15,85)  → y∈[52,85]
+       段2: P0=(15,85) Pc=(15,110) P1=(50,110) → y∈[85,110]
+     右侧两段:
+       段3: P0=(50,110) Pc=(85,110) P1=(85,85) → y∈[85,110]
+       段4: P0=(85,85) Pc=(85,65) P1=(72,52)   → y∈[52,85]
+  */
+
+  /* 从 y 反解二次贝塞尔参数 t: y = (1-t)²y0 + 2t(1-t)yc + t²y1 */
+  function solveT(y, y0, yc, y1) {
+    /* ay*t² + by*t + cy = 0 where ay=y0-2yc+y1, by=-2y0+2yc, cy=y0-y */
+    const a = y0 - 2 * yc + y1;
+    const b = -2 * y0 + 2 * yc;
+    const c = y0 - y;
+    if (Math.abs(a) < 0.001) {
+      /* 线性 */
+      return Math.abs(b) > 0.001 ? -c / b : 0;
+    }
+    const disc = b * b - 4 * a * c;
+    if (disc < 0) return 0;
+    const sq = Math.sqrt(disc);
+    const t1 = (-b + sq) / (2 * a);
+    const t2 = (-b - sq) / (2 * a);
+    /* 取 [0,1] 范围内的解 */
+    if (t1 >= 0 && t1 <= 1) return t1;
+    if (t2 >= 0 && t2 <= 1) return t2;
+    return t1 >= 0 ? t1 : t2;
+  }
+
+  function bezX(t, x0, xc, x1) {
+    return (1 - t) * (1 - t) * x0 + 2 * t * (1 - t) * xc + t * t * x1;
+  }
+
+  function bodyXAtY(y) {
+    if (y <= 52) return { left: 28, right: 72 };
+    if (y >= 110) return { left: 15, right: 85 };
+    let left, right;
+    if (y <= 85) {
+      /* 左段1: (28,52)→(15,65)→(15,85) */
+      const t = solveT(y, 52, 65, 85);
+      left = bezX(t, 28, 15, 15);
+      /* 右段4: (85,85)→(85,65)→(72,52), 反向: 从 y=52→85 对应 t=1→0 */
+      const tr = solveT(y, 85, 65, 52);
+      right = bezX(tr, 85, 85, 72);
+    } else {
+      /* 左段2: (15,85)→(15,110)→(50,110) */
+      const t = solveT(y, 85, 110, 110);
+      left = bezX(t, 15, 15, 50);
+      /* 右段3: (50,110)→(85,110)→(85,85), 反向 */
+      const tr = solveT(y, 85, 110, 110);
+      right = bezX(tr, 85, 85, 50);
+    }
+    return { left, right };
+  }
+
+  function buildAlcoholPath(level) {
+    const yBottom = 110; // 瓶底最低点
+    const yTop = 54;
+    const yLiquid = yBottom - level * (yBottom - yTop);
+
+    if (level <= 0) return "";
+
+    const steps = 24;
+    const points = [];
+    const inset = 2;
+
+    // 液面处左右端点
+    const top = bodyXAtY(yLiquid);
+    points.push(`M${(top.left + inset).toFixed(1)},${yLiquid.toFixed(1)}`);
+
+    // 左侧瓶壁：从液面向下到瓶底
+    for (let i = 1; i <= steps; i++) {
+      const y = yLiquid + (yBottom - yLiquid) * (i / steps);
+      const x = bodyXAtY(Math.min(y, 109.5));
+      points.push(`L${(x.left + inset).toFixed(1)},${y.toFixed(1)}`);
+    }
+
+    // 右侧瓶壁：从瓶底向上到液面
+    for (let i = steps; i >= 0; i--) {
+      const y = yLiquid + (yBottom - yLiquid) * (i / steps);
+      const x = bodyXAtY(Math.min(y, 109.5));
+      points.push(`L${(x.right - inset).toFixed(1)},${y.toFixed(1)}`);
+    }
+
+    points.push("Z");
+    return points.join(" ");
+  }
+
+  function render() {
+    const props = parseDataProps();
+
+    // 火焰开关
+    const flameOn = props.flameOn !== "off";
+    if (flame) flame.style.display = flameOn ? "" : "none";
+
+    // 酒精液面
+    let level = readNumber(props, "alcoholLevel", "--cmp-alcohol-level", 0.5);
+    level = Math.max(0, Math.min(1, level));
+    if (alcoholPath) {
+      const d = buildAlcoholPath(level);
+      alcoholPath.setAttribute("d", d || "M0,0");
+      alcoholPath.style.display = d ? "" : "none";
+    }
+  }
+
+  render();
+
+  const observer = new MutationObserver(() => render());
+  observer.observe(root, { attributes: true, attributeFilter: ["style", "data-props"] });
+  window.addEventListener("beforeunload", () => observer.disconnect(), { once: true });
+})();
+</script>
+
+<style>
+.cmp[data-cmp-id="chem.labware.alcohol-lamp.basic"] {
+  width: calc(var(--cmp-size, 120px) * 0.83);
+  height: var(--cmp-size, 120px);
+  display: inline-block;
+}
+
+.cmp[data-cmp-id="chem.labware.alcohol-lamp.basic"] .lamp__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.cmp[data-cmp-id="chem.labware.alcohol-lamp.basic"] .lamp__flame {
+  animation: lamp-flicker 0.3s ease-in-out infinite alternate;
+  transform-origin: 50px 28px;
+}
+
+@keyframes lamp-flicker {
+  0% { transform: scale(1, 1); }
+  100% { transform: scale(1.05, 1.1); }
+}
+</style>

@@ -1,0 +1,59 @@
+{
+  "name": "@itkdm/open-lab-components-mcp",
+  "version": "0.2.0",
+  "description": "Locale-aware MCP server for discovering and retrieving Open Lab Components.",
+  "author": "itkdm (https://github.com/itkdm)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itkdm/open-lab-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/itkdm/open-lab-components/issues"
+  },
+  "homepage": "https://github.com/itkdm/open-lab-components#readme",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "components",
+    "registry",
+    "education",
+    "stem",
+    "localization"
+  ],
+  "type": "module",
+  "bin": {
+    "open-lab-components-mcp": "./src/core/cli.js",
+    "open-lab-components-mcp-http": "./src/core/http-cli.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "src/**/*",
+    "config/**/*.json",
+    "deploy/**/*",
+    ".env.example",
+    "README.md",
+    "DEPLOYMENT.md",
+    "DEPLOYMENT-CHECKLIST.md",
+    "OPERATIONS.md"
+  ],
+  "scripts": {
+    "check:docs": "node ./tools/check-docs.mjs",
+    "check:scripts": "node ./tools/check-scripts.mjs",
+    "start": "node ./src/core/cli.js",
+    "start:http": "node ./src/core/http-cli.js",
+    "token:generate": "node ./src/core/token-cli.js",
+    "smoke:remote": "node ./deploy/smoke/verify-remote.mjs",
+    "pack:check": "node ../tools/release-smoke/index.js",
+    "test": "node --test ./tests/catalog.test.js ./tests/contract.test.js ./tests/config.test.js ./tests/customer-registry.test.js ./tests/feedback-backends.test.js ./tests/server.test.js ./tests/remote.test.js",
+    "test:remote": "node --test ./tests/remote.test.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "pg": "^8.20.0",
+    "redis": "^5.11.0",
+    "zod": "^3.25.76"
+  }
+}

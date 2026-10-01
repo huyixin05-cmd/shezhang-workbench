@@ -1,0 +1,302 @@
+<!-- @cmp-manifest
+{
+  "schema": "cmp-manifest/v2",
+  "id": "chem.labware.funnel.basic",
+  "name": "漏斗",
+  "nameEn": "Funnel",
+  "category": "chemistry/labware",
+  "version": "1.0.0",
+  "viewport": {
+    "w": 100,
+    "h": 180
+  },
+  "tags": [
+    "funnel",
+    "filtration",
+    "labware",
+    "chemistry",
+    "glass"
+  ],
+  "props": [
+    {
+      "key": "size",
+      "type": "number(px)",
+      "default": 180,
+      "min": 100,
+      "max": 320,
+      "desc": "组件高度"
+    },
+    {
+      "key": "glassTint",
+      "type": "color",
+      "default": "rgba(220,240,255,0.45)",
+      "desc": "玻璃底色"
+    },
+    {
+      "key": "liquidColor",
+      "type": "color",
+      "default": "rgba(66,165,245,0.3)",
+      "desc": "液体颜色"
+    },
+    {
+      "key": "liquidLevel",
+      "type": "number(0-1)",
+      "default": 0.4,
+      "min": 0,
+      "max": 1,
+      "desc": "液位"
+    },
+    {
+      "key": "stroke",
+      "type": "color",
+      "default": "#35586a",
+      "desc": "描边颜色"
+    },
+    {
+      "key": "strokeWidth",
+      "type": "number",
+      "default": 2,
+      "min": 0.5,
+      "max": 4,
+      "desc": "描边粗细"
+    },
+    {
+      "key": "highlight",
+      "type": "number(0-1)",
+      "default": 0.3,
+      "min": 0,
+      "max": 1,
+      "desc": "高光强度"
+    },
+    {
+      "key": "glow",
+      "type": "number(0-1)",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "desc": "强调/亮度"
+    }
+  ],
+  "cssVars": {
+    "size": "--cmp-size",
+    "glassTint": "--cmp-glass-tint",
+    "liquidColor": "--cmp-liquid-color",
+    "liquidLevel": "--cmp-liquid-level",
+    "stroke": "--cmp-stroke",
+    "strokeWidth": "--cmp-stroke-width",
+    "highlight": "--cmp-highlight",
+    "glow": "--cmp-glow"
+  },
+  "locales": {
+    "zh-CN": {
+      "name": "漏斗",
+      "tags": [
+        "funnel",
+        "filtration",
+        "labware",
+        "chemistry",
+        "glass"
+      ],
+      "ariaLabel": "漏斗",
+      "props": {
+        "size": {
+          "label": "size",
+          "desc": "组件高度"
+        },
+        "glassTint": {
+          "label": "glassTint",
+          "desc": "玻璃底色"
+        },
+        "liquidColor": {
+          "label": "liquidColor",
+          "desc": "液体颜色"
+        },
+        "liquidLevel": {
+          "label": "liquidLevel",
+          "desc": "液位"
+        },
+        "stroke": {
+          "label": "stroke",
+          "desc": "描边颜色"
+        },
+        "strokeWidth": {
+          "label": "strokeWidth",
+          "desc": "描边粗细"
+        },
+        "highlight": {
+          "label": "highlight",
+          "desc": "高光强度"
+        },
+        "glow": {
+          "label": "glow",
+          "desc": "强调/亮度"
+        }
+      },
+      "events": {}
+    },
+    "en": {
+      "name": "Funnel",
+      "tags": [
+        "funnel",
+        "filtration",
+        "labware",
+        "chemistry",
+        "glass"
+      ],
+      "ariaLabel": "Funnel",
+      "props": {
+        "size": {
+          "label": "Size",
+          "desc": "Sets the overall rendered size of the component in pixels."
+        },
+        "glassTint": {
+          "label": "Glass Tint",
+          "desc": "Sets the tint color of the glass body."
+        },
+        "liquidColor": {
+          "label": "Liquid Color",
+          "desc": "Sets the color of the liquid."
+        },
+        "liquidLevel": {
+          "label": "Liquid Level",
+          "desc": "Sets the fill level as a fraction of the vessel height."
+        },
+        "stroke": {
+          "label": "Outline Color",
+          "desc": "Sets the outline color used for the main shape."
+        },
+        "strokeWidth": {
+          "label": "Outline Width",
+          "desc": "Sets the outline width in pixels."
+        },
+        "highlight": {
+          "label": "Highlight Intensity",
+          "desc": "Controls the strength of the specular highlight."
+        },
+        "glow": {
+          "label": "Glow Intensity",
+          "desc": "Controls the intensity of the highlight or glow effect."
+        }
+      },
+      "events": {}
+    }
+  }
+}
+-->
+<div class="cmp" data-cmp-id="chem.labware.funnel.basic" role="img" aria-label="漏斗">
+  <svg viewBox="0 0 100 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="fn__glass" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0"   stop-color="rgba(255,255,255,0.5)"/>
+        <stop offset="0.2" stop-color="var(--cmp-glass-tint, rgba(220,240,255,0.45))"/>
+        <stop offset="0.8" stop-color="var(--cmp-glass-tint, rgba(220,240,255,0.45))"/>
+        <stop offset="1"   stop-color="rgba(255,255,255,0.25)"/>
+      </linearGradient>
+    </defs>
+
+    <!-- 漏斗锥体 -->
+    <path d="M10,10 L46,90 L54,90 L90,10 Z"
+          fill="url(#fn__glass)"
+          stroke="var(--cmp-stroke, #35586a)" stroke-width="var(--cmp-stroke-width, 2)"
+          stroke-linejoin="round"/>
+
+    <!-- 漏斗口边缘（加厚） -->
+    <line x1="8" y1="10" x2="92" y2="10"
+          stroke="var(--cmp-stroke, #35586a)" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- 液体（锥体内） -->
+    <path class="fn__liquid" d=""
+          fill="var(--cmp-liquid-color, rgba(66,165,245,0.3))"/>
+
+    <!-- 管身 -->
+    <rect x="46" y="88" width="8" height="86" rx="1"
+          fill="url(#fn__glass)"
+          stroke="var(--cmp-stroke, #35586a)" stroke-width="var(--cmp-stroke-width, 2)"/>
+
+    <!-- 管口 -->
+    <path d="M45,174 L46,170 L54,170 L55,174"
+          fill="none" stroke="var(--cmp-stroke, #35586a)" stroke-width="1.5"
+          stroke-linecap="round"/>
+
+    <!-- 高光 -->
+    <path d="M18,14 L46,82 L46,88 L48,88 L20,14 Z"
+          fill="rgba(255,255,255,0.3)" opacity="var(--cmp-highlight, 0.3)"
+          pointer-events="none"/>
+    <rect x="47" y="90" width="2" height="78" rx="0.5"
+          fill="rgba(255,255,255,0.3)" opacity="var(--cmp-highlight, 0.3)"
+          pointer-events="none"/>
+  </svg>
+</div>
+
+<style>
+  .cmp[data-cmp-id="chem.labware.funnel.basic"] {
+    height: var(--cmp-size, 180px);
+    width: calc(var(--cmp-size, 180px) * 0.556);
+    display: inline-block;
+    filter: drop-shadow(0 0 calc(6px * var(--cmp-glow, 0))
+            rgba(255,214,102, calc(0.8 * var(--cmp-glow, 0))));
+  }
+  .cmp[data-cmp-id="chem.labware.funnel.basic"] svg {
+    width: 100%; height: 100%; display: block;
+  }
+</style>
+
+<script>
+(function() {
+  var script = document.currentScript;
+  if (!script) return;
+  var el = script.previousElementSibling;
+  while (el && el.getAttribute && el.getAttribute('data-cmp-id') !== 'chem.labware.funnel.basic') {
+    el = el.previousElementSibling;
+  }
+  var root = el;
+  if (!root) return;
+
+  var liquid = root.querySelector('.fn__liquid');
+  if (!liquid) return;
+
+  /* 读取 liquidLevel：优先 CSS 变量，其次 data-props */
+  var level = 0.4;
+  var cs = getComputedStyle(root);
+  var cssVal = cs.getPropertyValue('--cmp-liquid-level').trim();
+  if (cssVal !== '') {
+    var n = parseFloat(cssVal);
+    if (!isNaN(n)) level = n;
+  }
+  try {
+    var raw = root.getAttribute('data-props');
+    if (raw) { var o = JSON.parse(raw); if (o && o.liquidLevel != null) level = Number(o.liquidLevel); }
+  } catch(e) {}
+  level = Math.max(0, Math.min(1, level));
+
+  /*
+   * 漏斗锥体内部梯形：
+   *   顶边 y=12: x 从 12 到 88 (宽76)
+   *   底边 y=88: x 从 46 到 54 (宽8)
+   * 液面 y = 88 - level * 76  (level=0 → y=88 底部, level=1 → y=12 顶部)
+   * 在 y 处的左右 x 通过线性插值计算
+   */
+  if (level <= 0) {
+    liquid.removeAttribute('d');
+    return;
+  }
+
+  var yTop = 12, yBot = 88;
+  var h = yBot - yTop; /* 76 */
+  var yLiq = yBot - level * h;
+
+  /* 梯形左边线: (12,12) → (46,88), 右边线: (88,12) → (54,88) */
+  function xLeft(y)  { return 12 + (46 - 12) * ((y - 12) / h); }
+  function xRight(y) { return 88 + (54 - 88) * ((y - 12) / h); }
+
+  var lx1 = xLeft(yLiq),  rx1 = xRight(yLiq);   /* 液面 */
+  var lx2 = xLeft(yBot),  rx2 = xRight(yBot);    /* 底部 = 46, 54 */
+
+  var d = 'M' + lx1.toFixed(1) + ',' + yLiq.toFixed(1)
+        + ' L' + lx2.toFixed(1) + ',' + yBot
+        + ' L' + rx2.toFixed(1) + ',' + yBot
+        + ' L' + rx1.toFixed(1) + ',' + yLiq.toFixed(1)
+        + ' Z';
+  liquid.setAttribute('d', d);
+})();
+</script>

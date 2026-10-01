@@ -1,0 +1,2447 @@
+{
+  "schema": "teaching-agent/source-snapshot/v1",
+  "repository": "https://github.com/itkdm/open-lab-components",
+  "commit": "c336815655f233b492eb78cbfe920f078406c486",
+  "retrievedAt": "2026-10-01T17:54:45.7730456+08:00",
+  "upstreamDirectory": "upstream",
+  "acquisition": "git clone --depth 1; full tracked tree at pinned commit, not full commit history",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 Open Lab Components contributors",
+  "licenseFile": "upstream/LICENSE",
+  "modifications": "none",
+  "trackedFileCount": 486,
+  "componentCount": 213,
+  "visualCount": 25,
+  "files": [
+    {
+      "path": ".claude/README.md",
+      "bytes": 355,
+      "sha256": "8875e0d73ae9b6940f0ccad57d9d2c610d355f8dcc657f91b0bb2ae88d4d983f"
+    },
+    {
+      "path": ".claude/commands/create-component.en.md",
+      "bytes": 1090,
+      "sha256": "32a0cb1c8714d7e6cfd965bb3ed4bd8a9cc424c99dc9a1342416a3988493456a"
+    },
+    {
+      "path": ".claude/commands/create-component.md",
+      "bytes": 9455,
+      "sha256": "b6b726fb0e7bbae8d63dc9b9b58b02ccd705536a0f601d5493e705315752c249"
+    },
+    {
+      "path": ".claude/commands/create-component.zh-CN.md",
+      "bytes": 1018,
+      "sha256": "a2deb5d23a84fc57eb134ac0df8248b2045c6d9b46537094a186228f4afd03ce"
+    },
+    {
+      "path": ".claude/settings.local.json",
+      "bytes": 2731,
+      "sha256": "15d5dd9f0a411c161af0ade063022289b44534f2e11cc2838082a7279d62322a"
+    },
+    {
+      "path": ".editorconfig",
+      "bytes": 188,
+      "sha256": "a6b98ea7cb6d61ed8d430dd0dffa46c87012b5cf859d4ce7207898954951fdcd"
+    },
+    {
+      "path": ".gitattributes",
+      "bytes": 310,
+      "sha256": "32c0124ddb7b383b63d199397e2e4ebe744bc63f2f3fd35292ee7ee33e4df8e9"
+    },
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.en.md",
+      "bytes": 765,
+      "sha256": "252ea5c57e15e2c88a8c7e977d9b0acfb14535dfe84c014e73fa9066d9ce8938"
+    },
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "bytes": 952,
+      "sha256": "afb8e2f6fc9abdec2b2bdbfa2685cf5e7859b18e7091492e841bdd644d5583a8"
+    },
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.zh-CN.md",
+      "bytes": 736,
+      "sha256": "c927c20db4c3b69b685fbf80df8ad9952ae253f509647f62cf8ee074bd7b0ce7"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 2085,
+      "sha256": "8b7dcdce72ef1e1ac5525ab281635dfb6771f731fc5280ac97ff55900152f8e6"
+    },
+    {
+      "path": ".github/workflows/root-quality.yml",
+      "bytes": 868,
+      "sha256": "87f7d622f19198116d90b3bae40de949a38c77d2ac0532aa598196a107efa289"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 450,
+      "sha256": "dfcb0775c7d69036d7664da423d9d7392b88c45c4223ad18815d6a427dfcd451"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1091,
+      "sha256": "8e86e6b3ee15c470d9dfebf8a4a9367f9c99c8946ad4337d22d7b0861efd9950"
+    },
+    {
+      "path": "README.en.md",
+      "bytes": 11220,
+      "sha256": "a2212079e00c4d1bb92ce4edf9fcc772344fd34b419661fbfb5cbc03eee027c4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 10791,
+      "sha256": "17dd49003e89b296bd302dea0649670ac411303087a562c4ef25d0faec5c8072"
+    },
+    {
+      "path": "README.zh-CN.md",
+      "bytes": 4338,
+      "sha256": "624bd4dd335990a6b182b96d1b9c7bfddc62d032bb482858c79aa60d2727610e"
+    },
+    {
+      "path": "assets/README.md",
+      "bytes": 377,
+      "sha256": "5650b457f990010fb46d41adafb4cae7d757a7c2b907eeeda79dc9ffeace750d"
+    },
+    {
+      "path": "assets/alipay.png",
+      "bytes": 165911,
+      "sha256": "6925cb20bec7de16a6850cd8e8b7736cb08cae6ce9125d3bb76acccdd83e39c9"
+    },
+    {
+      "path": "assets/home.png",
+      "bytes": 54972,
+      "sha256": "e44aef2e1d89b6f725d50fd3e3910028d322c3f11aa9eb87530b025172d83267"
+    },
+    {
+      "path": "assets/wechat-pay.png",
+      "bytes": 160489,
+      "sha256": "81713beabb1a53acf90deadf58af0ed2249d46b9ddcfd1037cc3410d8993f0da"
+    },
+    {
+      "path": "components/README.md",
+      "bytes": 511,
+      "sha256": "697d810cfca2ab90318fc70a37b4cfe2541f52ba3179e63ba7863bc8eda5bb09"
+    },
+    {
+      "path": "components/biology/cell/bio.cell.animal.basic.html",
+      "bytes": 16132,
+      "sha256": "878eac7f720b9da176066f6e5c0647ce7419241c4d63e7e26f6a3b1fd4497569"
+    },
+    {
+      "path": "components/biology/cell/bio.cell.dna.interactive.html",
+      "bytes": 18698,
+      "sha256": "ccad07d10ce3b9a5254e108b3ea5949af39397d0a7b2d422586344bc93a459e9"
+    },
+    {
+      "path": "components/biology/cell/bio.cell.mitosis.interactive.html",
+      "bytes": 23302,
+      "sha256": "f5bfc7ce3c51400429390b20b3f3c226eb634c36cab1e96aad0164d387bf9d15"
+    },
+    {
+      "path": "components/biology/cell/bio.cell.photosynthesis.interactive.html",
+      "bytes": 21416,
+      "sha256": "14c41b0c8f34ae6ad406257914eb138b95f6b4233c74200cde1f3ec30b583254"
+    },
+    {
+      "path": "components/biology/cell/bio.cell.plant.basic.html",
+      "bytes": 16084,
+      "sha256": "7afeea5dbfef2a7987ea558fd2c6fae35f0fce17ec0008353665597a06790e7e"
+    },
+    {
+      "path": "components/biology/cell/bio.cell.respiration.interactive.html",
+      "bytes": 19837,
+      "sha256": "4456b8c87c58fa4a1c1432f407d341d1fed2e46b20c15f1816f16c3f0de76b6d"
+    },
+    {
+      "path": "components/biology/cell/bio.cell.transcription.interactive.html",
+      "bytes": 24023,
+      "sha256": "7d8d003ecc005197c1b9556f0629b2ebae32249bcc548efcb4b1daecb5a7bf3e"
+    },
+    {
+      "path": "components/biology/ecology/bio.ecology.food-web.interactive.html",
+      "bytes": 17952,
+      "sha256": "46f0e2326b17aeb36cc2c682d71938acae0d0300d7860445ce578a610cb74c68"
+    },
+    {
+      "path": "components/biology/genetics/bio.genetics.punnett-square.interactive.html",
+      "bytes": 23171,
+      "sha256": "96f8dc3acee65a272cfc1b869f27f56537ac1f40bc9c09f89bbd94efaf4b3e19"
+    },
+    {
+      "path": "components/biology/instrument/bio.instrument.microscope.basic.html",
+      "bytes": 18465,
+      "sha256": "f2c23184078e34e866d2828a2efba9721ad9fba504cb7f8959c28cb639408b9c"
+    },
+    {
+      "path": "components/biology/organ/bio.organ.circulatory.interactive.html",
+      "bytes": 20163,
+      "sha256": "63c9e4d9724a6f0250201519abf0c467ca349971096cffece6fa027e785665d4"
+    },
+    {
+      "path": "components/biology/organ/bio.organ.ear.basic.html",
+      "bytes": 16724,
+      "sha256": "3c0b65a06e46a997e42a9ef33965da9c4684e82e43a1b4ed38d181282e696387"
+    },
+    {
+      "path": "components/biology/organ/bio.organ.eye.basic.html",
+      "bytes": 13217,
+      "sha256": "2ae293dda94938c8ca3dfd28cb56584b6997f6d971cafeb51d0d1c805aba8796"
+    },
+    {
+      "path": "components/biology/organ/bio.organ.heart.basic.html",
+      "bytes": 15981,
+      "sha256": "79fe9a3b31c597c55e8043d5538fe966ae47000039dd66b595844f12b5197518"
+    },
+    {
+      "path": "components/biology/organ/bio.organ.lung.basic.html",
+      "bytes": 16578,
+      "sha256": "a873047798bf9bd8ec5c5f928ae84b95904eb4a323beb2f5db11341b64a537a4"
+    },
+    {
+      "path": "components/biology/organ/bio.organ.nephron.basic.html",
+      "bytes": 15482,
+      "sha256": "491f3f06e23ecf776a7087d4beda3939aba41fa562c2b63eae5570f9b9a25b65"
+    },
+    {
+      "path": "components/biology/organ/bio.organ.neuron.basic.html",
+      "bytes": 14919,
+      "sha256": "71b0cfd55255de52606e8642f92e096b112f7558e87254dec031a1807d99500b"
+    },
+    {
+      "path": "components/biology/organ/bio.organ.stomach.basic.html",
+      "bytes": 16574,
+      "sha256": "dd17ad132f69326a195b7c3e9e758c5af9adb0064006af57edf470675fa1d2b3"
+    },
+    {
+      "path": "components/chemistry/gas/chem.gas.ideal-gas-law.interactive.html",
+      "bytes": 24234,
+      "sha256": "b16bd4b9162737804ceba5edaf108fc2328148c3aaa299ac89f2749bbc4ca390"
+    },
+    {
+      "path": "components/chemistry/labware/chem.indicator.ph-beaker.basic.html",
+      "bytes": 6556,
+      "sha256": "846b87b98eeb651c07f7d200f48a1b5d483f2fa11ca6bdf78ab21280b092acec"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.alcohol-lamp.basic.html",
+      "bytes": 9486,
+      "sha256": "d4d1ab1b8b0011ad26ffd6067c7331858880ab55cfe1d11f561c96cabc0341f6"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.beaker.graduated.basic.html",
+      "bytes": 17637,
+      "sha256": "be29fb814375c7e7ec1c6e03bce030e87f59f1ecf54ea1c119abee009f15e12c"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.bunsen-burner.basic.html",
+      "bytes": 20342,
+      "sha256": "0e332fd23c97408cfdd53d8dca4714b1f11f88d03436198e6adab9c163f860fd"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.burette.basic.html",
+      "bytes": 10395,
+      "sha256": "7faa896539a80fd6afa597d1358e7856d96ee802ad71ee046931af7313fd25e4"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.condenser.basic.html",
+      "bytes": 7463,
+      "sha256": "d2326a7843dd4e3c615e3849bbe475f58be13919bafe73274ef18604644a2114"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.crucible.basic.html",
+      "bytes": 10388,
+      "sha256": "7046012e08e648e0d3c338ba141fee03d435a1a4778c3049634ff0abee7863d8"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.distillation-flask.basic.html",
+      "bytes": 8083,
+      "sha256": "e8bca59c4736898f88bb51e8d5ce35ceaf598bc0f02bd0c48f19fdd69611de9a"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.dropper.basic.html",
+      "bytes": 9020,
+      "sha256": "3707b7dd75ccadc0c7302f89080328d7c562abc7bd967bf8d81334c26aaeaa5c"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.erlenmeyer-flask.basic.html",
+      "bytes": 7294,
+      "sha256": "e8ebeed1860fc26ce5ac5583c6119acf5c52ff4663d478263c004c5a75668eff"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.evaporating-dish.basic.html",
+      "bytes": 15118,
+      "sha256": "938f8d75ec2468dcd0b463dd5e5ab06cf4b22606a6d3bcd6b1e06f26c0f70a95"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.funnel.basic.html",
+      "bytes": 8300,
+      "sha256": "617e03991579dedc24fc116782e3caf403a876c3c726c5db263c52a0b01fd26a"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.gas-jar.basic.html",
+      "bytes": 6596,
+      "sha256": "bd2859b861fc0dafd2a7f6cbd164d71c581ec6049f4e33000b3b7c1970c4162e"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.glass-rod.basic.html",
+      "bytes": 8188,
+      "sha256": "665b46fe7a86c6bcd3f463bd9654a6943a5c90518ed5eba5085aee88afef7d95"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.graduated-cylinder.basic.html",
+      "bytes": 12830,
+      "sha256": "997fea271f19c900cbaad6d24581ee87094082e1fa0ddcd65edd8b4b4ee2b6c0"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.narrow-mouth-bottle.basic.html",
+      "bytes": 16701,
+      "sha256": "aa54f27be593c32fd3db409759f9c9da1eb590c62d751107870e59034d70c339"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.round-bottom-flask.basic.html",
+      "bytes": 8708,
+      "sha256": "75ac9e68f0fd8bc0bdf6f5bbc1bd371f1409f4fc0c9285d83ed42b0590e0e486"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.separating-funnel.basic.html",
+      "bytes": 10058,
+      "sha256": "5b081dad121d98f1561d093036be1375ddbf591bfd8b42017a194426796b6f93"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.spatula.basic.html",
+      "bytes": 10096,
+      "sha256": "9c3a5afbb32089160d6258a2585182f20f2d447c375be456af71557904e780af"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.stand.basic.html",
+      "bytes": 6444,
+      "sha256": "afa71e281a0aff72d878f3df38b7c8804553854e7fd0e2a9e59b9d0ee14791a9"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.test-tube-rack.basic.html",
+      "bytes": 10762,
+      "sha256": "65779af9076606d938f3e0d33f224bae2de31b9094ffd17c2f0e3bfa71066d87"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.test-tube.basic.html",
+      "bytes": 7634,
+      "sha256": "060a6ae3d8d720aca1b5d88ef929a1a5070a0db5e3125141f126ed90fc22338b"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.tripod.basic.html",
+      "bytes": 12538,
+      "sha256": "4b9b3bd2fa42f50086713e153c9e0ce0f4fdea317b96ad982a4a01b3f0a5c137"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.wash-bottle.basic.html",
+      "bytes": 8865,
+      "sha256": "52850bb06d9a524ef67aacc6a98abad3b8b341c98a88d11fba3f2d72710d0f0b"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.wide-mouth-bottle.basic.html",
+      "bytes": 15063,
+      "sha256": "b58dec0b9b930cbbb0e6ddcc4543fa2b63f97ca92260f0bc019f40a9fdaf16be"
+    },
+    {
+      "path": "components/chemistry/labware/chem.labware.wire-gauze.basic.html",
+      "bytes": 10909,
+      "sha256": "82c57c6db3013d8502d63c633e38bae18e0a29e2e2b0675f145f8f8815e6523c"
+    },
+    {
+      "path": "components/chemistry/model/chem.model.bonding.interactive.html",
+      "bytes": 21878,
+      "sha256": "4593ed2ea1066e52e9a7db690d1819880c95af09efdc3f5500efff0111979f92"
+    },
+    {
+      "path": "components/chemistry/model/chem.model.molecule.ball-stick.html",
+      "bytes": 15374,
+      "sha256": "f02338c8b438927669d3b47beb500ffe2f7566c31d68b24084dab438c2a93cc6"
+    },
+    {
+      "path": "components/chemistry/model/chem.model.periodic-table.interactive.html",
+      "bytes": 19011,
+      "sha256": "0377786876c4dc7cb956be5e30cdbadd4038379e7f2019772419d054c3389d2d"
+    },
+    {
+      "path": "components/chemistry/reaction/chem.reaction.acid-base.interactive.html",
+      "bytes": 24793,
+      "sha256": "8a672ecf321f93ab0dafe7d10bde216aac0a3a7ddf3a696599b2ebf2419c1dc6"
+    },
+    {
+      "path": "components/chemistry/reaction/chem.reaction.electrolysis.interactive.html",
+      "bytes": 23032,
+      "sha256": "56fd83a899b4a26a33900e412741319267d25095d2ebd859619a9ff389308e25"
+    },
+    {
+      "path": "components/chemistry/reaction/chem.reaction.equilibrium.interactive.html",
+      "bytes": 23655,
+      "sha256": "1fe9ade4921f77cfa952f93f42bcc231c31cdae46775f68d67f9d4a8efd327c4"
+    },
+    {
+      "path": "components/chemistry/reaction/chem.reaction.rate.interactive.html",
+      "bytes": 22074,
+      "sha256": "dc32c14ae919b7c2561a5228bc43e2c07fce037052ee0c4c864697f05ddf5d38"
+    },
+    {
+      "path": "components/chemistry/reaction/chem.reaction.redox.interactive.html",
+      "bytes": 20149,
+      "sha256": "ab37c53592d9165f67f1ec0f3c6aaf1db5f18b6029fca005a104c4b41ca5789e"
+    },
+    {
+      "path": "components/chemistry/solution/chem.solution.concentration.interactive.html",
+      "bytes": 17664,
+      "sha256": "060412363a71572eba33c577313577aa4ebe874f85b37dd4bfc507abdba49d57"
+    },
+    {
+      "path": "components/cs/ai/cs.ai.perceptron.basic.html",
+      "bytes": 9052,
+      "sha256": "b0892d51c36e1bf815b84a1b3dee0ca18fc8b13849ec24fc1309bd34f6c6d1b1"
+    },
+    {
+      "path": "components/cs/logic/cs.logic.gate.and.html",
+      "bytes": 6502,
+      "sha256": "a542fe5f81f0228ccb71018c400cf918045133e2273d115d662a635e1ff18475"
+    },
+    {
+      "path": "components/math/calculus/math.calculus.derivative.interactive.html",
+      "bytes": 20857,
+      "sha256": "90d3b2e4499fef2c67b3720313219b615a93a8f89bdff1225404c62f8efd06b5"
+    },
+    {
+      "path": "components/math/calculus/math.calculus.integral.interactive.html",
+      "bytes": 24635,
+      "sha256": "2274d19484b598127ddaad076a47f11a9fc21e307113ca0db9e23cc4025b753a"
+    },
+    {
+      "path": "components/math/clock/math.clock.interactive.html",
+      "bytes": 17118,
+      "sha256": "3d122349279840d89f6a9db250f1f7e8bda69d6625b5397f07067a1191154338"
+    },
+    {
+      "path": "components/math/complex/math.complex-plane.interactive.html",
+      "bytes": 18341,
+      "sha256": "4cef8173e65cdc2a3fb5fc24821e7464d0eead84a5463b12574759ce7e7c1c8d"
+    },
+    {
+      "path": "components/math/coordinate/math.coordinate.cartesian.basic.html",
+      "bytes": 8988,
+      "sha256": "ec8b36e9dd40769da94bb4b0806355bd239f6b6041d981eb002e56b3553da489"
+    },
+    {
+      "path": "components/math/function/math.function.graph.interactive.html",
+      "bytes": 26236,
+      "sha256": "e5a5ee347a4da841f17db5ac3fd3db7d0bc6ad4620c2c978a7a73aaea27be6fa"
+    },
+    {
+      "path": "components/math/geometry/math.geometry.angle-maker.interactive.html",
+      "bytes": 14263,
+      "sha256": "77e245077a1d22b88cf7aa942af9d01eccdcdb1bd9b2b2252fd6e3284ba53d35"
+    },
+    {
+      "path": "components/math/geometry/math.geometry.area-grid.interactive.html",
+      "bytes": 9860,
+      "sha256": "d8427dfc6d8ce9d052ef22674ce39d702b25fc3012e171662e2ef89954b473d5"
+    },
+    {
+      "path": "components/math/geometry/math.geometry.compass.interactive.html",
+      "bytes": 17674,
+      "sha256": "30130cfe4bee509567196430c158a32064a26b19a406413b3a26e7f184addb8a"
+    },
+    {
+      "path": "components/math/geometry/math.geometry.conic-section.interactive.html",
+      "bytes": 20695,
+      "sha256": "ff65ce35aa2b410e4dd63f950a365d35c2df0b80a76a3f5d7f89c4977bcc00e1"
+    },
+    {
+      "path": "components/math/geometry/math.geometry.coordinate-grid.interactive.html",
+      "bytes": 10276,
+      "sha256": "630784f0c4d7be12a9b4e8945169ebcdb5f96c4fbeefde67c4bc88a3f06fc403"
+    },
+    {
+      "path": "components/math/geometry/math.geometry.dice.basic.html",
+      "bytes": 5753,
+      "sha256": "624a0338e777b4f1708d2c101f4ae50013088b7cb2c1e01bc8a6b4d70d2b56c5"
+    },
+    {
+      "path": "components/math/geometry/math.geometry.net-folding.interactive.html",
+      "bytes": 13340,
+      "sha256": "04b5e270586412c100b3bc7c6accb7e3fee0ccd4f44574e1b0acc21737841803"
+    },
+    {
+      "path": "components/math/geometry/math.geometry.pattern-blocks.interactive.html",
+      "bytes": 13306,
+      "sha256": "6e53e46f013364586b92979e2e17112b81166882460c89de24b2eb92787bcb10"
+    },
+    {
+      "path": "components/math/geometry/math.geometry.perimeter.interactive.html",
+      "bytes": 11663,
+      "sha256": "eed96eb7ed4f51a6fe8401607990dfd6f33f88591d5aa870f0f2b9ef174fd920"
+    },
+    {
+      "path": "components/math/geometry/math.geometry.shape-sorter.interactive.html",
+      "bytes": 15267,
+      "sha256": "c7186b5dfdd037d0baff5973c81a3df5f8ec7f79b0327033a8c8b3196b167217"
+    },
+    {
+      "path": "components/math/geometry/math.geometry.solid-shapes.interactive.html",
+      "bytes": 15520,
+      "sha256": "106b768f6a29d41aae7d6a3720ec7b06b1d6f7264a12fcac5fa96c5e3a5ffaef"
+    },
+    {
+      "path": "components/math/geometry/math.geometry.symmetry.interactive.html",
+      "bytes": 9168,
+      "sha256": "e9f0f2903a4c6010b74a3a7995e9ee7ff923cf725cdd4154af3d1985e9f4611a"
+    },
+    {
+      "path": "components/math/geometry/math.geometry.tangram.basic.html",
+      "bytes": 8799,
+      "sha256": "70c831a0f825b087297243b7c285bbf49c92e83603ed217a6b91183030472ed2"
+    },
+    {
+      "path": "components/math/measure/math.measure.length-compare.interactive.html",
+      "bytes": 13598,
+      "sha256": "26ca0026899e35b0b1fc0ff4fc0b6389c3374622d3933b3afd35b002523a0fe5"
+    },
+    {
+      "path": "components/math/measure/math.measure.time-converter.interactive.html",
+      "bytes": 19017,
+      "sha256": "6ba78e11ad4ab5869c3d10034d7a2a26576515f0e07a6e58616238e0f2c10fd0"
+    },
+    {
+      "path": "components/math/measure/math.measure.volume-model.interactive.html",
+      "bytes": 13949,
+      "sha256": "635900ea5f172646abab0f1b1c615b32ce8e8c4902b0064e7245538c9d7dc649"
+    },
+    {
+      "path": "components/math/measure/math.measure.weight-scale.interactive.html",
+      "bytes": 14061,
+      "sha256": "6427fad5a7ff4d729c53bf5aeb2e05bb916057c2afdaa3049ef8ed8a2637bfc7"
+    },
+    {
+      "path": "components/math/number/math.number.balance.interactive.html",
+      "bytes": 15054,
+      "sha256": "9448c0142716233494102f7a2337c35267c3949d08ba98097a756aa6f67d455a"
+    },
+    {
+      "path": "components/math/number/math.number.column-addition.interactive.html",
+      "bytes": 13882,
+      "sha256": "fc606c2b732fbe4ce44c3cd1d2576831d8d203b3feafb7ac61a022913ebb281f"
+    },
+    {
+      "path": "components/math/number/math.number.counting-sticks.interactive.html",
+      "bytes": 21993,
+      "sha256": "c2e3b1ffeb03747a8256fd4f0cdfb6a760a1e2460de1de91f425641bada048ee"
+    },
+    {
+      "path": "components/math/number/math.number.decimal-model.interactive.html",
+      "bytes": 13324,
+      "sha256": "40128c79b68dd08a817f2eaf50825fc75c0499527a876fc076e6cb01588f92b5"
+    },
+    {
+      "path": "components/math/number/math.number.fraction-bar.interactive.html",
+      "bytes": 10123,
+      "sha256": "e3562e8f6bce4510d2ff07ca504afae2a9e97749c3a87951cde9e8d22f681285"
+    },
+    {
+      "path": "components/math/number/math.number.fraction-circle.interactive.html",
+      "bytes": 14745,
+      "sha256": "9ba37e74704f8c658c2299daaddb9f639a80dd9b44b1ff20db1c6d6a7a711ef4"
+    },
+    {
+      "path": "components/math/number/math.number.hundred-chart.interactive.html",
+      "bytes": 10557,
+      "sha256": "87525e19591136d33314acc383de49198abe56d7fafa499744fc1c47ef9302cf"
+    },
+    {
+      "path": "components/math/number/math.number.multiplication-table.interactive.html",
+      "bytes": 13495,
+      "sha256": "38152f5158f65ff19d224e73b63b641828fe53d67ff738b0caf1db1b7a8f2477"
+    },
+    {
+      "path": "components/math/number/math.number.negative-number-line.interactive.html",
+      "bytes": 16536,
+      "sha256": "59528af742fdab842d4ca418e3e332182ead5a03163592d897dbc91f513003f2"
+    },
+    {
+      "path": "components/math/number/math.number.number-line.interactive.html",
+      "bytes": 16505,
+      "sha256": "3f8b5b57286556759c7eb8c67e7bb7a9d47b861a20ee14a28ae9fcd6b7b9dadd"
+    },
+    {
+      "path": "components/math/number/math.number.place-value.interactive.html",
+      "bytes": 14880,
+      "sha256": "1f0fb26c1db110efaccd897f8c9b96b3d4c8270e32975f3288171db505aa0987"
+    },
+    {
+      "path": "components/math/number/math.number.ratio-model.interactive.html",
+      "bytes": 14683,
+      "sha256": "19314b13a2ef3b7258d3dd13495eb160e65bd57e9c3795314d063b85ad38a68a"
+    },
+    {
+      "path": "components/math/probability/math.probability.spinner.interactive.html",
+      "bytes": 6869,
+      "sha256": "3522f8378f8d4a4d232b616fded67fa3908b0937bb0326636209f9f5078c1a14"
+    },
+    {
+      "path": "components/math/statistics/math.statistics.bar-chart.interactive.html",
+      "bytes": 12005,
+      "sha256": "e68f6fcee7ef7dc22b2c98464dce773c1f728a747583f8a4bfa215eac511bf83"
+    },
+    {
+      "path": "components/math/statistics/math.statistics.histogram.interactive.html",
+      "bytes": 20223,
+      "sha256": "ccf7d0c7b08a4cc488f2e80dec352ff0b08bece69b9f6afbb695d7ccba70a9b3"
+    },
+    {
+      "path": "components/math/statistics/math.statistics.pie-chart.interactive.html",
+      "bytes": 10198,
+      "sha256": "88aecd9f6de69f8bd706d6b4e3d631ba9f43b88296ed2767c8e3602dbe44b38a"
+    },
+    {
+      "path": "components/math/time/math.time.calendar.interactive.html",
+      "bytes": 11739,
+      "sha256": "222990a14b616e730d5e5db828be99d0cdf6b8c0a1679af49bcc560103b15519"
+    },
+    {
+      "path": "components/math/tool/math.tool.abacus.interactive.html",
+      "bytes": 22080,
+      "sha256": "693ed488ac0994685c91a5053d1d352c2d876d1062d9a779b00cb236116f2e1b"
+    },
+    {
+      "path": "components/math/tool/math.tool.protractor.basic.html",
+      "bytes": 9228,
+      "sha256": "e5caf7e914d7e928d8a87a42a58c7b9fa9c4b9bd6efa9a50040fe31d7cd16e01"
+    },
+    {
+      "path": "components/math/tool/math.tool.ruler.basic.html",
+      "bytes": 8547,
+      "sha256": "981c3f31d873d96b3c1baf12465f2577a1cc49b165debeb74880ac4b64ba582a"
+    },
+    {
+      "path": "components/math/tool/math.tool.triangle-ruler.basic.html",
+      "bytes": 7874,
+      "sha256": "98338499b2e4cacd77825e97188a2e4ba72f6a52882a8384f329fb5f90466f34"
+    },
+    {
+      "path": "components/math/trigonometry/math.trigonometry.unit-circle.interactive.html",
+      "bytes": 20151,
+      "sha256": "2f3bf7c6e0b28fe7b8fd9c7f1e26e0e138ce19561a875fe4dab9b7e1df77c392"
+    },
+    {
+      "path": "components/math/vector/math.vector.operations.interactive.html",
+      "bytes": 19728,
+      "sha256": "6e61baddf804f6a161dc63a5bf8466b747b997f40956848566e45991b36701f7"
+    },
+    {
+      "path": "components/physics/apparatus/phy.apparatus.balance.interactive.html",
+      "bytes": 20409,
+      "sha256": "b518afa5a3bba6518c696a69a513bd42b9afe5baf1bda9dcbb1e4cf44a36682b"
+    },
+    {
+      "path": "components/physics/apparatus/phy.apparatus.bulb.basic.html",
+      "bytes": 6770,
+      "sha256": "41f1ed137b4f9f27c635c3dbab824ce71b2a8c50c4e7f02a71c2fef001f05109"
+    },
+    {
+      "path": "components/physics/apparatus/phy.apparatus.cylinder.graduated.html",
+      "bytes": 19115,
+      "sha256": "de1527ab936723ae0ddcd499f6ffeb0f5244e786fe6b57ddd3fee95b5aa52a74"
+    },
+    {
+      "path": "components/physics/apparatus/phy.apparatus.micrometer.basic.html",
+      "bytes": 14621,
+      "sha256": "039f10fa168b344b1dd64b9433fbd53a738aa3ca33e38948ed46c058afb836cd"
+    },
+    {
+      "path": "components/physics/apparatus/phy.apparatus.protractor.interactive.html",
+      "bytes": 22465,
+      "sha256": "45409990082865a0f01a03d7649d186bd19b10a7af94416d136df90203063622"
+    },
+    {
+      "path": "components/physics/apparatus/phy.apparatus.pulley-fixed.interactive.html",
+      "bytes": 25153,
+      "sha256": "d236f9d6647cb7726e1b2b897f9e304fb167724d1ab80d0e33dcb768567eba37"
+    },
+    {
+      "path": "components/physics/apparatus/phy.apparatus.pulley-movable.interactive.html",
+      "bytes": 27058,
+      "sha256": "1c2e2743c7903ac0164bb3441c72f94e715db214763ee534f83f042e8f016e29"
+    },
+    {
+      "path": "components/physics/apparatus/phy.apparatus.pulley-system.interactive.html",
+      "bytes": 31045,
+      "sha256": "0d30778e08b08a4429f1fd81e43b34e3b2a5d39732baecbf8474f5dac2c7e08e"
+    },
+    {
+      "path": "components/physics/apparatus/phy.apparatus.pulley.fixed.html",
+      "bytes": 12095,
+      "sha256": "cb4cc3787313aa5be8a5dc1dc701b6fdd29440e261f401f18185ad64ecbf0b52"
+    },
+    {
+      "path": "components/physics/apparatus/phy.apparatus.spring-scale.basic.html",
+      "bytes": 14310,
+      "sha256": "3674361da89731729c6f98c63e3a2b5a07c4191f4763e7d94a0a8c6c64059e74"
+    },
+    {
+      "path": "components/physics/apparatus/phy.apparatus.spring-scale.interactive.html",
+      "bytes": 19277,
+      "sha256": "f74d72afa50d1f0d95b25a6d3fbc2214301d15bee049f29cef523a066ac42342"
+    },
+    {
+      "path": "components/physics/apparatus/phy.apparatus.stopwatch.basic.html",
+      "bytes": 9264,
+      "sha256": "968df16f0a020c3e29f3be9f7275c3008a36be123a0455d4e6317759c6c87152"
+    },
+    {
+      "path": "components/physics/apparatus/phy.apparatus.thermometer.interactive.html",
+      "bytes": 22759,
+      "sha256": "6b62b35f162b89b80f46faa43258025e8ffa09a2287f50560833a02c3ae1bcd8"
+    },
+    {
+      "path": "components/physics/apparatus/phy.apparatus.timer.interactive.html",
+      "bytes": 8948,
+      "sha256": "fbfd5b10e10136f206bacb86e59185f240bdb0a33eee4a8d0c7d1c1fca5c7af3"
+    },
+    {
+      "path": "components/physics/apparatus/phy.apparatus.tuning-fork.basic.html",
+      "bytes": 8556,
+      "sha256": "c2da131334d22542505b86b509da35e39f055183c511a2cfe73cc4fe98e15218"
+    },
+    {
+      "path": "components/physics/apparatus/phy.apparatus.vernier-caliper.basic.html",
+      "bytes": 9213,
+      "sha256": "38ec3be4fe5f90aced80e703c5a07ae9ddb75f0b5a2cfac4ca61955b403f40f1"
+    },
+    {
+      "path": "components/physics/apparatus/phy.ruler.vertical.metric.html",
+      "bytes": 15003,
+      "sha256": "1fadea45261e6c9dff38df30f4adebf4489b5c3eb5236163ac0cff2801e76019"
+    },
+    {
+      "path": "components/physics/apparatus/phy.weight.hook.realistic.html",
+      "bytes": 10590,
+      "sha256": "d889cc49a6b5d2a1088016b738b943992252dea8fb1c3f3571b8620636a81a6d"
+    },
+    {
+      "path": "components/physics/apparatus/phy.weight.mass.basic.html",
+      "bytes": 11899,
+      "sha256": "22033d84ee0a1cf076f33c955d833bad10c84fe687c0dcae54fef0c90845ce7b"
+    },
+    {
+      "path": "components/physics/atomic/phy.atomic.bohr.interactive.html",
+      "bytes": 15415,
+      "sha256": "56d81a5101d8eb68d39aa72197c3350737b1615ac8373d5065bb6399c92fc3ce"
+    },
+    {
+      "path": "components/physics/circuit/phy.circuit.bell.basic.html",
+      "bytes": 6668,
+      "sha256": "a81262ffabeebf1ae8847321b8fd1f868ffc77ee751c3d49fa785126de7dedcc"
+    },
+    {
+      "path": "components/physics/circuit/phy.circuit.bulb-holder.basic.html",
+      "bytes": 7253,
+      "sha256": "feb08ada95ee16a9978ca48dc7e5e11cafe7805250d1228c94042e463f8c83e6"
+    },
+    {
+      "path": "components/physics/circuit/phy.circuit.capacitor.basic.html",
+      "bytes": 8906,
+      "sha256": "f88564fd8962f5b13d84bc4de0f457ca42a0c7ccbec04aa5a44942d05745145f"
+    },
+    {
+      "path": "components/physics/circuit/phy.circuit.diode.basic.html",
+      "bytes": 6562,
+      "sha256": "8a6631362aaca1a4f3f99c0271f605556bb9b058e9e1284f473dfbb1f06dca9c"
+    },
+    {
+      "path": "components/physics/circuit/phy.circuit.electromagnet.interactive.html",
+      "bytes": 14069,
+      "sha256": "016b01ed38e39ee1e04476afb29fd01571b325744f75c41637bf47b5604924fa"
+    },
+    {
+      "path": "components/physics/circuit/phy.circuit.fuse.glass-tube.html",
+      "bytes": 10738,
+      "sha256": "375494b8efebbd7cc087be5142373b5f1146a701cabe25d3ff2ba0e747319804"
+    },
+    {
+      "path": "components/physics/circuit/phy.circuit.led.basic.html",
+      "bytes": 7818,
+      "sha256": "d4d8c431dc2146cb11582cc5f2c4b117535b39ec7c4c6c809dbad59981c98c2b"
+    },
+    {
+      "path": "components/physics/circuit/phy.circuit.motor.basic.html",
+      "bytes": 7132,
+      "sha256": "aeb2dd3d781d96fd5e075dd335006050ffe1335d65f257a93056be7353aeeaaf"
+    },
+    {
+      "path": "components/physics/circuit/phy.circuit.oscilloscope.interactive.html",
+      "bytes": 19172,
+      "sha256": "8580b22e81d55422ec828d6f439c72d4683586ce1dc0e9fb8807d29458d466ed"
+    },
+    {
+      "path": "components/physics/circuit/phy.circuit.transformer.basic.html",
+      "bytes": 8691,
+      "sha256": "d8bd95ddd60c4b13e2fd6f9fd13122851626f1b8d241fd1bc262f6cc4b9e31f7"
+    },
+    {
+      "path": "components/physics/circuit/phy.circuit.wire-connector.interactive.html",
+      "bytes": 16513,
+      "sha256": "4fd37eabc69330fcd83b56deb5c5774cc8730b769862c557f501d6a43ee11eb5"
+    },
+    {
+      "path": "components/physics/circuit/phy.meter.current.basic.html",
+      "bytes": 15855,
+      "sha256": "122d5e46c27c04cc89665cb9e9c291a8358c2529e0e5e2985d8c2f9562ab07ba"
+    },
+    {
+      "path": "components/physics/circuit/phy.meter.voltage.draggable.html",
+      "bytes": 26315,
+      "sha256": "13e8866d7436f8483ed25da6972c6691073c11d364bccae04d8d6158fb6b5e81"
+    },
+    {
+      "path": "components/physics/circuit/phy.power.battery-pack.basic.html",
+      "bytes": 13412,
+      "sha256": "f44928437aee222f7d83afd795f8e966793c3216d2f92cd3df7bf2e9d290e943"
+    },
+    {
+      "path": "components/physics/circuit/phy.power.battery.basic.html",
+      "bytes": 9613,
+      "sha256": "1e2ece3edbeb29367140e2ccfa1b9e51d6bd26507a74bb0c5facfd78c207491d"
+    },
+    {
+      "path": "components/physics/circuit/phy.power.source.schematic.html",
+      "bytes": 9566,
+      "sha256": "a1f1a6c2292aa0e774cce2bd282b2d09e98830d93db59a5a5b9bd5d6b678ee0a"
+    },
+    {
+      "path": "components/physics/circuit/phy.resistor.axial.basic.html",
+      "bytes": 7093,
+      "sha256": "6f8c78b0c8ff251d4c8533c704d5179c1df49734fec0bc1e64f415c845497c4d"
+    },
+    {
+      "path": "components/physics/circuit/phy.rheostat.slide.interactive.html",
+      "bytes": 29043,
+      "sha256": "d63c8bacfcec539ef42aaf965608f56c50acad9661c7401a54a0915b13750a9f"
+    },
+    {
+      "path": "components/physics/circuit/phy.switch.knife.basic.html",
+      "bytes": 6983,
+      "sha256": "e3d82e00f1efb41862de0121fef5880c1bfbafdbf0c3ffd9c8aa0d4c5589f93e"
+    },
+    {
+      "path": "components/physics/circuit/phy.wire.clip.draggable.html",
+      "bytes": 18911,
+      "sha256": "7fc82e093e5ece62e6185d87a1b40cff6f4133636ec1e2f9da715d0157215144"
+    },
+    {
+      "path": "components/physics/electric/phy.electric.field-lines.interactive.html",
+      "bytes": 21192,
+      "sha256": "565b9d002989535056621a39914bcc71209338555eac0800d9168ab95b2d992a"
+    },
+    {
+      "path": "components/physics/em/phy.em.spectrum.interactive.html",
+      "bytes": 16977,
+      "sha256": "bb0025758fc2bda1de2c9e3c30135f3d44feda747a551cc29ae50659c4cf91d5"
+    },
+    {
+      "path": "components/physics/fluid/phy.fluid.bernoulli.interactive.html",
+      "bytes": 17295,
+      "sha256": "211dd8bc9487e0b9dd5e715f511539176eaa3e84a3025cb5bc5dbf4d9966c6ee"
+    },
+    {
+      "path": "components/physics/gravity/phy.gravity.orbital.interactive.html",
+      "bytes": 20900,
+      "sha256": "652ee1040cb5d730c24e7563dc2d10aad7dd83cfa7272fb963598813c3b7d353"
+    },
+    {
+      "path": "components/physics/magnet/phy.magnet.bar.interactive.html",
+      "bytes": 11669,
+      "sha256": "f1059a723e10d75f47f355947ffaa0c7c10c17d429322644302f5dabc44bede9"
+    },
+    {
+      "path": "components/physics/magnet/phy.magnet.compass.basic.html",
+      "bytes": 10429,
+      "sha256": "c6e534b82efc70d3588bcb7e9aee0954478f7bdd877864a93b34e1ae7c9c1ac1"
+    },
+    {
+      "path": "components/physics/magnet/phy.magnet.compass.dial.html",
+      "bytes": 12580,
+      "sha256": "d29dc1c421df578bd13fe66f8e237d0c74f3b811cc23c0797f7a5a935999c557"
+    },
+    {
+      "path": "components/physics/magnet/phy.magnet.em-induction.interactive.html",
+      "bytes": 16048,
+      "sha256": "998a6c003c300cea930adbb2c0ad381aea4c6d3f4786b219c0aafac400b8e21a"
+    },
+    {
+      "path": "components/physics/magnet/phy.magnet.field-lines.interactive.html",
+      "bytes": 18993,
+      "sha256": "58bd2299e1d4b1d1c50e4bc2ae505dffbbb35356b55f63a3af607daf27186561"
+    },
+    {
+      "path": "components/physics/magnet/phy.magnet.horseshoe.basic.html",
+      "bytes": 13284,
+      "sha256": "b6f778f90b67e498f57634e1700249c9cf44caea6a9e93286ca94894e975e023"
+    },
+    {
+      "path": "components/physics/mechanics/phy.mechanics.buoyancy.interactive.html",
+      "bytes": 17972,
+      "sha256": "1dbb3b4b0024e489f843c7abe4c4c5e5f6c290e5869e001706e90b0dff3c6bf1"
+    },
+    {
+      "path": "components/physics/mechanics/phy.mechanics.cart.basic.html",
+      "bytes": 5539,
+      "sha256": "9754f3e984569c05245bf2283236004e4ba752486a8bf6f9a49a949adcb70d71"
+    },
+    {
+      "path": "components/physics/mechanics/phy.mechanics.cart.collision.html",
+      "bytes": 9792,
+      "sha256": "6702bef84fe8a9f2cf62623ab9303c824a8d1e7f3b0106ca3a8be27609546ddf"
+    },
+    {
+      "path": "components/physics/mechanics/phy.mechanics.cart.dynamics.html",
+      "bytes": 8580,
+      "sha256": "20d43a70c0037fd7cf93982d1bc63d07a7dae61ea325be805055cc471ba3cf14"
+    },
+    {
+      "path": "components/physics/mechanics/phy.mechanics.cart.flatbed.html",
+      "bytes": 7168,
+      "sha256": "f1e94c16ddfea987a070d53dac48dbfb4c70952e2f599a8116b47abb14431f70"
+    },
+    {
+      "path": "components/physics/mechanics/phy.mechanics.friction-demo.interactive.html",
+      "bytes": 19395,
+      "sha256": "ea470248639be589a89bc56f1b80fb7f943a9aa7836dde7fc08021ed99f29c5b"
+    },
+    {
+      "path": "components/physics/mechanics/phy.mechanics.inclined-plane.adjustable.html",
+      "bytes": 5593,
+      "sha256": "880267f50a9d2082fef9484b81346bb791ec5776148b5b9ea03089c8b8801ab3"
+    },
+    {
+      "path": "components/physics/mechanics/phy.mechanics.inclined-plane.basic.html",
+      "bytes": 3846,
+      "sha256": "8086bcfbf8ed69b5cb2fcedd8ca747d21c6320b09bed6338e1aba3176920f42e"
+    },
+    {
+      "path": "components/physics/mechanics/phy.mechanics.inclined-plane.double.html",
+      "bytes": 3119,
+      "sha256": "9260b68693384be8398289fb20590df3d0d5f5e381f6dcef23bcd9449d724503"
+    },
+    {
+      "path": "components/physics/mechanics/phy.mechanics.inclined-plane.graduated.html",
+      "bytes": 3672,
+      "sha256": "f1c460d01a20538e58b71dd61334e90ad754e6c6b246f1f9549997508e1c8cc3"
+    },
+    {
+      "path": "components/physics/mechanics/phy.mechanics.lever.interactive.html",
+      "bytes": 27536,
+      "sha256": "e4dbd4ba861d5d488dc2865fa0f35763c83e6e8fe13432068aaca74c18c383e9"
+    },
+    {
+      "path": "components/physics/mechanics/phy.mechanics.newton-cradle.interactive.html",
+      "bytes": 14438,
+      "sha256": "ab46b700bb00610c6841170f89b8a5d1b0cdc7836905c2c7333d121151f9eb25"
+    },
+    {
+      "path": "components/physics/mechanics/phy.mechanics.pendulum.interactive.html",
+      "bytes": 11708,
+      "sha256": "4c2882db16bf8c51c982ce4b6c695c4956d504a276bba1ba641fc9c844bf0be5"
+    },
+    {
+      "path": "components/physics/mechanics/phy.mechanics.pressure-demo.interactive.html",
+      "bytes": 19136,
+      "sha256": "1d21b26e0b839e0ecfb291be08dd5b5fabdff9dac0b623e22f5a6ed4973649db"
+    },
+    {
+      "path": "components/physics/mechanics/phy.mechanics.projectile.interactive.html",
+      "bytes": 23404,
+      "sha256": "c7b6ef968a4c75d529ae73bd58d83ff1baf6989490396d6a79802702d9fdf3ca"
+    },
+    {
+      "path": "components/physics/mechanics/phy.mechanics.shm.interactive.html",
+      "bytes": 18211,
+      "sha256": "08ab68f8c74c7a7acd6851cde6a170cdc59d5c16e6e9abb5e528a85517c5b3c5"
+    },
+    {
+      "path": "components/physics/mechanics/phy.mechanics.spring.interactive.html",
+      "bytes": 15166,
+      "sha256": "ede8d712b654c01ede06807057a33b5564488ca2bdcf98700fc4bb393ca069a7"
+    },
+    {
+      "path": "components/physics/optics/phy.optics.double-slit.interactive.html",
+      "bytes": 23321,
+      "sha256": "cec54c84c2edd70f7353dd6f3f96c8d6a0217d87db317c66c8785d6de1a571c4"
+    },
+    {
+      "path": "components/physics/optics/phy.optics.fiber.basic.html",
+      "bytes": 7103,
+      "sha256": "208544fa66e7c76fdd0defca1befff1d112a1dfe5e506acd714834978a275e54"
+    },
+    {
+      "path": "components/physics/optics/phy.optics.lens.concave.basic.html",
+      "bytes": 9536,
+      "sha256": "c518837fb8e5c0a7c16b83fdfac729df57121945c4b1f341d4df67ab3f150db1"
+    },
+    {
+      "path": "components/physics/optics/phy.optics.lens.convex.basic.html",
+      "bytes": 9061,
+      "sha256": "9d6de083826bd54d4e42c22fcbfe0109ffa9f1d3b3e0f9c4b0de2b8f98dc8aac"
+    },
+    {
+      "path": "components/physics/optics/phy.optics.lens.convex.interactive.html",
+      "bytes": 32381,
+      "sha256": "bd765894ee34466209db7f15af735cebefd8063d7108efc6df2146481a4f045b"
+    },
+    {
+      "path": "components/physics/optics/phy.optics.lens.interactive.html",
+      "bytes": 18825,
+      "sha256": "77dce8eeb1a1f8dd3b7079febcd20c89a086ebe67381242418c9642a94aa3b59"
+    },
+    {
+      "path": "components/physics/optics/phy.optics.mirror.concave.basic.html",
+      "bytes": 7986,
+      "sha256": "498cb3980851eded02791e690e0b2bb686af28531b1eb0cc11d8de5d2128005a"
+    },
+    {
+      "path": "components/physics/optics/phy.optics.mirror.convex.basic.html",
+      "bytes": 7862,
+      "sha256": "9f2f92670dea879745170e4e17a2d0b98080661cfd0e7dcee2f3848afc99d52c"
+    },
+    {
+      "path": "components/physics/optics/phy.optics.mirror.plane.interactive.html",
+      "bytes": 31068,
+      "sha256": "ff37a748447a7b73d8a364d1682169d573c48e13f6b8f4b2b487a5834e422984"
+    },
+    {
+      "path": "components/physics/optics/phy.optics.prism.basic.html",
+      "bytes": 7254,
+      "sha256": "02150758a9c7b9722c4f372cfc5b80ec2dc85218cb1b04ce7c1051e371c1fc17"
+    },
+    {
+      "path": "components/physics/optics/phy.optics.refraction.interactive.html",
+      "bytes": 27534,
+      "sha256": "ab2f3a91057262ddb6d2e637c5e9a145ebab7e21245523f9973d6af9035482b8"
+    },
+    {
+      "path": "components/physics/thermal/phy.thermal.carnot-cycle.interactive.html",
+      "bytes": 18919,
+      "sha256": "64b1c6943faa4d8e4451ff9abf6859696c332de8dd31b8ddbc2cf328e800d10f"
+    },
+    {
+      "path": "components/physics/thermal/phy.thermal.conduction.interactive.html",
+      "bytes": 23243,
+      "sha256": "d5d8d4b1bf88b2b39453e5a3a58a0c20a1987c372d344cfe67fea4659717bd8d"
+    },
+    {
+      "path": "components/physics/thermal/phy.thermal.convection.interactive.html",
+      "bytes": 11948,
+      "sha256": "6af8661dc6375ca9cbf6c90472a5415dd0ae7f5f0a721f47c14aec2a58ee09f0"
+    },
+    {
+      "path": "components/physics/thermal/phy.thermal.radiation.basic.html",
+      "bytes": 8059,
+      "sha256": "9e5b1b93641c1de9a6263c52a867f179a24ccc28eb36f7e06ee5b71414e0677c"
+    },
+    {
+      "path": "components/physics/wave/phy.wave.doppler.interactive.html",
+      "bytes": 14267,
+      "sha256": "4cdc4beab9fa65a9ac341fc1550681b2a3feebf6043d87e2e9f8d3c83b8fcb30"
+    },
+    {
+      "path": "components/physics/wave/phy.wave.longitudinal.interactive.html",
+      "bytes": 7179,
+      "sha256": "9e41a8d4b9f419fbf9fbbd8c18cff6124c44230df7c1edacb29708668f91b5f2"
+    },
+    {
+      "path": "components/physics/wave/phy.wave.sound.interactive.html",
+      "bytes": 17248,
+      "sha256": "17c661285708d0c8aa517f8e8d62ac271e58e95edf43d0f70ee5551487c895e4"
+    },
+    {
+      "path": "components/physics/wave/phy.wave.standing.interactive.html",
+      "bytes": 9644,
+      "sha256": "c92d641b911e8e41e42a29c0e51a511951de91b0ef54031a47570cd089576947"
+    },
+    {
+      "path": "components/physics/wave/phy.wave.transverse.interactive.html",
+      "bytes": 12809,
+      "sha256": "09c4709d4bebe512ed709182c4a89139dc80cd0b757a0c9b1f61fab3f738d20a"
+    },
+    {
+      "path": "components/science/earth/sci.earth.day-night.interactive.html",
+      "bytes": 17657,
+      "sha256": "c74a5a471d5537b723ad2179a44725570132dd622b82ca3efe48c0057042a413"
+    },
+    {
+      "path": "components/science/earth/sci.earth.earth-layers.interactive.html",
+      "bytes": 11474,
+      "sha256": "4769a843cd3df1d982d07e31aa2efc162086f90e58cea7da6813b995b78890d9"
+    },
+    {
+      "path": "components/science/earth/sci.earth.erosion.interactive.html",
+      "bytes": 21327,
+      "sha256": "8b29b245513f29cb3c0a6734b18be1c00c49fe3282fd78ae8e5b698a35c72885"
+    },
+    {
+      "path": "components/science/earth/sci.earth.moon-phases.interactive.html",
+      "bytes": 13194,
+      "sha256": "a04c3b2ee53cadc49d922383186da3c1c9341647ae5500ea20e525d855e26ca5"
+    },
+    {
+      "path": "components/science/earth/sci.earth.seasons.interactive.html",
+      "bytes": 16406,
+      "sha256": "42edaa9b991765a6c4205557ec0f52d1fac33e6d115a1c9fc01c42b86139ad5e"
+    },
+    {
+      "path": "components/science/earth/sci.earth.solar-system.interactive.html",
+      "bytes": 19018,
+      "sha256": "89d42887c9a0d8061cd8b8e704b999ab923894ff981791b5ccc71cf97448faff"
+    },
+    {
+      "path": "components/science/earth/sci.earth.volcano.interactive.html",
+      "bytes": 16851,
+      "sha256": "8c02c0f179120248fa825f0a96498826624a357dac0fe2d997970ec2166a4dfe"
+    },
+    {
+      "path": "components/science/earth/sci.earth.water-cycle.interactive.html",
+      "bytes": 19482,
+      "sha256": "4a59ef9011097a13558264395e9d533cfd5c1ec5e710bbc4222167f6c1ce6a26"
+    },
+    {
+      "path": "components/science/life/sci.life.butterfly-lifecycle.interactive.html",
+      "bytes": 17598,
+      "sha256": "cc7475d687f0fc2a8d15d9c3ada98d7323b044e058d6b7e5877a7f58b13b10a5"
+    },
+    {
+      "path": "components/science/life/sci.life.flower-structure.basic.html",
+      "bytes": 12642,
+      "sha256": "c7a90fafe3c6b3032a781d8c5ea130d700ad085c1fc8a0a46cdcddd415692625"
+    },
+    {
+      "path": "components/science/life/sci.life.food-chain.interactive.html",
+      "bytes": 19276,
+      "sha256": "12a3c590daa6951393f1a6a58c55509dc1243ef5128e0d5d4d3ded1bcdcbeb08"
+    },
+    {
+      "path": "components/science/life/sci.life.frog-lifecycle.interactive.html",
+      "bytes": 16507,
+      "sha256": "b39e22330765e8c7a511f305fabd75b5a190a42c06b20654d597806b07cc5a02"
+    },
+    {
+      "path": "components/science/life/sci.life.human-body.interactive.html",
+      "bytes": 20361,
+      "sha256": "bdc42c2dec0f68e7376397096bd43ad4852523b3cade51932d1507339aa8a68f"
+    },
+    {
+      "path": "components/science/life/sci.life.leaf-structure.basic.html",
+      "bytes": 17668,
+      "sha256": "a93e206e7aeaf8052b7abd8f266639121e2029370431cb92931b9e42df49f170"
+    },
+    {
+      "path": "components/science/life/sci.life.plant-growth.interactive.html",
+      "bytes": 18626,
+      "sha256": "ff0a8bc24e68615175f85dbe121a0d760e73a439a393683190b988114c8cd2fc"
+    },
+    {
+      "path": "components/science/life/sci.life.seed-structure.basic.html",
+      "bytes": 9545,
+      "sha256": "d491f909c2ef84a5fe3024c13dc396d21a5b4011f78b7fff725d6f6845959bc1"
+    },
+    {
+      "path": "components/science/tool/sci.tool.compass.basic.html",
+      "bytes": 16803,
+      "sha256": "a48b6358909af4f63b9b3f2716b93a5cde129b6d333af38ff24e812951d6129f"
+    },
+    {
+      "path": "components/science/tool/sci.tool.filter-funnel.basic.html",
+      "bytes": 21464,
+      "sha256": "7b0af3d4594045c68eb62a9589ca159bd6226303050b8a86b565edb568afc500"
+    },
+    {
+      "path": "components/science/tool/sci.tool.magnifier.basic.html",
+      "bytes": 14553,
+      "sha256": "119d934c8046ba7206a626ca25fa8b99346a20818758c5fab6a8c57cb38c8dd3"
+    },
+    {
+      "path": "components/science/tool/sci.tool.measuring-cup.basic.html",
+      "bytes": 16752,
+      "sha256": "8f4a736450e1861fcb9fab5b66aaa9c1010bbc695403da343d0d986f64198079"
+    },
+    {
+      "path": "components/science/tool/sci.tool.pulley-demo.interactive.html",
+      "bytes": 16899,
+      "sha256": "992aaa6b7f94e6620f37433378776a6cf6fd268d31e7458759d539de7ba067ab"
+    },
+    {
+      "path": "components/science/tool/sci.tool.shadow-length.interactive.html",
+      "bytes": 15007,
+      "sha256": "ab40e3100e9d40152496eae63965f72ecbbfa221053b13934a58664fd8af4fba"
+    },
+    {
+      "path": "components/science/tool/sci.tool.simple-circuit.interactive.html",
+      "bytes": 11387,
+      "sha256": "96f8b14dc7c61911cf86a72f1b7026bd9c57580e596a067648eb63642dd61366"
+    },
+    {
+      "path": "components/science/tool/sci.tool.sundial.interactive.html",
+      "bytes": 17022,
+      "sha256": "a4ae99443381bc46d6b2840e52950114ecb3e17a849a1e1449f1a5a9e4216dd9"
+    },
+    {
+      "path": "docs/ANNOUNCEMENT-0.2.0.en.md",
+      "bytes": 1977,
+      "sha256": "516ad8bfa82b6d8e658659531600348c02f777c1b07640f2a2fcc256cc48ffae"
+    },
+    {
+      "path": "docs/ANNOUNCEMENT-0.2.0.zh-CN.md",
+      "bytes": 1977,
+      "sha256": "516ad8bfa82b6d8e658659531600348c02f777c1b07640f2a2fcc256cc48ffae"
+    },
+    {
+      "path": "docs/ARCHITECTURE.en.md",
+      "bytes": 5985,
+      "sha256": "e98662b2270480b55b8c4cced9508e81e73210bd2f0ba02541f5c28cab96ffa5"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "bytes": 5665,
+      "sha256": "276a83484a81d12c992ef42d35687cb73e90a24cc93711c08277a75a24d1a712"
+    },
+    {
+      "path": "docs/ARCHITECTURE.zh-CN.md",
+      "bytes": 4350,
+      "sha256": "a675c342fada567845ff05c701d27d9783243163fac657ce2fddaf03a83c4c7f"
+    },
+    {
+      "path": "docs/CATEGORY.en.md",
+      "bytes": 2852,
+      "sha256": "bfd00fdbe237d5c673ebcc7981a547a3d254f22b44edc41d12cde469abe905c5"
+    },
+    {
+      "path": "docs/CATEGORY.md",
+      "bytes": 3749,
+      "sha256": "ba7b69f91501ce11623b759814d88e2a6abfceb675ebe94653cb5afa89c3288f"
+    },
+    {
+      "path": "docs/CATEGORY.zh-CN.md",
+      "bytes": 3749,
+      "sha256": "ba7b69f91501ce11623b759814d88e2a6abfceb675ebe94653cb5afa89c3288f"
+    },
+    {
+      "path": "docs/CONTRIBUTING.en.md",
+      "bytes": 2639,
+      "sha256": "7be3f54fdf99382338c66d9e8780b6a19eef7db8e5968307663090d6b11af671"
+    },
+    {
+      "path": "docs/CONTRIBUTING.md",
+      "bytes": 3372,
+      "sha256": "f9f0d2a202f53f0746990015d1f47c4c7ae3886c16f50d2900b0cb2a25e54724"
+    },
+    {
+      "path": "docs/CONTRIBUTING.zh-CN.md",
+      "bytes": 3372,
+      "sha256": "f9f0d2a202f53f0746990015d1f47c4c7ae3886c16f50d2900b0cb2a25e54724"
+    },
+    {
+      "path": "docs/DEPLOYMENT.en.md",
+      "bytes": 1273,
+      "sha256": "ac6ea70d7ddf864e2c96a40cb27864635de5826fa2753f41547e93779fd50020"
+    },
+    {
+      "path": "docs/DEPLOYMENT.md",
+      "bytes": 1767,
+      "sha256": "7b0574d29ce66029b62f8fd251087406adac68dced2703195f04ee0a00143f68"
+    },
+    {
+      "path": "docs/DEPLOYMENT.zh-CN.md",
+      "bytes": 1767,
+      "sha256": "7b0574d29ce66029b62f8fd251087406adac68dced2703195f04ee0a00143f68"
+    },
+    {
+      "path": "docs/EVENT.en.md",
+      "bytes": 5253,
+      "sha256": "acb4b7ac25eccbc95c8f6140c0c6007070a1b04994365bcf6009e7b7a551c5de"
+    },
+    {
+      "path": "docs/EVENT.md",
+      "bytes": 6993,
+      "sha256": "e9fc8ccf414da4c19fd6be0eeebf9fa3b439a90bd0884b626b33d6c2bad5aa5e"
+    },
+    {
+      "path": "docs/EVENT.zh-CN.md",
+      "bytes": 6993,
+      "sha256": "e9fc8ccf414da4c19fd6be0eeebf9fa3b439a90bd0884b626b33d6c2bad5aa5e"
+    },
+    {
+      "path": "docs/GITHUB-RELEASE-0.2.0.en.md",
+      "bytes": 1659,
+      "sha256": "1b9c799518536996f7fd28b79fa087e251d12b354da37d14bdbb4469206ae13f"
+    },
+    {
+      "path": "docs/GITHUB-RELEASE-0.2.0.md",
+      "bytes": 1659,
+      "sha256": "1b9c799518536996f7fd28b79fa087e251d12b354da37d14bdbb4469206ae13f"
+    },
+    {
+      "path": "docs/GITHUB-RELEASE-0.2.0.zh-CN.md",
+      "bytes": 1659,
+      "sha256": "1b9c799518536996f7fd28b79fa087e251d12b354da37d14bdbb4469206ae13f"
+    },
+    {
+      "path": "docs/GITHUB_PAGES_SETUP.en.md",
+      "bytes": 3857,
+      "sha256": "e8b748af11348ff4ef681e2cb2e4a08df53b558727f93f32720bd04395e18cb7"
+    },
+    {
+      "path": "docs/GITHUB_PAGES_SETUP.zh-CN.md",
+      "bytes": 3857,
+      "sha256": "e8b748af11348ff4ef681e2cb2e4a08df53b558727f93f32720bd04395e18cb7"
+    },
+    {
+      "path": "docs/INTEGRATION.en.md",
+      "bytes": 7831,
+      "sha256": "3902de71663bad261f00fbd4d4e76a2197d91720d6a14ca5dcc2e7c2e9314813"
+    },
+    {
+      "path": "docs/INTEGRATION.md",
+      "bytes": 13579,
+      "sha256": "8d10246db39733b8c18635352f2cf3ed605a9212608eff5951f7c03b8e7171e2"
+    },
+    {
+      "path": "docs/INTEGRATION.zh-CN.md",
+      "bytes": 13579,
+      "sha256": "8d10246db39733b8c18635352f2cf3ed605a9212608eff5951f7c03b8e7171e2"
+    },
+    {
+      "path": "docs/MCP.en.md",
+      "bytes": 4399,
+      "sha256": "18aaac86a71295047fd1a8964b2c532fe71eb3e711070821bb1052198c397241"
+    },
+    {
+      "path": "docs/MCP.md",
+      "bytes": 4208,
+      "sha256": "1b0081acfd48c05bc00bbcec7a3a1a3b3ef3d98e28f2141d90966327b1fe6122"
+    },
+    {
+      "path": "docs/MCP.zh-CN.md",
+      "bytes": 4138,
+      "sha256": "8da82605a34d1326215489930e412e1a5d70febf2c0760a2b6a5acc7323652da"
+    },
+    {
+      "path": "docs/MCP_REMOTE.en.md",
+      "bytes": 2793,
+      "sha256": "5ad23d72784f4a397369244c72141e54e7d0ada7cb8f01f5a3ee116947a23337"
+    },
+    {
+      "path": "docs/MCP_REMOTE.md",
+      "bytes": 2793,
+      "sha256": "5ad23d72784f4a397369244c72141e54e7d0ada7cb8f01f5a3ee116947a23337"
+    },
+    {
+      "path": "docs/MCP_REMOTE.zh-CN.md",
+      "bytes": 2777,
+      "sha256": "eb6018826bc1ec2cc567958fdac45c1401d73ee38f4d7d15f3fe37a2b3063652"
+    },
+    {
+      "path": "docs/OPTIMIZATION-ROADMAP.en.md",
+      "bytes": 7415,
+      "sha256": "6a9586c906fd745041663ed3fbc43444408f1cbac5358b2524a0a22609e7f275"
+    },
+    {
+      "path": "docs/OPTIMIZATION-ROADMAP.md",
+      "bytes": 7415,
+      "sha256": "6a9586c906fd745041663ed3fbc43444408f1cbac5358b2524a0a22609e7f275"
+    },
+    {
+      "path": "docs/OPTIMIZATION-ROADMAP.zh-CN.md",
+      "bytes": 7415,
+      "sha256": "6a9586c906fd745041663ed3fbc43444408f1cbac5358b2524a0a22609e7f275"
+    },
+    {
+      "path": "docs/PUBLISHING.en.md",
+      "bytes": 2917,
+      "sha256": "4a21702ccddd202aa4b0b892e87f25ab4cc846663c8c242498036337ebf24d44"
+    },
+    {
+      "path": "docs/PUBLISHING.md",
+      "bytes": 2917,
+      "sha256": "4a21702ccddd202aa4b0b892e87f25ab4cc846663c8c242498036337ebf24d44"
+    },
+    {
+      "path": "docs/PUBLISHING.zh-CN.md",
+      "bytes": 2855,
+      "sha256": "a93a68a45a07a69dc733cb73fe0e324fc6518ce5548987a06143e2f6ed008e65"
+    },
+    {
+      "path": "docs/RELEASE-2026-03-I18N.en.md",
+      "bytes": 3737,
+      "sha256": "bd711c452cd8b9d5464b07115ebd282c218427ef31b523f291240f3c754879af"
+    },
+    {
+      "path": "docs/RELEASE-2026-03-I18N.md",
+      "bytes": 3737,
+      "sha256": "bd711c452cd8b9d5464b07115ebd282c218427ef31b523f291240f3c754879af"
+    },
+    {
+      "path": "docs/RELEASE-2026-03-I18N.zh-CN.md",
+      "bytes": 3487,
+      "sha256": "441633f7932166c3e04ebbd396d1d7e025f5c78c551f336e2bfa2254bcbea422"
+    },
+    {
+      "path": "docs/RELEASE-CHECKLIST-0.2.0.en.md",
+      "bytes": 1497,
+      "sha256": "2e618e3d452a476fb11a2c3fbf2e4d9ddaa0d37431ee8740768a8f470ddfe287"
+    },
+    {
+      "path": "docs/RELEASE-CHECKLIST-0.2.0.md",
+      "bytes": 1497,
+      "sha256": "2e618e3d452a476fb11a2c3fbf2e4d9ddaa0d37431ee8740768a8f470ddfe287"
+    },
+    {
+      "path": "docs/RELEASE-CHECKLIST-0.2.0.zh-CN.md",
+      "bytes": 1497,
+      "sha256": "2e618e3d452a476fb11a2c3fbf2e4d9ddaa0d37431ee8740768a8f470ddfe287"
+    },
+    {
+      "path": "docs/RELEASE-COMMANDS-0.2.0.en.md",
+      "bytes": 1116,
+      "sha256": "b5b2ff6f5b30042578676402cb19dc988371da2de7fd05d915ca5de4a33ffd0b"
+    },
+    {
+      "path": "docs/RELEASE-COMMANDS-0.2.0.md",
+      "bytes": 1116,
+      "sha256": "b5b2ff6f5b30042578676402cb19dc988371da2de7fd05d915ca5de4a33ffd0b"
+    },
+    {
+      "path": "docs/RELEASE-COMMANDS-0.2.0.zh-CN.md",
+      "bytes": 1116,
+      "sha256": "b5b2ff6f5b30042578676402cb19dc988371da2de7fd05d915ca5de4a33ffd0b"
+    },
+    {
+      "path": "docs/RELEASE-SMOKE.en.md",
+      "bytes": 1251,
+      "sha256": "058a40acc52c832f3409e644558fa724e8814c2efc56d2765b973c773dc2baeb"
+    },
+    {
+      "path": "docs/RELEASE-SMOKE.md",
+      "bytes": 1251,
+      "sha256": "058a40acc52c832f3409e644558fa724e8814c2efc56d2765b973c773dc2baeb"
+    },
+    {
+      "path": "docs/RELEASE-SMOKE.zh-CN.md",
+      "bytes": 1251,
+      "sha256": "058a40acc52c832f3409e644558fa724e8814c2efc56d2765b973c773dc2baeb"
+    },
+    {
+      "path": "docs/RUNTIME.en.md",
+      "bytes": 1365,
+      "sha256": "c064166232e8e9fd183e93b1a9431956030bef4006107e8e17e0a78d9696790e"
+    },
+    {
+      "path": "docs/RUNTIME.md",
+      "bytes": 1365,
+      "sha256": "c064166232e8e9fd183e93b1a9431956030bef4006107e8e17e0a78d9696790e"
+    },
+    {
+      "path": "docs/RUNTIME.zh-CN.md",
+      "bytes": 1322,
+      "sha256": "e094ca9e848279d5abcbc7072ec7281ce9fd68b18d814bb2b269ddfaa6bcb0d0"
+    },
+    {
+      "path": "docs/SPEC.en.md",
+      "bytes": 6583,
+      "sha256": "81802433f0c994664d160af9bd1867e96669137d34da3467f448c1b5eee21d51"
+    },
+    {
+      "path": "docs/SPEC.md",
+      "bytes": 7961,
+      "sha256": "4fed0b6899fe8f022f054d3ee1bda7334152199baca38957a93e31614d06c701"
+    },
+    {
+      "path": "docs/SPEC.zh-CN.md",
+      "bytes": 7961,
+      "sha256": "4fed0b6899fe8f022f054d3ee1bda7334152199baca38957a93e31614d06c701"
+    },
+    {
+      "path": "docs/TESTING.en.md",
+      "bytes": 3399,
+      "sha256": "bf69bba052357ea62369cc0662e40c1a6a41d75bafdb02a3d50cf87e13c918aa"
+    },
+    {
+      "path": "docs/TESTING.md",
+      "bytes": 3399,
+      "sha256": "bf69bba052357ea62369cc0662e40c1a6a41d75bafdb02a3d50cf87e13c918aa"
+    },
+    {
+      "path": "docs/TESTING.zh-CN.md",
+      "bytes": 2707,
+      "sha256": "58d11f2969e2d826088e62e9c5f66ae189e3320c278c2c07951d480106087cf4"
+    },
+    {
+      "path": "docs/VISUAL-PROMPTS.en.md",
+      "bytes": 6883,
+      "sha256": "feb4d39e4b5d7cbfee7258e7ae29bd207c87ba215dbd7859f9a7be56348a0a18"
+    },
+    {
+      "path": "docs/VISUAL-PROMPTS.md",
+      "bytes": 6184,
+      "sha256": "c72411bcbf23ca34d76b483571107cf4f440c9c8afdda8a17493e96d89d52547"
+    },
+    {
+      "path": "docs/VISUAL-PROMPTS.zh-CN.md",
+      "bytes": 6184,
+      "sha256": "c72411bcbf23ca34d76b483571107cf4f440c9c8afdda8a17493e96d89d52547"
+    },
+    {
+      "path": "docs/VISUALS.en.md",
+      "bytes": 2782,
+      "sha256": "f7afd80cdacdb7f38530e8705d0341767ca4761ac46e41e66d94939ae3a8c4ae"
+    },
+    {
+      "path": "docs/VISUALS.md",
+      "bytes": 2237,
+      "sha256": "c51432a1dd54d347c361b1214a09d25d3d82a1aa1d7da819e84426e7df1e6414"
+    },
+    {
+      "path": "docs/VISUALS.zh-CN.md",
+      "bytes": 2237,
+      "sha256": "c51432a1dd54d347c361b1214a09d25d3d82a1aa1d7da819e84426e7df1e6414"
+    },
+    {
+      "path": "docs/WORKSPACE-PLAN.en.md",
+      "bytes": 3264,
+      "sha256": "333a235374d9790c99d52c7724a3a0b304a1d01afa25725d0f78c762d2769160"
+    },
+    {
+      "path": "docs/WORKSPACE-PLAN.md",
+      "bytes": 3264,
+      "sha256": "333a235374d9790c99d52c7724a3a0b304a1d01afa25725d0f78c762d2769160"
+    },
+    {
+      "path": "docs/WORKSPACE-PLAN.zh-CN.md",
+      "bytes": 3264,
+      "sha256": "333a235374d9790c99d52c7724a3a0b304a1d01afa25725d0f78c762d2769160"
+    },
+    {
+      "path": "index.d.ts",
+      "bytes": 4348,
+      "sha256": "eb2792d71d9b88c1a7c0078c94e0824d79536ddf417a998d6a76fe4f5eaecd2c"
+    },
+    {
+      "path": "index.js",
+      "bytes": 1918,
+      "sha256": "c5451b9fd608c2712e467766c67232dbb57e930b0b7d51a8b6fbd4922236a17e"
+    },
+    {
+      "path": "lib/README.md",
+      "bytes": 430,
+      "sha256": "a88939824958423fb42922e43544e04568f715a515124f28fabbe799e1f08c9c"
+    },
+    {
+      "path": "lib/catalog.js",
+      "bytes": 10934,
+      "sha256": "7539afe4619d8acc7eed9a5f3d172de2b7815bf4e75b7a007096c2e1e07b6cf5"
+    },
+    {
+      "path": "lib/i18n.js",
+      "bytes": 10064,
+      "sha256": "24f72c0f0f46953b920476bee80e0643d5dae0b083ba2ab66e7d509f177bace3"
+    },
+    {
+      "path": "lib/registry-metadata.js",
+      "bytes": 1498,
+      "sha256": "98459384b3e2cc2b6250074668681071af3474ec73ad0a9e4ff44685e90a7920"
+    },
+    {
+      "path": "lib/registry.js",
+      "bytes": 877,
+      "sha256": "a4b5005d347c8c7d7c283bd513809cea89aa517724f6343b74b5f5f167c86286"
+    },
+    {
+      "path": "lib/root-api-metadata.js",
+      "bytes": 1944,
+      "sha256": "210710f1883c509de47207ba4b4986808ffa690f3c8934a694aee96bee21428b"
+    },
+    {
+      "path": "lib/runtime.js",
+      "bytes": 8519,
+      "sha256": "6036dac74952736d9ec9be0b8a2881527207f39915eae1c5d28a1fd12c4d3dc4"
+    },
+    {
+      "path": "lib/visual-catalog.js",
+      "bytes": 5113,
+      "sha256": "94aa229c54fc07e6cf2f5857bc4b290dc101f5baa2b9b8fefc1af9c89f7b18fc"
+    },
+    {
+      "path": "lib/visual-registry-metadata.js",
+      "bytes": 1741,
+      "sha256": "933bcfed483869513168480032f16d3aa563959666d23499934de3c797bea233"
+    },
+    {
+      "path": "lib/visual-registry.js",
+      "bytes": 1160,
+      "sha256": "39500e32ac35d1cda09fd19027baa934c377f8bca96b9f49f6e72fee9c5a4b0a"
+    },
+    {
+      "path": "lib/visual-taxonomy.js",
+      "bytes": 2791,
+      "sha256": "2565b3720514b3abfe077c0904ce89007be0942e8079ea8fc910ef77cab9e998"
+    },
+    {
+      "path": "mcp-server/.env.example",
+      "bytes": 489,
+      "sha256": "233c05af5688e3d389aeb883c858456467957a4eb221b152c5ba4d4da69dbc82"
+    },
+    {
+      "path": "mcp-server/DEPLOYMENT-CHECKLIST.en.md",
+      "bytes": 1742,
+      "sha256": "6545cb136bdb045e53ce535483fee8ecbe6a57ccfc19bd205ad90463f747bedd"
+    },
+    {
+      "path": "mcp-server/DEPLOYMENT-CHECKLIST.md",
+      "bytes": 1837,
+      "sha256": "5e77060ac06db368bdbfdaf700ac1563924aabb521c3090589ab4b8320733c18"
+    },
+    {
+      "path": "mcp-server/DEPLOYMENT-CHECKLIST.zh-CN.md",
+      "bytes": 1663,
+      "sha256": "718fab083a8c6dbf3e8cc4f0042b47c3cf8ccc7303ca693944c5f5e838f70bcf"
+    },
+    {
+      "path": "mcp-server/DEPLOYMENT.en.md",
+      "bytes": 1261,
+      "sha256": "875d37052b829e08f4017e90aaac457feda327c32021451f12ec285b1f6cbe5e"
+    },
+    {
+      "path": "mcp-server/DEPLOYMENT.md",
+      "bytes": 4181,
+      "sha256": "78941689ad7b52a18db7656bb76aae0d78e405c81dda1eb1499c9b9a15f377bb"
+    },
+    {
+      "path": "mcp-server/DEPLOYMENT.zh-CN.md",
+      "bytes": 1223,
+      "sha256": "e484b1518058d95cb9a88394c06bba7a3ccdb5d51afc1bbcb8315b53f2856b4d"
+    },
+    {
+      "path": "mcp-server/MAINTENANCE.md",
+      "bytes": 497,
+      "sha256": "676cc51ce5ef996af5bf3b5bbd6363d30dbcd78f478e2c0d07edb8f61b56dcb1"
+    },
+    {
+      "path": "mcp-server/OPERATIONS.en.md",
+      "bytes": 1301,
+      "sha256": "2b8a9a485fd8d455dd1bcd77a511baa2749da7a0dfcd8f90d649ffd5125ceb4d"
+    },
+    {
+      "path": "mcp-server/OPERATIONS.md",
+      "bytes": 4285,
+      "sha256": "c6fd1b2b9edb947dc0beaa0f5b387987fa8b8a24a63eb9ef540c32e12f3ed174"
+    },
+    {
+      "path": "mcp-server/OPERATIONS.zh-CN.md",
+      "bytes": 1326,
+      "sha256": "3f547843c215b5bf39a587227fa363fd83e25f9066ff84b57eda0dfe333d7f76"
+    },
+    {
+      "path": "mcp-server/README.en.md",
+      "bytes": 1156,
+      "sha256": "7fe1a53d8a283662b0d475db0d4a4ac1ac2405d6a72a1a6191c9a93717257826"
+    },
+    {
+      "path": "mcp-server/README.md",
+      "bytes": 3523,
+      "sha256": "ae626caca53bca6c79ae8c0cd400af2c2c4d7bee83c8fa65fb30d6ec96e1f581"
+    },
+    {
+      "path": "mcp-server/README.zh-CN.md",
+      "bytes": 2873,
+      "sha256": "f70fb420c26edfb161770f6ffcda8e75b22342d334f2ed47d1a6f9e5a2a5f9ba"
+    },
+    {
+      "path": "mcp-server/config/customers.example.json",
+      "bytes": 722,
+      "sha256": "11123aed1af31ee34dcd1debb3d3f49e7da9f189f865fef38190631e889300a0"
+    },
+    {
+      "path": "mcp-server/deploy/docker-compose/docker-compose.example.yml",
+      "bytes": 432,
+      "sha256": "f373a780cdd96926abdf170327a9c914c3abf9388618fcd1e192f6e9ee813e9d"
+    },
+    {
+      "path": "mcp-server/deploy/nginx/open-lab-components-mcp.conf.example",
+      "bytes": 526,
+      "sha256": "e1909d8e92ab0bec749d7bdc3be29e5e445ea843f8ec2f8f01942ea1b689e1dc"
+    },
+    {
+      "path": "mcp-server/deploy/smoke/verify-remote.mjs",
+      "bytes": 2136,
+      "sha256": "503db5637466c424a943a2596564e7cbde830ac5f9cff0567fd1b6ebf975ac1d"
+    },
+    {
+      "path": "mcp-server/deploy/systemd/open-lab-components-mcp.service.example",
+      "bytes": 344,
+      "sha256": "60326ba0da75543cfbcd4860752f10dff07fb2551707c5598b52573b08ad0c4c"
+    },
+    {
+      "path": "mcp-server/package-lock.json",
+      "bytes": 49516,
+      "sha256": "55caff03a1aa09f160d8bea21b774b9c066614b03fa2bac653bfebe6e30166b2"
+    },
+    {
+      "path": "mcp-server/package.json",
+      "bytes": 1804,
+      "sha256": "73aabe07b242314a76e320f72301f2c0b91e9e74fb4340f37b9c5714cb31b7a8"
+    },
+    {
+      "path": "mcp-server/src/core/catalog-registry.js",
+      "bytes": 18958,
+      "sha256": "efed6cc6aa57be25d2955e1fa6d581db9edcb45679c8e85eb7c390366927fab0"
+    },
+    {
+      "path": "mcp-server/src/core/cli.js",
+      "bytes": 228,
+      "sha256": "a33bc503b183a475cd383e9b9ad45b5ae6d66ff124509ca959946f0af4e1fc67"
+    },
+    {
+      "path": "mcp-server/src/core/http-cli.js",
+      "bytes": 458,
+      "sha256": "822d949b5e83a4ea14d88ba474378bbf1cea53e5d79aae653179958ed5a5fd67"
+    },
+    {
+      "path": "mcp-server/src/core/remote-server.js",
+      "bytes": 30812,
+      "sha256": "a3a67606906921629fc4e8870e3d2915aedf39031eb02070bd2838280d37a041"
+    },
+    {
+      "path": "mcp-server/src/core/server.js",
+      "bytes": 1329,
+      "sha256": "c47a363bd962cbcf56e6946de69886068675e30ec1a31df6ed9f3d2bd71ac8da"
+    },
+    {
+      "path": "mcp-server/src/core/token-cli.js",
+      "bytes": 522,
+      "sha256": "fb3912f1a81fb9bf8c2a8f46f575a99e3ad4985b2030062cac5afeaa857b456f"
+    },
+    {
+      "path": "mcp-server/src/feedback/feedback-backends.js",
+      "bytes": 4581,
+      "sha256": "20449a501ef09d8f48a081c17eaf55d7488d27c452effa535ef523712a6cca2e"
+    },
+    {
+      "path": "mcp-server/src/feedback/feedback-store.js",
+      "bytes": 10548,
+      "sha256": "efed86c715ac2ce3e394c44185bc9713090b5eaf492b5e640bf820b5b1c21194"
+    },
+    {
+      "path": "mcp-server/src/prompts/prompt-registry.js",
+      "bytes": 405,
+      "sha256": "f346c4afcdd7c844d99d7b8f21ce08c2810feac687f89ec29beb622a67b4ee55"
+    },
+    {
+      "path": "mcp-server/src/resources/resource-registry.js",
+      "bytes": 433,
+      "sha256": "e2c544adece6c92f2a8bdfe20ac7bafa9ab0f5fc2233d13b026d1982e92e6685"
+    },
+    {
+      "path": "mcp-server/src/runtime/auth.js",
+      "bytes": 2121,
+      "sha256": "3d94bfde90a4adcfe5197a65df071500d81f8438a91473d109968c27a5e50212"
+    },
+    {
+      "path": "mcp-server/src/runtime/config-manifest.js",
+      "bytes": 872,
+      "sha256": "aedb33faf492b785bf65252268b28b00de81c3e88a3cd5d4a02cca8ea67ac301"
+    },
+    {
+      "path": "mcp-server/src/runtime/config.js",
+      "bytes": 2978,
+      "sha256": "437ebc89698c0daafb2f8afa6a822dbd076f4ee4e8380937a776b036aa6c3ec8"
+    },
+    {
+      "path": "mcp-server/src/runtime/cors.js",
+      "bytes": 1818,
+      "sha256": "7968132d2d971227ea923ec17a375fe2d1d9317d63127dba908f7079430b6a04"
+    },
+    {
+      "path": "mcp-server/src/runtime/customer-registry.js",
+      "bytes": 7181,
+      "sha256": "3e91221dfa371e1c81dd61ebc0e8bcf666ae4705e67cfe7401c7d5bb2ae2531f"
+    },
+    {
+      "path": "mcp-server/src/runtime/customer-schema.js",
+      "bytes": 4368,
+      "sha256": "653b3859865a469bb7881b240b58969d2a833c7f303881042d1ee14aff518e9b"
+    },
+    {
+      "path": "mcp-server/src/runtime/entrypoints.js",
+      "bytes": 337,
+      "sha256": "0a24243b11681ca74e7bf07b52aef8fd60b09d19a51f0ffefd3ddea671efc0f8"
+    },
+    {
+      "path": "mcp-server/src/runtime/logger.js",
+      "bytes": 832,
+      "sha256": "789477ad93f5e290b7cd3ce16a5a10b878cb03ead5404a7915320b6f0d868004"
+    },
+    {
+      "path": "mcp-server/src/runtime/metrics.js",
+      "bytes": 4731,
+      "sha256": "8d381828cbc0c49089c7cad9bb85d394176989ea4d526e3c6a65c904fedb42d5"
+    },
+    {
+      "path": "mcp-server/src/runtime/operations-manifest.js",
+      "bytes": 1129,
+      "sha256": "2ddce6605f1adf1ab94079bfa376882008e912b40f0e5a812469d06ff2a853f6"
+    },
+    {
+      "path": "mcp-server/src/runtime/package-dependencies.js",
+      "bytes": 88,
+      "sha256": "81066c49d4121f31dd8178da7c907a2fdca1b286db6bc2363578e37b423f9503"
+    },
+    {
+      "path": "mcp-server/src/runtime/package-versions.js",
+      "bytes": 82,
+      "sha256": "dcf3ccd91d7e190595b9e1143d46ae0c16f9e3db0ec7ae8dd00e3ed32d4e5672"
+    },
+    {
+      "path": "mcp-server/src/runtime/paths.js",
+      "bytes": 1298,
+      "sha256": "1861d9635d904e85da66ca70535475b95187710970094b884b205cbdc3060405"
+    },
+    {
+      "path": "mcp-server/src/runtime/rate-limit.js",
+      "bytes": 1741,
+      "sha256": "f2e9d5ba1428dbc4a4664ae475363727c4c48121a9334d7d36f8f48977e6004a"
+    },
+    {
+      "path": "mcp-server/src/runtime/script-manifest.js",
+      "bytes": 838,
+      "sha256": "51878a0c88afd65e95026cd24547ff6c98f043f1ba0e653c8a2643b079b62c67"
+    },
+    {
+      "path": "mcp-server/src/runtime/session-store.js",
+      "bytes": 2481,
+      "sha256": "bdd2b217e3d058fa6191ecadce255a226b333a39dd616465db8d817b342cf116"
+    },
+    {
+      "path": "mcp-server/src/tools/catalog.js",
+      "bytes": 44063,
+      "sha256": "45ac5d22333f85dfa8649a79c63a8fddd941cd19cca377f64261b524b77c4462"
+    },
+    {
+      "path": "mcp-server/src/tools/tool-registry.js",
+      "bytes": 425,
+      "sha256": "276fd99b210d79235aabe576a85fa79e5483f6bdd7f34c619ff34657d1c925d6"
+    },
+    {
+      "path": "mcp-server/tests/catalog.test.js",
+      "bytes": 19078,
+      "sha256": "ba3174a69618aba8d05bffb7913a11b1683b049d57120e5fb308f4be30b085e5"
+    },
+    {
+      "path": "mcp-server/tests/config.test.js",
+      "bytes": 4504,
+      "sha256": "401d99c0334120cad1646cd047671efe431634a893bac2c76cafcbb67b0f9437"
+    },
+    {
+      "path": "mcp-server/tests/contract.test.js",
+      "bytes": 5120,
+      "sha256": "f95de407a06755fc9f00978ab630baf1b648198919d0e974b56700500d8dbd16"
+    },
+    {
+      "path": "mcp-server/tests/customer-registry.test.js",
+      "bytes": 4248,
+      "sha256": "172d93ce875de4e33cdcd777488551754dbe434d6fe07b79dd2416131f3ec327"
+    },
+    {
+      "path": "mcp-server/tests/feedback-backends.test.js",
+      "bytes": 4138,
+      "sha256": "38e70d4fb8474c32865ab14b2f3733bd5683003d5cdcc34d1960bcbc98627515"
+    },
+    {
+      "path": "mcp-server/tests/fixtures/customers.test.json",
+      "bytes": 1665,
+      "sha256": "56815dfbc986a268d61c697a2e75b92c472c845712a756e32cd8012601101566"
+    },
+    {
+      "path": "mcp-server/tests/remote.test.js",
+      "bytes": 38486,
+      "sha256": "981fbf54f1df2fd2af68a1b11fa28e174239fe99c40e3f96dbe6f3bba387ea7e"
+    },
+    {
+      "path": "mcp-server/tests/server.test.js",
+      "bytes": 8099,
+      "sha256": "15f4df4a65bafcd5c0adb1e14e9ecd568a504ec1cda2997d5719ce40d56e04af"
+    },
+    {
+      "path": "mcp-server/tools/check-docs.mjs",
+      "bytes": 1631,
+      "sha256": "707643db3ff5e1336e30db6de3a776727d856539faead6038a515a0737045bb8"
+    },
+    {
+      "path": "mcp-server/tools/check-scripts.mjs",
+      "bytes": 4577,
+      "sha256": "ad68e576919dc3db1383895024df41476163247de1321aa4ba3409a6449d25db"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 1251,
+      "sha256": "3ffe55581723bc3dc5c61135da918dc6b8ee934bef1d46f03e2e41a3098b0f34"
+    },
+    {
+      "path": "package.json",
+      "bytes": 3006,
+      "sha256": "7c7ff81dd159df3af0a73355fff755c05ca7b2d832bba4d859e25512b2b1b419"
+    },
+    {
+      "path": "registry/.gitkeep",
+      "bytes": 2,
+      "sha256": "75a11da44c802486bc6f65640aa48a730f0f684c5c07a42ba3cd1735eb3fb070"
+    },
+    {
+      "path": "registry/README.md",
+      "bytes": 427,
+      "sha256": "9ebfd465c13aab1dcc99734b1afbb6e215c8a211d7274e8e48adf6fc263cb2af"
+    },
+    {
+      "path": "registry/category-names.json",
+      "bytes": 8189,
+      "sha256": "b5a49545e0a42026aaae7f379f6421e2593ce19616c8c73c7a013bc6808bb592"
+    },
+    {
+      "path": "registry/quality-report.json",
+      "bytes": 64089,
+      "sha256": "1a30014837bbdba6afee85fd70095bf918c58d43e0a62a778b358ee0255eb25a"
+    },
+    {
+      "path": "site/README.en.md",
+      "bytes": 1351,
+      "sha256": "004f78c74d835332946bddbe39ba5e25b92d8b194d7ed008a283ae02c1949388"
+    },
+    {
+      "path": "site/README.md",
+      "bytes": 1686,
+      "sha256": "12fa93720009c0fae6aa684b890e53a23b7c0de1bbb0fa283345ba23b5b0a4a4"
+    },
+    {
+      "path": "site/README.zh-CN.md",
+      "bytes": 1198,
+      "sha256": "51fd99931a3044e7563ba1e741c896fab5664f558c674cfd30e5b16f0bfb3c14"
+    },
+    {
+      "path": "site/assets/wechat-pay.png",
+      "bytes": 160489,
+      "sha256": "81713beabb1a53acf90deadf58af0ed2249d46b9ddcfd1037cc3410d8993f0da"
+    },
+    {
+      "path": "site/banner.png",
+      "bytes": 2446477,
+      "sha256": "75a438264ee2490c43ca9c17af8a2a077b45ff346acb477118a546c4d6f31e13"
+    },
+    {
+      "path": "site/components.html",
+      "bytes": 37490,
+      "sha256": "840885b81fcb2543399247b0c6e8e02a660c81ceda29be91dff276618e194e32"
+    },
+    {
+      "path": "site/docs.html",
+      "bytes": 21376,
+      "sha256": "e6a71a6516cb24ff80ca9a66d43abbfcf06d29a3bb0317a0ef50425ae1b0c8a1"
+    },
+    {
+      "path": "site/favicon.ico",
+      "bytes": 4286,
+      "sha256": "c5fcfe5594da6927b29ee0b14156ca8dad2b7fc1c54c6117177c539e2107cb7a"
+    },
+    {
+      "path": "site/index.html",
+      "bytes": 31941,
+      "sha256": "b667557e47c0ca452ffe3150669be6f8287594b00afe098baac28b0d288c2b15"
+    },
+    {
+      "path": "site/logo.png",
+      "bytes": 917679,
+      "sha256": "e2ef8aae585cec559498e12f2d902b5467ac0c6f1023a1e3bebf5a69401901dd"
+    },
+    {
+      "path": "site/playground.html",
+      "bytes": 46757,
+      "sha256": "e29acc5eac34b294a2bc4ab434f6ef143e54962676b992e8500bfc62adb02375"
+    },
+    {
+      "path": "site/visual-detail.html",
+      "bytes": 21170,
+      "sha256": "0e479bcdb69da4fe84bba4a18f9cb5e8066fa16614e812c6648c1b0c9e11292c"
+    },
+    {
+      "path": "site/visuals.html",
+      "bytes": 20099,
+      "sha256": "90e6165221e76b766cba917aa5b84a9c4a9448c57d48b7af9710e76342ab3660"
+    },
+    {
+      "path": "skills/open-lab-components/README.md",
+      "bytes": 405,
+      "sha256": "4c6a55f72d5d43b399f520e805ec8518951494326547b02ff059dbbb8374974c"
+    },
+    {
+      "path": "skills/open-lab-components/SKILL.md",
+      "bytes": 3416,
+      "sha256": "e5285351c85a77120c73d5e5968dfcf0281e5c031fcdd83cc4905502c19c378b"
+    },
+    {
+      "path": "skills/open-lab-components/agents/openai.yaml",
+      "bytes": 281,
+      "sha256": "3f900b0f38fc3cf096eb1efae5e99f90787708d34e6578566537464a89c0e4ca"
+    },
+    {
+      "path": "skills/open-lab-components/references/change-checklist.md",
+      "bytes": 1019,
+      "sha256": "095130db49db7e042c0c196193867349e4ddc73c487471c13d64d96c0896f7f7"
+    },
+    {
+      "path": "skills/open-lab-components/references/project-rules.md",
+      "bytes": 2015,
+      "sha256": "a576c53108704954993f048513e3fe6d788e9b2c1ae948dbb804ba96bc0a4d67"
+    },
+    {
+      "path": "tests/README.md",
+      "bytes": 374,
+      "sha256": "f23e2788f6bbc48e9c0a642eba0d22a6ffd46034ed4b8e77d8bd1fa9df95f44f"
+    },
+    {
+      "path": "tests/root-api.test.js",
+      "bytes": 6662,
+      "sha256": "0d1538ce7c62e6ba9517113c5887f64fdc4bb6f73668e9751d3f21d6ff1c05f4"
+    },
+    {
+      "path": "tools/README.md",
+      "bytes": 496,
+      "sha256": "c5511e6b508830409df05d2b5e53a077570433183bf005f075183180798a2dbd"
+    },
+    {
+      "path": "tools/_lib/checks.js",
+      "bytes": 2270,
+      "sha256": "f391fee1763d510fa5d4a5923726b697488da8d6ff6e7cd0331e3f24550bed2c"
+    },
+    {
+      "path": "tools/_lib/docs-manifest.js",
+      "bytes": 2708,
+      "sha256": "9b5750aa3f8182ea624abf4a8cd015df9f1327932e551c842be613c5a2b58d27"
+    },
+    {
+      "path": "tools/_lib/manifest.js",
+      "bytes": 978,
+      "sha256": "526d144d705fe94734bc668fcff5c679c1d238a500d48715b0e6914eff07e7a3"
+    },
+    {
+      "path": "tools/_lib/mcp-entrypoints.js",
+      "bytes": 787,
+      "sha256": "441e90dc1d056bfe8fcc0ae2049425957f221c58452abfc88537d2de58d55318"
+    },
+    {
+      "path": "tools/_lib/package-dependencies.js",
+      "bytes": 388,
+      "sha256": "b0c96a1b173ccc7b57f36c02f169a7834988275c46ceb174163cade7135a6316"
+    },
+    {
+      "path": "tools/_lib/package-metadata.js",
+      "bytes": 1609,
+      "sha256": "74984e1dc97724b06fcdde791c85e54692f390c4f26106c8305adef2e9c3b2b9"
+    },
+    {
+      "path": "tools/_lib/package-versions.js",
+      "bytes": 103,
+      "sha256": "310f8f9fa4633f2f372e0a585ef631f591c9adcc7f7e50b781fae337586aa648"
+    },
+    {
+      "path": "tools/_lib/paths.js",
+      "bytes": 1211,
+      "sha256": "e18aa8d3dde51a7cb5105ceb8badd9c52b8ac5339e3e8f9eef1e1047a8acc328"
+    },
+    {
+      "path": "tools/_lib/pipelines.js",
+      "bytes": 2332,
+      "sha256": "d7f4a165eea75adb1ea49411a0afa137523fdd70b501c99a8ca0dca8fdc2c525"
+    },
+    {
+      "path": "tools/_lib/publish-assets.js",
+      "bytes": 689,
+      "sha256": "eb2cc79d591fe8d201064c817930aba1bcbd8bc9f4ba77a61ce704001ba489c4"
+    },
+    {
+      "path": "tools/_lib/registry.js",
+      "bytes": 1877,
+      "sha256": "bc4fed56d2845f4d8232ac6c603ef8377e3a5b2f19e99accb98ac3d2a837789c"
+    },
+    {
+      "path": "tools/_lib/release-docs.js",
+      "bytes": 2605,
+      "sha256": "b4d8f573086ffb6615f0861204e780b260ae29ee22b741f11defd3b78408b0d6"
+    },
+    {
+      "path": "tools/_lib/release-manifest.js",
+      "bytes": 1396,
+      "sha256": "2b0910b3cbdd76c406926e0af6a62bb9e028555e0b2431eab8ce191018c65a3d"
+    },
+    {
+      "path": "tools/_lib/release-workflow.js",
+      "bytes": 1258,
+      "sha256": "0fb1aadbf247ca0ef61ba7ccacf5e9380d73265bcce7598fc5ba0d5856ab3a5e"
+    },
+    {
+      "path": "tools/_lib/script-manifest.js",
+      "bytes": 2148,
+      "sha256": "4649adea5d027635d781f055a23c6916c48bd2d8dfdf62ac4428a3687d4bf898"
+    },
+    {
+      "path": "tools/_lib/site.js",
+      "bytes": 2226,
+      "sha256": "cd03c31d3db6788254ad24d6fa87994a78af8776c5745f8a7b670ba507d7b69f"
+    },
+    {
+      "path": "tools/_lib/walk.js",
+      "bytes": 613,
+      "sha256": "d5649047b976f74f46451b8603cc369d7c3301f40c948fe64ddfdfdc75704831"
+    },
+    {
+      "path": "tools/build-quality-report/index.js",
+      "bytes": 2447,
+      "sha256": "614a7ddd9e286405cbda04c8fd59ad49ae303b2df49f1b658b425ac6245bba6f"
+    },
+    {
+      "path": "tools/build-registry/build-visual-registry.js",
+      "bytes": 10769,
+      "sha256": "9341fa099f5245f629e24bf0250f50825eedf8f52f0bc63dcff5c3ce4d1b2f92"
+    },
+    {
+      "path": "tools/build-registry/index.js",
+      "bytes": 9961,
+      "sha256": "bd75185ecc261abb5b8ee0b80c164f6bd455a8eeea3b9face9fb197e5ed87507"
+    },
+    {
+      "path": "tools/build-site/index.js",
+      "bytes": 2575,
+      "sha256": "3e6d04b4940c843460ae5ae7947a5a36f2d1f1e3a3879697bc5ac1ef1f20a424"
+    },
+    {
+      "path": "tools/check-docs/index.js",
+      "bytes": 4863,
+      "sha256": "66e49f67b5ecaca720351d9d136619577d9564eab703f5b5065c338cf394d5a7"
+    },
+    {
+      "path": "tools/check-generated/index.js",
+      "bytes": 1922,
+      "sha256": "1b9cb6ff71d09d2a88438e94385113d11bb70d6020e93ba8f15c582c8e515f14"
+    },
+    {
+      "path": "tools/check-registry/index.js",
+      "bytes": 2581,
+      "sha256": "2134dd5ddba317d35167fb3249b0c788738b098f9acfe30bb668d9be9a7c8118"
+    },
+    {
+      "path": "tools/check-root/index.js",
+      "bytes": 427,
+      "sha256": "9d34bd51fc2d833b47ee64bc31e7dbf52f0349ce2fbb321d77bf139ee734273a"
+    },
+    {
+      "path": "tools/check-scripts/index.js",
+      "bytes": 4415,
+      "sha256": "11a162101ed22dce625e294070212bc02d32fdf408a307f229237b2d76ba208a"
+    },
+    {
+      "path": "tools/check-text/index.js",
+      "bytes": 2461,
+      "sha256": "f7df0d5a89902713819d8c320f302c2b3e037b8094e20990a03450e018e20f24"
+    },
+    {
+      "path": "tools/dev-site/index.js",
+      "bytes": 4462,
+      "sha256": "f1f905ad7d32710c9167c6cc21adc19847c63741b586549f1573fb70c06206ca"
+    },
+    {
+      "path": "tools/release-smoke/index.js",
+      "bytes": 371,
+      "sha256": "113077d461961a6d5700fcb7b50e5602a5e720d9a3c5e39d635c8a8e604fc378"
+    },
+    {
+      "path": "tools/runtime-harness/package-lock.json",
+      "bytes": 28303,
+      "sha256": "2667226b66183721374b68d6c3c34879916dbbaebdd776814f82d90176a60b79"
+    },
+    {
+      "path": "tools/runtime-harness/package.json",
+      "bytes": 219,
+      "sha256": "d6895414d19018c43d5cbb7d8e5174837d156a15a37c4cf87210533e29e2cd66"
+    },
+    {
+      "path": "tools/runtime-harness/runtime-lifecycle.test.js",
+      "bytes": 3624,
+      "sha256": "42cddd22671298266753559f98e78a48ce5cdbe12be0a2cac1ffcc0083367869"
+    },
+    {
+      "path": "tools/validate/index.js",
+      "bytes": 10197,
+      "sha256": "71f9e0ab8c18791641f757d8c1c1384addc418acd12cd19e89307d5490012d80"
+    },
+    {
+      "path": "visuals/.gitkeep",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "visuals/README.md",
+      "bytes": 393,
+      "sha256": "7710e84c5cc350d685f5b40f02f82ac9e08f2ed6619df294fb7ed73e21fed47b"
+    },
+    {
+      "path": "visuals/biology/vis.biology.animal-plant-cell-comparison.json",
+      "bytes": 4682,
+      "sha256": "65bce651dd28ff96d07dbe90631bb3c5cb83a4a38171ac68e9cb8d7f79deaaef"
+    },
+    {
+      "path": "visuals/biology/vis.biology.animal-plant-cell-comparison.png",
+      "bytes": 1385343,
+      "sha256": "0e35839dafc87d18b4ef5877cf7a44a486d12d265b83f9b8236fffd29cfdd724"
+    },
+    {
+      "path": "visuals/biology/vis.biology.cell-basic-structure.json",
+      "bytes": 4534,
+      "sha256": "22a98a5b5bf457572e98ec83a7e6a4ca205899b6faade4400ed9a39a08f32866"
+    },
+    {
+      "path": "visuals/biology/vis.biology.cell-basic-structure.png",
+      "bytes": 913694,
+      "sha256": "8017dcbf09f503923c6eb0fc4e44377f0e1c8611be5cdf8c66dd20a93abde615"
+    },
+    {
+      "path": "visuals/biology/vis.biology.cellular-respiration-process.json",
+      "bytes": 4661,
+      "sha256": "c3388ecafa1806b6a0d1b987a8f23a8db93b9c87cb44098cffc78cd89ef3795c"
+    },
+    {
+      "path": "visuals/biology/vis.biology.cellular-respiration-process.png",
+      "bytes": 1096031,
+      "sha256": "385e99d1820742083522676a3f2676028f2be3fc2e8c111f54ecad21e1e70a70"
+    },
+    {
+      "path": "visuals/biology/vis.biology.food-chain-food-web.json",
+      "bytes": 4673,
+      "sha256": "344a3810372a31b275c157a95d5b5efcc5234421e2e11dee83b8616a77e10f62"
+    },
+    {
+      "path": "visuals/biology/vis.biology.food-chain-food-web.png",
+      "bytes": 1168336,
+      "sha256": "0676e8a846ac1d584fcd6248e20badc616351763b6b500c7114747ce61513ae0"
+    },
+    {
+      "path": "visuals/biology/vis.biology.photosynthesis-process.json",
+      "bytes": 4613,
+      "sha256": "fa5a9e1d6f0efc40dcb23941f8cdb1069ef5f2d343fc5cf60475c8521078b0d2"
+    },
+    {
+      "path": "visuals/biology/vis.biology.photosynthesis-process.png",
+      "bytes": 1101833,
+      "sha256": "9a3ac42d60a2e356b9630798ac612cb1ad7a1fa686ec64dad4ee05ada437941c"
+    },
+    {
+      "path": "visuals/chemistry/vis.chemistry.acid-base-neutralization.json",
+      "bytes": 4587,
+      "sha256": "6e9fbff3a3403ad718390a6d88b1bffe42a179dd615d35b7a8538b4cbb68ffa9"
+    },
+    {
+      "path": "visuals/chemistry/vis.chemistry.acid-base-neutralization.png",
+      "bytes": 1053000,
+      "sha256": "5e5b3a8a199f9b34f31b7842fab631d3a69eb9d34d2f6555f90db9c2d7c258cb"
+    },
+    {
+      "path": "visuals/chemistry/vis.chemistry.atomic-structure-diagram.json",
+      "bytes": 4522,
+      "sha256": "7c7d985bae3cbc1747699bee42be5c6d426aadf2e10b4d5aeea9f25f9813b7c3"
+    },
+    {
+      "path": "visuals/chemistry/vis.chemistry.atomic-structure-diagram.png",
+      "bytes": 994331,
+      "sha256": "0a24cb6ac02c389c5cdbd4668af974dc4bc1b4e5061c80df7c45cc29abd5fec3"
+    },
+    {
+      "path": "visuals/chemistry/vis.chemistry.element-atom-molecule-relationship.json",
+      "bytes": 4694,
+      "sha256": "4a163784dc0baa5a1f0ea23dacaee5f56defde0f578a7486b53880ac3eede2e7"
+    },
+    {
+      "path": "visuals/chemistry/vis.chemistry.element-atom-molecule-relationship.png",
+      "bytes": 1123618,
+      "sha256": "750736e8fabde54f0fa4d4fab53e499c4946182fb04852f2e1f0b075f47e3e8b"
+    },
+    {
+      "path": "visuals/chemistry/vis.chemistry.pure-substance-mixture-comparison.json",
+      "bytes": 4643,
+      "sha256": "fd2423b1047b2ba21a12d923bbefac84f4b45233bb4ad7fe61e9a237f5ba1f22"
+    },
+    {
+      "path": "visuals/chemistry/vis.chemistry.pure-substance-mixture-comparison.png",
+      "bytes": 1176027,
+      "sha256": "c054087a471aaeac9dbbe7dd0913a58ba91622f7646d444a09ded8975ebb519d"
+    },
+    {
+      "path": "visuals/chemistry/vis.chemistry.states-of-matter-particle-model.json",
+      "bytes": 4719,
+      "sha256": "6e01a9e7bf9ce660ad9cae6cbc13643b3c52bd5f7ecc8d8865a0bd2ba7b5341a"
+    },
+    {
+      "path": "visuals/chemistry/vis.chemistry.states-of-matter-particle-model.png",
+      "bytes": 1164241,
+      "sha256": "3c877e3fc08ac14ba0e19fe703c6a94571c75735b8ba5066b9f45f422a4a0247"
+    },
+    {
+      "path": "visuals/math/vis.math.circle-basic-elements.json",
+      "bytes": 4442,
+      "sha256": "8417711106c0b90e0db33c7a6c8fe4aeb1959b884604acf469a0c6488481a658"
+    },
+    {
+      "path": "visuals/math/vis.math.circle-basic-elements.png",
+      "bytes": 894575,
+      "sha256": "3da1f82f95546de200ae9e1c6589bb6676f792934f6613dade8a8d159b6c797a"
+    },
+    {
+      "path": "visuals/math/vis.math.linear-function-graph-properties.json",
+      "bytes": 4662,
+      "sha256": "c54abf505c461e8ef4cc0a719aebda284ceb0a87ba5975a80618e404f335e9bc"
+    },
+    {
+      "path": "visuals/math/vis.math.linear-function-graph-properties.png",
+      "bytes": 1124586,
+      "sha256": "880abf0c3250e02d1f821af2f6990035ae927176f78e6397a3a474277b38d8d0"
+    },
+    {
+      "path": "visuals/math/vis.math.probability-tree-diagram.json",
+      "bytes": 4494,
+      "sha256": "f1687c3572340e6f9f011d3fcbc950f581263e0698a115cf21c1a5fd819ea0fa"
+    },
+    {
+      "path": "visuals/math/vis.math.probability-tree-diagram.png",
+      "bytes": 1084807,
+      "sha256": "7450aed4ba6bb0f4abd814fbb23c7eb7b75d95cf5ad5799d5324c97f324e87d4"
+    },
+    {
+      "path": "visuals/math/vis.math.pythagorean-theorem-diagram.json",
+      "bytes": 4613,
+      "sha256": "12f0cac1ddaf4072d76c678c3014f7923fbb6e6c826ccd0ddaf972361ff8e41a"
+    },
+    {
+      "path": "visuals/math/vis.math.pythagorean-theorem-diagram.png",
+      "bytes": 1037975,
+      "sha256": "238333c41d759efc4b3a7abcd1769fca344fb342d611a1baa28732d2469efebe"
+    },
+    {
+      "path": "visuals/math/vis.math.quadratic-function-graph-features.json",
+      "bytes": 4584,
+      "sha256": "951406f2c083153ccb20706ef5509e7256c4d8d45f589260d5fa90a9cb892ec3"
+    },
+    {
+      "path": "visuals/math/vis.math.quadratic-function-graph-features.png",
+      "bytes": 981148,
+      "sha256": "fd89aea9c98abe63ebb3053e6091fd0edd14ce26a6859da4b9a2f99064e52379"
+    },
+    {
+      "path": "visuals/physics/vis.physics.ammeter-voltmeter-wiring.json",
+      "bytes": 4837,
+      "sha256": "e38c9207ded3bde14700e66487d661839d5f57f5fe2c0042ba57113b6be0171b"
+    },
+    {
+      "path": "visuals/physics/vis.physics.ammeter-voltmeter-wiring.png",
+      "bytes": 1087512,
+      "sha256": "a1228f068266fff24126478a16733c220094593483fff8260c23f2c5c0e5696b"
+    },
+    {
+      "path": "visuals/physics/vis.physics.buoyancy-floating-sinking.json",
+      "bytes": 4676,
+      "sha256": "f3d1d5dc1801fc6ed9cbd06c3a6ae4679b813dbbbfb4ca86f4232deca1f0ecc3"
+    },
+    {
+      "path": "visuals/physics/vis.physics.buoyancy-floating-sinking.png",
+      "bytes": 1025729,
+      "sha256": "4d9654bd9025e87fdfb20e841ae52afeb6cbc4e220fb38fd9844a0157bb2d9b4"
+    },
+    {
+      "path": "visuals/physics/vis.physics.convex-lens-imaging-law.json",
+      "bytes": 4679,
+      "sha256": "657b8ed843b23919c05192554ecaeb70d0e384af23ddc47948cb64db81c16482"
+    },
+    {
+      "path": "visuals/physics/vis.physics.convex-lens-imaging-law.png",
+      "bytes": 1028523,
+      "sha256": "44d96ba7dff6aa960539b8ec13c7b4c3c42e283d08075e373575deaabff19291"
+    },
+    {
+      "path": "visuals/physics/vis.physics.lever-balance-condition.json",
+      "bytes": 4597,
+      "sha256": "d3498c0e612b6c9aa6c1b2a3223d1764654315774ed4ad7dca9f1472f845a69c"
+    },
+    {
+      "path": "visuals/physics/vis.physics.lever-balance-condition.png",
+      "bytes": 979079,
+      "sha256": "6e9731dc430808360e64a86d9dbbfce4d6ce0bebf09f985895d95c0b97fffec7"
+    },
+    {
+      "path": "visuals/physics/vis.physics.liquid-pressure-depth.json",
+      "bytes": 4614,
+      "sha256": "8e0fa877f6134c0dbf733332df57804bb635097a7f4e3f26accd399d029300f3"
+    },
+    {
+      "path": "visuals/physics/vis.physics.liquid-pressure-depth.png",
+      "bytes": 1127106,
+      "sha256": "05aca20ee00bd7dfdbcfe90d6c7262a11109a0658ad4ca48939d4a0e984cf35c"
+    },
+    {
+      "path": "visuals/physics/vis.physics.ohms-law-relationship.json",
+      "bytes": 4715,
+      "sha256": "3f5071d9809b70fa7da1dd1326a3e11da67c01025ac945e0df91234ad2da064b"
+    },
+    {
+      "path": "visuals/physics/vis.physics.ohms-law-relationship.png",
+      "bytes": 1213485,
+      "sha256": "ca1f3703561d40cc672554a99ba75fdb242be23f8a1b44f67acc90afae6192c4"
+    },
+    {
+      "path": "visuals/physics/vis.physics.plane-mirror-reflection-law.json",
+      "bytes": 4691,
+      "sha256": "1ebe0ceb8df175d4aabff72116c9533cd23537bb97ca81c597eb27dd74b33fbd"
+    },
+    {
+      "path": "visuals/physics/vis.physics.plane-mirror-reflection-law.png",
+      "bytes": 929843,
+      "sha256": "c0684af52d64e201f39b3ae08f3fa5918c3d5632546049f55a6442e8b26070b9"
+    },
+    {
+      "path": "visuals/physics/vis.physics.pressure-law.json",
+      "bytes": 4593,
+      "sha256": "c7459a570e94d1545c78d7d6720a3145d28ba869bfd1ae7af031aaf02c006e2f"
+    },
+    {
+      "path": "visuals/physics/vis.physics.pressure-law.png",
+      "bytes": 1201510,
+      "sha256": "1358304d7ae81f95aa23a9b8a00356f342dc09933ed2e511588a016394f8c9ac"
+    },
+    {
+      "path": "visuals/physics/vis.physics.pulley-systems-comparison.json",
+      "bytes": 4827,
+      "sha256": "6fb1995102230eeea4823efe35ee40f7769e63d2bcf2a43ba0255876bb608ad6"
+    },
+    {
+      "path": "visuals/physics/vis.physics.pulley-systems-comparison.png",
+      "bytes": 1316150,
+      "sha256": "e9983c323833af457c8979451a18fbd37ddc75a328de6afa16fd89212586fd3e"
+    },
+    {
+      "path": "visuals/physics/vis.physics.series-parallel-circuit.json",
+      "bytes": 4867,
+      "sha256": "98c41cc697f88b26d3baa866c0d3934063d954a24e92abe1f2fb21b7915a21d8"
+    },
+    {
+      "path": "visuals/physics/vis.physics.series-parallel-circuit.png",
+      "bytes": 1190283,
+      "sha256": "8d46352572884e5f04cac9716d4df0203b4f3ab90d26bd2c0d07e962b1105371"
+    }
+  ]
+}

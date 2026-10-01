@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Open Lab Components 组件预览与调试工具：实时预览组件效果，调整参数配置，查看使用代码，方便快速测试和集成组件。">
+  <meta name="keywords" content="Open Lab Components,组件预览,组件调试,实时预览,组件测试,参数配置">
+  <meta name="author" content="布吉岛 (itkdm)">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="zh-CN">
+  <link rel="canonical" href="https://itkdm.github.io/open-lab-components/playground.html">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://itkdm.github.io/open-lab-components/playground.html">
+  <meta property="og:title" content="组件预览 - Open Lab Components">
+  <meta property="og:description" content="Open Lab Components 组件预览与调试工具：实时预览组件效果，调整参数配置，查看使用代码。">
+  <meta property="og:image" content="https://itkdm.github.io/open-lab-components/logo.png">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:site_name" content="Open Lab Components">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://itkdm.github.io/open-lab-components/playground.html">
+  <meta name="twitter:title" content="组件预览 - Open Lab Components">
+  <meta name="twitter:description" content="Open Lab Components 组件预览与调试工具：实时预览组件效果，调整参数配置，查看使用代码。">
+  <meta name="twitter:image" content="https://itkdm.github.io/open-lab-components/logo.png">
+  
+  <!-- Baidu Site Verification -->
+  <meta name="baidu-site-verification" content="codeva-xRoTjtvxqL" />
+  
+  <!-- Microsoft Bing Site Verification -->
+  <meta name="msvalidate.01" content="8369F75782EB856615D12EF9B5706E82" />
+  
+  <link rel="icon" type="image/png" href="./logo.png">
+  <title>组件预览 - Open Lab Components</title>
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Open Lab Components Playground",
+    "description": "Open Lab Components 组件预览与调试工具：实时预览组件效果，调整参数配置，查看使用代码。",
+    "url": "https://itkdm.github.io/open-lab-components/playground.html",
+    "inLanguage": ["zh-CN", "en"],
+    "applicationCategory": "DeveloperApplication",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Open Lab Components",
+      "url": "https://itkdm.github.io/open-lab-components/"
+    },
+    "featureList": "实时预览,参数调整,代码生成,组件调试"
+  }
+  </script>
+  
+  <style>
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    :root {
+      --primary: #059669;
+      --primary-hover: #047857;
+      --bg: #eff4ee;
+      --surface: #ffffff;
+      --border: #d1d5db;
+      --border-light: #e5e7eb;
+      --text-primary: #1f2937;
+      --text-secondary: #4b5563;
+      --text-tertiary: #6b7280;
+      --accent: #10b981;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --radius: 0.75rem;
+      --radius-sm: 0.5rem;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow: hidden;
+    }
+    
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border-light);
+      padding: 0;
+      z-index: 100;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+    }
+    
+    .header-content {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .back-btn {
+      padding: 0.5rem 0.875rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      line-height: 1.1;
+      transition: all 0.2s;
+    }
+    
+    .back-btn:hover {
+      background: var(--bg);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    .lang-btn {
+      padding: 0.5rem 0.875rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      color: var(--text-primary);
+      margin-left: auto;
+      line-height: 1.1;
+      transition: all 0.2s;
+    }
+    
+    .lang-btn:hover {
+      background: var(--bg);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    .header-info {
+      flex: 1;
+      min-width: 0;
+      padding: 0 1rem;
+    }
+    
+    .header-info h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.125rem;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .header-info p {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+    }
+    
+    .container {
+      display: flex;
+      height: calc(100vh - 64px);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .preview-pane {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      min-width: 0;
+      overflow: hidden;
+    }
+    
+    .preview-content {
+      flex: 1;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+      padding: 0;
+      background: var(--bg);
+      overflow: auto;
+      position: relative;
+    }
+    
+    .preview-frame {
+      flex: 1;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .controls-pane {
+      width: 380px;
+      background: var(--surface);
+      overflow-y: auto;
+      padding: 0;
+      border-left: 1px solid var(--border-light);
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .controls-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+    }
+    
+    .controls-footer {
+      border-top: 1px solid var(--border-light);
+      padding: 1.5rem;
+      background: var(--surface);
+      position: sticky;
+      bottom: 0;
+    }
+    
+    .controls-pane::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    .controls-pane::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+    
+    .controls-pane::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+    
+    .control-group {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+    
+    .control-group:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    
+    .control-group h3 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .event-list {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .event-card {
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      padding: 0.75rem;
+    }
+
+    .event-name {
+      font-size: 0.8125rem;
+      font-family: 'Monaco', 'Menlo', monospace;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .event-type {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .event-values {
+      display: grid;
+      gap: 0.25rem;
+    }
+
+    .event-value {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    
+    .control-item {
+      margin-bottom: 1.5rem;
+    }
+    
+    .control-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .control-label {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 0.625rem;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+
+    .control-label .prop-name {
+      flex-shrink: 0;
+    }
+
+    .control-label .prop-key {
+      font-size: 0.6875rem;
+      font-family: 'Monaco', 'Menlo', monospace;
+      color: var(--text-tertiary);
+      background: var(--bg);
+      padding: 0.125rem 0.375rem;
+      border-radius: 3px;
+      font-weight: 400;
+    }
+
+    .control-label-desc {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-top: -0.25rem;
+      margin-bottom: 0.625rem;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .control-value-display {
+      font-size: 0.75rem;
+      font-family: 'Monaco', 'Menlo', monospace;
+      color: var(--primary);
+      font-weight: 600;
+      min-width: 48px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .color-input-group {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .color-input-group input[type="color"] {
+      width: 42px;
+      flex-shrink: 0;
+    }
+
+    .color-input-group input[type="text"] {
+      flex: 1;
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-size: 0.8125rem;
+    }
+
+    .toggle-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 40px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--border);
+      border-radius: 11px;
+      transition: 0.2s;
+    }
+
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.2s;
+    }
+
+    .toggle-switch input:checked + .toggle-slider {
+      background: var(--primary);
+    }
+
+    .toggle-switch input:checked + .toggle-slider::before {
+      transform: translateX(18px);
+    }
+
+    .toggle-label {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+    }
+
+    .enum-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.375rem;
+    }
+
+    .enum-btn {
+      padding: 0.375rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--text-secondary);
+      font-size: 0.8125rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .enum-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .enum-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+    
+    input[type="range"],
+    input[type="number"],
+    input[type="text"],
+    input[type="color"],
+    select {
+      width: 100%;
+      padding: 0.625rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      color: var(--text-primary);
+    }
+    
+    input[type="range"] {
+      padding: 0;
+      height: 6px;
+      background: var(--border-light);
+      border-radius: 3px;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      background: var(--primary);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      background: var(--primary);
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    input[type="number"],
+    input[type="text"],
+    select {
+      padding: 0.625rem 0.875rem;
+    }
+    
+    input[type="number"]:focus,
+    input[type="text"]:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+    }
+    
+    input[type="color"] {
+      height: 42px;
+      padding: 0.25rem;
+      cursor: pointer;
+    }
+    
+    .range-input-group {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    
+    .range-input-group input[type="range"] {
+      flex: 1;
+    }
+    
+    .range-input-group input[type="number"] {
+      width: 80px;
+      flex-shrink: 0;
+    }
+    
+    .code-block {
+      background: #1f2937;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Courier New', monospace;
+      font-size: 0.75rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      position: relative;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    
+    .code-block-header {
+      position: absolute;
+      top: 0.75rem;
+      right: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      z-index: 10;
+    }
+    
+    .code-block::before {
+      content: 'HTML';
+      font-size: 0.6875rem;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+      pointer-events: none;
+    }
+    
+    .code-copy-btn {
+      background: rgba(75, 85, 99, 0.8);
+      border: none;
+      border-radius: 4px;
+      color: #e5e7eb;
+      cursor: pointer;
+      padding: 0.375rem 0.625rem;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      transition: all 0.2s;
+      pointer-events: auto;
+    }
+    
+    .code-copy-btn:hover {
+      background: rgba(107, 114, 128, 0.9);
+      color: #ffffff;
+    }
+    
+    .code-copy-btn:active {
+      background: rgba(55, 65, 81, 0.9);
+    }
+    
+    .code-copy-btn svg {
+      width: 12px;
+      height: 12px;
+    }
+    
+    .code-block code {
+      color: #e5e7eb;
+      white-space: pre;
+      display: block;
+    }
+    
+    .code-block::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    
+    .code-block::-webkit-scrollbar-track {
+      background: #111827;
+    }
+    
+    .code-block::-webkit-scrollbar-thumb {
+      background: #4b5563;
+      border-radius: 3px;
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--text-secondary);
+    }
+    
+    .empty-state-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+    
+    /* 响应式设计 */
+    @media (max-width: 1024px) {
+      .container {
+        flex-direction: column;
+      }
+      
+      .controls-pane {
+        width: 100%;
+        max-height: 50vh;
+        border-left: none;
+        border-top: 1px solid var(--border-light);
+      }
+      
+      .preview-pane {
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
+      }
+      
+      .controls-footer {
+        position: relative;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .header-content {
+        padding: 0 1rem;
+        height: 56px;
+      }
+      
+      .back-btn,
+      .lang-btn {
+        padding: 0.4375rem 0.75rem;
+        font-size: 0.8125rem;
+      }
+      
+      .header-info {
+        padding: 0 0.5rem;
+      }
+      
+      .header-info h1 {
+        font-size: 1.125rem;
+      }
+      
+      .header-info p {
+        font-size: 0.75rem;
+      }
+      
+      .container {
+        height: calc(100vh - 56px);
+      }
+      
+      .preview-content {
+        padding: 0;
+      }
+      
+      .preview-frame {
+        width: 100%;
+        height: 100%;
+      }
+      
+      .controls-content {
+        padding: 1.25rem;
+      }
+      
+      .controls-footer {
+        padding: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="./components.html" class="back-btn" id="backBtn" onclick="return goBack(event)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <span data-i18n="back">返回</span>
+      </a>
+      <button id="langToggle" class="lang-btn" type="button">English</button>
+      <div class="header-info">
+      <h1 id="componentName">加载中...</h1>
+      <p id="componentMeta"></p>
+      </div>
+    </div>
+  </header>
+  
+  <div class="container">
+    <div class="preview-pane">
+      <div class="preview-content">
+        <div class="preview-frame">
+          <iframe id="previewFrame" style="border: none; width: 100%; height: 100%; display: block;"></iframe>
+        </div>
+      </div>
+    </div>
+    
+    <div class="controls-pane">
+      <div class="controls-content">
+        <div id="controls">
+          <div class="empty-state">
+            <div class="empty-state-icon">⚙️</div>
+            <p data-i18n="loading-params">加载组件参数中...</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="controls-footer">
+        <div class="control-group" style="margin-bottom: 0; padding-bottom: 0; border-bottom: none;">
+          <h3 data-i18n="use-code">使用代码</h3>
+        <div class="code-block">
+            <div class="code-block-header">
+              <button class="code-copy-btn" id="codeCopyBtn" onclick="copyCode()" title="复制代码">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span data-i18n="btn-copy">复制</span>
+              </button>
+            </div>
+            <code id="codeOutput">加载中...</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* 返回：优先用浏览器历史（保留 components.html 的筛选状态） */
+    function goBack(e) {
+      /* 如果有历史记录且来源是同站页面，用 history.back() */
+      if (window.history.length > 1 && document.referrer && document.referrer.indexOf(location.origin) === 0) {
+        e.preventDefault();
+        window.history.back();
+        return false;
+      }
+      /* 否则走 href 默认跳转 */
+      return true;
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const componentId = urlParams.get('id');
+
+    let component = null;
+    let props = {};
+    const LANG_KEY = 'olc-lang';
+    const i18n = {
+      zh: {
+        'back': '返回',
+        'preview-title': '实时预览',
+        'preview-desc': '调整右侧参数查看效果变化',
+        'loading-params': '加载组件参数中...',
+        'use-code': '使用代码',
+        'no-component-title': '组件未找到',
+        'no-component-desc': '请检查组件 ID 是否正确',
+        'back-home': '返回首页',
+        'load-fail-title': '加载失败',
+        'load-fail-desc-prefix': '错误：',
+        'no-config-title': '参数配置',
+        'no-config-desc': '该组件无可配置参数',
+        'need-id-title': '请指定组件 ID',
+        'need-id-desc': '请在 URL 中添加 ?id=组件ID',
+        'copy-error': '无法加载组件',
+        'btn-copy': '复制',
+        'copy-success': '已复制',
+        'lang-label': 'English'
+      },
+      en: {
+        'back': 'Back',
+        'preview-title': 'Live Preview',
+        'preview-desc': 'Adjust parameters on the right to see changes.',
+        'loading-params': 'Loading component parameters...',
+        'use-code': 'Usage Snippet',
+        'no-component-title': 'Component not found',
+        'no-component-desc': 'Please check if the component ID is correct.',
+        'back-home': 'Back to Home',
+        'load-fail-title': 'Failed to load',
+        'load-fail-desc-prefix': 'Error: ',
+        'no-config-title': 'Parameters',
+        'no-config-desc': 'This component has no configurable parameters.',
+        'need-id-title': 'Component ID required',
+        'need-id-desc': 'Please append ?id=componentId in the URL.',
+        'copy-error': 'Failed to load component',
+        'btn-copy': 'Copy',
+        'copy-success': 'Copied',
+        'lang-label': '中文'
+      }
+    };
+
+    function resolveInitialLang() {
+      const params = new URLSearchParams(window.location.search);
+      const queryLang = (params.get('lang') || '').toLowerCase();
+      if (queryLang === 'en') return 'en';
+      if (queryLang === 'zh' || queryLang === 'zh-cn') return 'zh';
+      const stored = (localStorage.getItem(LANG_KEY) || '').toLowerCase();
+      if (stored === 'en') return 'en';
+      if (stored === 'zh' || stored === 'zh-cn') return 'zh';
+      const browserLang = (navigator.language || '').toLowerCase();
+      return browserLang.startsWith('en') ? 'en' : 'zh';
+    }
+
+    let currentLang = resolveInitialLang();
+
+    function t(key) {
+      return i18n[currentLang]?.[key] ?? i18n.zh[key] ?? key;
+    }
+
+    async function fetchWithTimeout(url, timeoutMs = 12000) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        return await fetch(url, { signal: controller.signal });
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+
+    function getComponentName(component) {
+      return component.name || component.nameEn || component.id;
+    }
+
+    function getCategoryName(component) {
+      return component.categoryName || component.categoryNameEn || component.category;
+    }
+
+    function applyStaticTexts() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        el.textContent = t(key);
+      });
+      const langBtn = document.getElementById('langToggle');
+      if (langBtn) langBtn.textContent = t('lang-label');
+    }
+
+    function updatePageTDK(component) {
+      if (!component) return;
+      
+      const componentName = getComponentName(component);
+      const categoryName = getCategoryName(component);
+      const componentTags = (component.tags || []).join(', ');
+      
+      // 生成页面标题
+      const pageTitle = currentLang === 'zh' 
+        ? `${componentName} - 组件预览 - Open Lab Components`
+        : `${componentName} - Component Preview - Open Lab Components`;
+      
+      // 生成页面描述
+      const pageDescription = currentLang === 'zh'
+        ? `预览和调试 ${componentName} 组件。分类：${categoryName}，版本：v${component.version}。支持实时参数调整和代码复制。`
+        : `Preview and debug ${componentName} component. Category: ${categoryName}, Version: v${component.version}. Supports real-time parameter adjustment and code copying.`;
+      
+      // 生成关键词（包含组件名称、分类、标签等）
+      const keywords = currentLang === 'zh'
+        ? `Open Lab Components,${componentName},${categoryName},组件预览,组件调试,实时预览${componentTags ? ',' + componentTags : ''},HTML组件,STEM教育`
+        : `Open Lab Components,${componentName},${categoryName},component preview,component debug,live preview${componentTags ? ',' + componentTags : ''},HTML component,STEM education`;
+      
+      // 更新页面标题
+      document.title = pageTitle;
+      
+      // 更新或创建 meta description
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (!metaDesc) {
+        metaDesc = document.createElement('meta');
+        metaDesc.setAttribute('name', 'description');
+        document.head.appendChild(metaDesc);
+      }
+      metaDesc.setAttribute('content', pageDescription);
+      
+      // 更新或创建 meta keywords
+      let metaKeywords = document.querySelector('meta[name="keywords"]');
+      if (!metaKeywords) {
+        metaKeywords = document.createElement('meta');
+        metaKeywords.setAttribute('name', 'keywords');
+        document.head.appendChild(metaKeywords);
+      }
+      metaKeywords.setAttribute('content', keywords);
+      
+      // 更新 canonical URL
+      const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
+      const playgroundUrl = `${baseUrl}/playground.html?id=${component.id}`;
+      let canonical = document.querySelector('link[rel="canonical"]');
+      if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonical);
+      }
+      canonical.setAttribute('href', playgroundUrl);
+      
+      // 更新 Open Graph 标签
+      const updateOGTag = (property, content) => {
+        let tag = document.querySelector(`meta[property="${property}"]`);
+        if (!tag) {
+          tag = document.createElement('meta');
+          tag.setAttribute('property', property);
+          document.head.appendChild(tag);
+        }
+        tag.setAttribute('content', content);
+      };
+      
+      updateOGTag('og:title', pageTitle);
+      updateOGTag('og:description', pageDescription);
+      updateOGTag('og:url', playgroundUrl);
+      
+      // 更新 Twitter Card 标签
+      const updateTwitterTag = (name, content) => {
+        let tag = document.querySelector(`meta[name="${name}"]`);
+        if (!tag) {
+          tag = document.createElement('meta');
+          tag.setAttribute('name', name);
+          document.head.appendChild(tag);
+        }
+        tag.setAttribute('content', content);
+      };
+      
+      updateTwitterTag('twitter:title', pageTitle);
+      updateTwitterTag('twitter:description', pageDescription);
+      updateTwitterTag('twitter:url', playgroundUrl);
+      
+      // 更新 JSON-LD 结构化数据
+      let jsonLd = document.querySelector('script[type="application/ld+json"]');
+      if (!jsonLd) {
+        jsonLd = document.createElement('script');
+        jsonLd.setAttribute('type', 'application/ld+json');
+        document.head.appendChild(jsonLd);
+      }
+      
+      const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": componentName,
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        },
+        "description": pageDescription,
+        "softwareVersion": component.version,
+        "category": categoryName,
+        "keywords": keywords,
+        "url": playgroundUrl,
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Open Lab Components",
+          "url": baseUrl + '/'
+        }
+      };
+      
+      jsonLd.textContent = JSON.stringify(structuredData, null, 2);
+    }
+
+    async function loadComponent() {
+      try {
+        const locale = currentLang === 'en' ? 'en' : 'zh-CN';
+        const res = await fetchWithTimeout(`./registry/registry.${locale}.json`);
+        if (!res.ok) {
+          throw new Error(`Failed to fetch registry: HTTP ${res.status}`);
+        }
+        const data = await res.json();
+        const registry = Array.isArray(data.items) ? data.items : (Array.isArray(data) ? data : []);
+        component = registry.find(c => c.id === componentId);
+        
+        if (!component) {
+          document.body.innerHTML = `
+            <div style="padding: 4rem; text-align: center; color: var(--text-primary); background: var(--bg); min-height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">⚠️</div>
+              <h2 style="margin-bottom: 0.5rem;">${t('no-component-title')}</h2>
+              <p style="color: var(--text-secondary); margin-bottom: 1rem;">${t('no-component-desc')}</p>
+              <a href="./index.html" style="display: inline-block; padding: 0.625rem 1.25rem; background: var(--primary); color: white; text-decoration: none; border-radius: 0.5rem;">${t('back-home')}</a>
+            </div>
+          `;
+          return;
+        }
+
+        document.getElementById('componentName').textContent = getComponentName(component);
+        document.getElementById('componentMeta').textContent = `${getCategoryName(component)} · v${component.version}`;
+        
+        // 更新页面 TDK（Title, Description, Keywords）
+        updatePageTDK(component);
+        
+        if (component.props) {
+          component.props.forEach(prop => {
+            props[prop.key] = prop.default;
+          });
+        }
+
+        renderControls();
+        await updatePreview();
+        updateCode();
+      } catch (err) {
+        document.body.innerHTML = `
+          <div style="padding: 4rem; text-align: center; color: var(--text-primary); background: var(--bg); min-height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">❌</div>
+            <h2 style="margin-bottom: 0.5rem;">${t('load-fail-title')}</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">${t('load-fail-desc-prefix')}${err.message}</p>
+            <a href="./index.html" style="display: inline-block; padding: 0.625rem 1.25rem; background: var(--primary); color: white; text-decoration: none; border-radius: 0.5rem;">${t('back-home')}</a>
+          </div>
+        `;
+      }
+    }
+
+    function renderControls() {
+      const container = document.getElementById('controls');
+      const eventGroupHtml = renderEventsGroup();
+      if (!component.props || component.props.length === 0) {
+        container.innerHTML = `
+          <div class="control-group">
+            <h3>${t('no-config-title')}</h3>
+            <p style="color: var(--text-secondary); font-size: 0.875rem; padding: 1rem; background: var(--bg); border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+              ${t('no-config-desc')}
+            </p>
+          </div>
+          ${eventGroupHtml}
+        `;
+        return;
+      }
+
+      // 按分类组织参数
+      const groupedProps = {};
+      component.props.forEach(prop => {
+        const category = prop.category || (currentLang === 'en' ? 'General' : '通用');
+        if (!groupedProps[category]) {
+          groupedProps[category] = [];
+        }
+        groupedProps[category].push(prop);
+      });
+
+      container.innerHTML = Object.entries(groupedProps).map(([category, categoryProps]) => {
+        const propsHtml = categoryProps.map(prop => {
+        const value = props[prop.key] ?? prop.default;
+        const displayName = prop.desc || prop.key;
+        let inputHtml = '';
+
+        if (prop.type === 'color') {
+          inputHtml = `
+            <div class="color-input-group">
+              <input type="color" value="${value}" onchange="updateProp('${prop.key}', this.value); this.nextElementSibling.value = this.value">
+              <input type="text" value="${value}" onchange="updateProp('${prop.key}', this.value); this.previousElementSibling.value = this.value" spellcheck="false">
+            </div>`;
+        } else if (prop.type === 'enum') {
+          const options = prop.enum || [];
+          if (options.length <= 5) {
+            inputHtml = `<div class="enum-group">${options.map(opt =>
+              `<button class="enum-btn${opt === String(value) ? ' active' : ''}" onclick="updateProp('${prop.key}', '${opt}'); this.parentElement.querySelectorAll('.enum-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active')">${opt}</button>`
+            ).join('')}</div>`;
+          } else {
+            const optionsHtml = options.map(opt => `<option value="${opt}" ${opt === String(value) ? 'selected' : ''}>${opt}</option>`).join('');
+            inputHtml = `<select onchange="updateProp('${prop.key}', this.value)">${optionsHtml}</select>`;
+          }
+        } else if (prop.type.startsWith('number')) {
+          // 检测是否为布尔型数字（0/1 开关）
+          const isBooleanToggle = prop.min === 0 && prop.max === 1 && (prop.step === 1 || (!prop.step && !prop.type.includes('0-1')));
+
+          if (isBooleanToggle) {
+            const checked = Number(value) === 1 ? 'checked' : '';
+            inputHtml = `
+              <div class="toggle-group">
+                <label class="toggle-switch">
+                  <input type="checkbox" ${checked} onchange="updateProp('${prop.key}', this.checked ? 1 : 0)">
+                  <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label">${Number(value) === 1 ? (currentLang === 'en' ? 'On' : '开') : (currentLang === 'en' ? 'Off' : '关')}</span>
+              </div>`;
+          } else {
+            // 智能计算 step 值
+            let step = prop.step;
+            if (step == null) {
+              if (prop.type.includes('(0-1)')) {
+                step = 0.01;
+              } else if (prop.type === 'number(px)' || prop.type === 'number(deg)') {
+                step = 1;
+              } else if (prop.min != null && prop.max != null) {
+                const range = prop.max - prop.min;
+                if (range <= 1) step = 0.01;
+                else if (range <= 10) step = 0.1;
+                else step = 1;
+              } else {
+                step = 0.1;
+              }
+            }
+
+            const unit = prop.type === 'number(px)' ? 'px' : prop.type === 'number(deg)' ? '°' : '';
+            const hasRange = prop.min != null && prop.max != null;
+            if (hasRange) {
+              inputHtml = `
+                <div class="range-input-group">
+                  <input type="range" min="${prop.min}" max="${prop.max}" step="${step}" value="${value}"
+                         oninput="updateProp('${prop.key}', parseFloat(this.value)); this.parentElement.querySelector('input[type=number]').value = this.value; this.parentElement.querySelector('.control-value-display').textContent = this.value + '${unit}'">
+                  <span class="control-value-display">${value}${unit}</span>
+                  <input type="number" min="${prop.min}" max="${prop.max}" step="${step}" value="${value}" style="display:none"
+                         onchange="updateProp('${prop.key}', parseFloat(this.value)); this.parentElement.querySelector('input[type=range]').value = this.value">
+                </div>`;
+            } else {
+              inputHtml = `<input type="number" step="${step}" value="${value}" onchange="updateProp('${prop.key}', parseFloat(this.value))">`;
+            }
+          }
+        } else {
+          inputHtml = `<input type="text" value="${value}" onchange="updateProp('${prop.key}', this.value)">`;
+        }
+
+        return `
+          <div class="control-item">
+            <label class="control-label">
+              <span class="prop-name">${displayName}</span>
+              ${prop.desc && prop.desc !== prop.key ? `<span class="prop-key">${prop.key}</span>` : ''}
+            </label>
+            ${inputHtml}
+          </div>
+        `;
+        }).join('');
+
+        return `
+          <div class="control-group">
+            <h3>${category}</h3>
+            ${propsHtml}
+          </div>
+        `;
+      }).join('') + eventGroupHtml;
+    }
+
+    function renderEventsGroup() {
+      if (!Array.isArray(component?.events) || component.events.length === 0) return '';
+      const title = currentLang === 'en' ? 'Events' : '事件';
+      const typeLabel = currentLang === 'en' ? 'Type' : '类型';
+      const valuesTitle = currentLang === 'en' ? 'Values' : '字段';
+      const cards = component.events.map(evt => {
+        const values = evt.values && typeof evt.values === 'object'
+          ? Object.entries(evt.values).map(([key, val]) => `<div class="event-value"><strong>${key}</strong>: ${val}</div>`).join('')
+          : `<div class="event-value">${currentLang === 'en' ? 'No values declared' : '未声明字段'}</div>`;
+        return `
+          <div class="event-card">
+            <div class="event-name">${evt.name || '-'}</div>
+            <div class="event-type">${typeLabel}: ${evt.type || '-'}</div>
+            <div class="event-values">
+              <div class="event-value"><strong>${valuesTitle}</strong></div>
+              ${values}
+            </div>
+          </div>
+        `;
+      }).join('');
+      return `
+        <div class="control-group">
+          <h3>${title}</h3>
+          <div class="event-list">${cards}</div>
+        </div>
+      `;
+    }
+
+    async function updateProp(key, value) {
+      // 确保数字类型的值被正确转换
+      const propDef = component.props?.find(p => p.key === key);
+      if (propDef && propDef.type.startsWith('number')) {
+        const numValue = parseFloat(value);
+        if (!isNaN(numValue)) {
+          props[key] = numValue;
+        } else {
+          props[key] = value;
+        }
+      } else {
+      props[key] = value;
+      }
+      await updatePreview();
+      updateCode();
+    }
+
+    async function updatePreview() {
+      const categoryPath = component.category.replace('/', '/');
+      const componentPath = `./components/${categoryPath}/${component.id}.html`;
+      const frame = document.getElementById('previewFrame');
+      
+      const cssVars = {};
+      if (component.cssVars) {
+        Object.keys(props).forEach(key => {
+          const cssVar = component.cssVars[key];
+          if (cssVar) {
+            let val = props[key];
+            if (component.props) {
+              const propDef = component.props.find(p => p.key === key);
+              if (propDef) {
+                if (propDef.type === 'number(px)') {
+                val = val + 'px';
+                } else if (propDef.type === 'number(deg)') {
+                val = val + 'deg';
+                } else if (propDef.type === 'string' && typeof val === 'string') {
+                  // 对于字符串类型的 CSS 变量，需要加引号
+                  val = `"${val.replace(/"/g, '\\"')}"`;
+                }
+              }
+            }
+            cssVars[cssVar] = val;
+          }
+        });
+      }
+      const styleStr = Object.entries(cssVars).map(([k, v]) => `${k}: ${v}`).join('; ');
+      
+      // 构建 data-props（包含所有 props，用于需要 JavaScript 处理的组件）
+      const dataProps = {};
+      Object.keys(props).forEach(key => {
+        const val = props[key];
+        // 确保值被正确序列化
+        if (typeof val === 'string') {
+          dataProps[key] = val;
+        } else if (typeof val === 'number') {
+          dataProps[key] = val;
+        } else if (typeof val === 'boolean') {
+          dataProps[key] = val;
+        } else {
+          dataProps[key] = String(val);
+        }
+      });
+      const dataPropsStr = JSON.stringify(dataProps).replace(/"/g, '&quot;');
+      const componentHtml = await getComponentHTML(componentPath);
+      
+      // 如果组件 HTML 中包含 data-cmp-id，需要添加/更新 data-props 和 data-label 属性
+      let finalComponentHtml = componentHtml;
+      // 查找包含 data-cmp-id 的 div 标签
+      const cmpIdPattern = /<div([^>]*data-cmp-id="[^"]*"[^>]*)>/;
+      const match = componentHtml.match(cmpIdPattern);
+      if (match) {
+        let newAttrs = match[1];
+        
+        // 处理 data-label（如果 props 中有 label，优先使用它）
+        if (props.label !== undefined) {
+          const labelValue = String(props.label).replace(/"/g, '&quot;');
+          // 移除或替换现有的 data-label
+          newAttrs = newAttrs.replace(/data-label="[^"]*"/, '');
+          newAttrs += ` data-label="${labelValue}"`;
+        }
+        
+        // 处理 data-props
+        if (newAttrs.indexOf('data-props=') === -1) {
+          // 添加 data-props 属性
+          newAttrs += ` data-props="${dataPropsStr}"`;
+        } else {
+          // 替换现有的 data-props
+          newAttrs = newAttrs.replace(/data-props="[^"]*"/, `data-props="${dataPropsStr}"`);
+        }
+        
+        // 替换整个 div 标签
+        finalComponentHtml = componentHtml.replace(
+          cmpIdPattern,
+          `<div${newAttrs}>`
+        );
+      }
+      
+      const html = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <style>
+            body {
+              margin: 0;
+              padding: 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              min-height: 100vh;
+              background: transparent;
+            }
+          </style>
+        </head>
+        <body>
+          <div style="${styleStr}">
+            ${finalComponentHtml}
+          </div>
+        </body>
+        </html>
+      `;
+
+      frame.srcdoc = html;
+    }
+
+    async function getComponentHTML(path) {
+      try {
+        const res = await fetchWithTimeout(path);
+        if (!res.ok) {
+          throw new Error(`Failed to fetch component html: HTTP ${res.status} (${path})`);
+        }
+        let text = await res.text();
+        
+        // 移除 @cmp-manifest 注释块
+        text = text.replace(/<!--\s*@cmp-manifest[\s\S]*?-->/g, '').trim();
+        
+        // 如果包含完整的 HTML 文档结构，提取 body 内容
+        if (text) {
+          // 使用普通字符串 + RegExp 构造，兼容性更好
+          const bodyRegex = new RegExp('<body[^>]*>([\\s\\S]*)</body>', 'i');
+          const bodyMatch = text.match(bodyRegex);
+          if (bodyMatch && bodyMatch[1]) {
+            text = bodyMatch[1].trim();
+          }
+        }
+        
+        // 确保返回的代码有适当的缩进
+        const lines = text.split('\n');
+        const indented = lines.map((line, index) => {
+          // 第一行不缩进，其他行缩进 2 个空格
+          if (index === 0) return line.trim();
+          return '  ' + line;
+        }).join('\n');
+        
+        return indented;
+      } catch (err) {
+        return '  <!-- 组件内容 -->';
+      }
+    }
+
+    let currentCode = ''; // 存储当前代码，用于复制
+
+    async function updateCode() {
+      if (!component) return;
+      const categoryPath = component.category.replace('/', '/');
+      const componentPath = `./components/${categoryPath}/${component.id}.html`;
+      
+      // 获取组件的实际 HTML 内容
+      const componentHtml = await getComponentHTML(componentPath);
+      
+      // 构建 CSS 变量（使用当前 props 值）
+      const cssVars = {};
+      if (component.cssVars) {
+        Object.keys(props).forEach(key => {
+          const cssVar = component.cssVars[key];
+          if (cssVar) {
+            let val = props[key];
+            const propDef = component.props.find(p => p.key === key);
+            if (propDef && propDef.type === 'number(px)') {
+              val = val + 'px';
+            } else if (propDef && propDef.type === 'number(deg)') {
+              val = val + 'deg';
+            }
+            cssVars[cssVar] = val;
+          }
+        });
+      }
+
+      // 生成 style 字符串
+      const styleStr = Object.entries(cssVars)
+        .map(([k, v]) => `${k}: ${v}`)
+        .join('; ');
+      
+      // 生成完整的组件代码
+      if (styleStr) {
+        currentCode = `<div class="cmp" data-cmp-id="${component.id}" style="${styleStr}">
+${componentHtml}
+</div>`;
+      } else {
+        currentCode = `<div class="cmp" data-cmp-id="${component.id}">
+${componentHtml}
+</div>`;
+      }
+
+      document.getElementById('codeOutput').textContent = currentCode;
+    }
+    
+    async function copyCode() {
+      if (!currentCode) {
+        await updateCode();
+      }
+      
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(currentCode);
+          // 更新按钮文本为"已复制"
+          const btn = document.getElementById('codeCopyBtn');
+          const originalText = btn.querySelector('span').textContent;
+          btn.querySelector('span').textContent = t('copy-success');
+          setTimeout(() => {
+            btn.querySelector('span').textContent = originalText;
+          }, 2000);
+        } else {
+          fallbackCopyCode(currentCode);
+        }
+      } catch (err) {
+        fallbackCopyCode(currentCode);
+      }
+    }
+    
+    function fallbackCopyCode(code) {
+      const textarea = document.createElement('textarea');
+      textarea.value = code;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      
+      const btn = document.getElementById('codeCopyBtn');
+      const originalText = btn.querySelector('span').textContent;
+      btn.querySelector('span').textContent = t('copy-success');
+      setTimeout(() => {
+        btn.querySelector('span').textContent = originalText;
+      }, 2000);
+    }
+    
+    window.copyCode = copyCode;
+
+    window.updateProp = updateProp;
+
+    if (componentId) {
+      loadComponent();
+    } else {
+      document.body.innerHTML = `
+        <div style="padding: 4rem; text-align: center; color: var(--text-primary); background: var(--bg); min-height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+          <h2 style="margin-bottom: 0.5rem;">${t('need-id-title')}</h2>
+          <p style="color: var(--text-secondary); margin-bottom: 1rem;">${t('need-id-desc')}</p>
+          <a href="./index.html" style="display: inline-block; padding: 0.625rem 1.25rem; background: var(--primary); color: white; text-decoration: none; border-radius: 0.5rem;">${t('back-home')}</a>
+        </div>
+      `;
+    }
+
+    function switchLang() {
+      currentLang = currentLang === 'zh' ? 'en' : 'zh';
+      localStorage.setItem(LANG_KEY, currentLang);
+      applyStaticTexts();
+      loadComponent();
+    }
+
+    const langToggle = document.getElementById('langToggle');
+    if (langToggle) {
+      langToggle.addEventListener('click', switchLang);
+    }
+
+    applyStaticTexts();
+  </script>
+</body>
+</html>

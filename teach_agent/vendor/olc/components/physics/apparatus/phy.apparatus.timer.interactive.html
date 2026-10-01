@@ -1,0 +1,301 @@
+<!-- @cmp-manifest
+{
+  "schema": "cmp-manifest/v2",
+  "id": "phy.apparatus.timer.interactive",
+  "name": "计时器（交互式）",
+  "nameEn": "Timer Explorer",
+  "category": "physics/apparatus",
+  "version": "1.0.0",
+  "viewport": {
+    "w": 180,
+    "h": 126
+  },
+  "props": [
+    {
+      "key": "size",
+      "type": "number(px)",
+      "default": 180,
+      "min": 120,
+      "max": 400,
+      "desc": "组件宽度（高度按比例缩放）"
+    },
+    {
+      "key": "accent",
+      "type": "color",
+      "default": "#4a86e8",
+      "desc": "计时器主体颜色"
+    }
+  ],
+  "cssVars": {
+    "size": "--cmp-size",
+    "accent": "--cmp-accent"
+  },
+  "tags": [
+    "timer",
+    "apparatus",
+    "interactive",
+    "measurement"
+  ],
+  "events": [
+    {
+      "name": "cmp:change",
+      "type": "toggle",
+      "values": {
+        "running": "boolean - whether the timer is running",
+        "elapsed": "number(ms) - elapsed time in milliseconds"
+      }
+    }
+  ],
+  "locales": {
+    "zh-CN": {
+      "name": "计时器（交互式）",
+      "tags": [
+        "timer",
+        "apparatus",
+        "interactive",
+        "measurement"
+      ],
+      "ariaLabel": "计时器（交互式）",
+      "props": {
+        "size": {
+          "label": "size",
+          "desc": "组件宽度（高度按比例缩放）"
+        },
+        "accent": {
+          "label": "accent",
+          "desc": "计时器主体颜色"
+        }
+      },
+      "events": {
+        "cmp:change": {
+          "values": {
+            "running": "boolean - whether the timer is running",
+            "elapsed": "number(ms) - elapsed time in milliseconds"
+          }
+        }
+      }
+    },
+    "en": {
+      "name": "Timer Explorer",
+      "tags": [
+        "timer",
+        "apparatus",
+        "interactive",
+        "measurement"
+      ],
+      "ariaLabel": "Timer Explorer",
+      "props": {
+        "size": {
+          "label": "Size",
+          "desc": "Numeric control for size."
+        },
+        "accent": {
+          "label": "Accent",
+          "desc": "Color setting for accent."
+        }
+      },
+      "events": {
+        "cmp:change": {
+          "label": "Toggle",
+          "desc": "Event emitted during toggle.",
+          "values": {
+            "running": "Value for running.",
+            "elapsed": "Value for elapsed."
+          }
+        }
+      }
+    }
+  }
+}
+-->
+<div class="cmp" data-cmp-id="phy.apparatus.timer.interactive" role="img" aria-label="计时器（交互式）">
+    <style>
+      .cmp[data-cmp-id="phy.apparatus.timer.interactive"] {
+        --inner-size: var(--cmp-size, 180px);
+        --inner-accent: var(--cmp-accent, #4a86e8);
+
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: var(--inner-size);
+        height: calc(var(--inner-size) * 0.7);
+        background-color: var(--inner-accent);
+        border-radius: 12px;
+        padding: 12px;
+        box-shadow: inset -2px -2px 4px rgba(0,0,0,0.3), inset 2px 2px 4px rgba(255,255,255,0.3);
+        font-family: 'Courier New', Courier, monospace;
+        user-select: none;
+        box-sizing: border-box;
+      }
+
+      .cmp[data-cmp-id="phy.apparatus.timer.interactive"] .display {
+        background-color: #fff;
+        width: 90%;
+        height: 45%;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: calc(var(--inner-size) * 0.18);
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 12px;
+        box-shadow: inset 2px 2px 5px rgba(0,0,0,0.2);
+      }
+
+      .cmp[data-cmp-id="phy.apparatus.timer.interactive"] .ms {
+        font-size: 0.7em;
+        margin-left: 2px;
+      }
+
+      .cmp[data-cmp-id="phy.apparatus.timer.interactive"] .controls {
+        display: flex;
+        gap: 15px;
+        width: 90%;
+        justify-content: center;
+      }
+
+      .cmp[data-cmp-id="phy.apparatus.timer.interactive"] button {
+        flex: 1;
+        height: calc(var(--inner-size) * 0.18);
+        border: none;
+        border-radius: 6px;
+        background: #e0e0e0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 3px 0 #999, 0 4px 5px rgba(0,0,0,0.2);
+        transition: all 0.1s;
+      }
+
+      .cmp[data-cmp-id="phy.apparatus.timer.interactive"] button:active {
+        transform: translateY(2px);
+        box-shadow: 0 1px 0 #999, 0 2px 3px rgba(0,0,0,0.2);
+      }
+
+      .cmp[data-cmp-id="phy.apparatus.timer.interactive"] svg {
+        width: 60%;
+        height: 60%;
+        fill: #444;
+      }
+    </style>
+
+    <div class="display">
+      <span class="time-text">00:00</span><span class="ms">.00</span>
+    </div>
+
+    <div class="controls">
+      <button class="btn-reset" title="重置" aria-label="重置计时器" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+      </button>
+      <button class="btn-toggle" title="开始/暂停" aria-label="开始或暂停计时" type="button">
+        <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="icon-pause" viewBox="0 0 24 24" style="display:none;" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+      </button>
+    </div>
+
+    <script>
+      (() => {
+        const script = document.currentScript;
+        if (!script) return;
+        const root = script.parentElement;
+        if (!root || root.getAttribute('data-cmp-id') !== 'phy.apparatus.timer.interactive') return;
+        const registerCleanup = typeof root.__olcRegisterCleanup === 'function'
+          ? root.__olcRegisterCleanup.bind(root)
+          : null;
+
+        const displayMain = root.querySelector('.time-text');
+        const displayMs = root.querySelector('.ms');
+        const btnReset = root.querySelector('.btn-reset');
+        const btnToggle = root.querySelector('.btn-toggle');
+        const iconPlay = root.querySelector('.icon-play');
+        const iconPause = root.querySelector('.icon-pause');
+
+        if (!displayMain || !displayMs || !btnReset || !btnToggle || !iconPlay || !iconPause) {
+          return;
+        }
+
+        let startTime = 0;
+        let elapsedTime = 0;
+        let timerInterval = null;
+
+        function updateDisplay() {
+          const totalMs = elapsedTime;
+          const mins = Math.floor(totalMs / 60000);
+          const secs = Math.floor((totalMs % 60000) / 1000);
+          const cents = Math.floor((totalMs % 1000) / 10);
+
+          displayMain.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+          displayMs.textContent = `.${cents.toString().padStart(2, '0')}`;
+        }
+
+        function emitTimer() {
+          root.dispatchEvent(new CustomEvent('cmp:change', {
+            bubbles: true,
+            composed: true,
+            detail: {
+              id: root.getAttribute('data-cmp-id'),
+              type: 'toggle',
+              values: {
+                running: !!timerInterval,
+                elapsed: elapsedTime
+              }
+            }
+          }));
+        }
+
+        function start() {
+          if (timerInterval) return;
+          startTime = Date.now() - elapsedTime;
+          timerInterval = setInterval(() => {
+            elapsedTime = Date.now() - startTime;
+            updateDisplay();
+          }, 30);
+          iconPlay.style.display = 'none';
+          iconPause.style.display = 'block';
+          btnToggle.setAttribute('aria-label', '暂停计时');
+          emitTimer();
+        }
+
+        function stop() {
+          if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+          }
+          iconPlay.style.display = 'block';
+          iconPause.style.display = 'none';
+          btnToggle.setAttribute('aria-label', '开始计时');
+          emitTimer();
+        }
+
+        const onToggleClick = () => {
+          if (timerInterval) stop();
+          else start();
+        };
+
+        const onResetClick = () => {
+          stop();
+          elapsedTime = 0;
+          updateDisplay();
+          emitTimer();
+        };
+
+        btnToggle.addEventListener('click', onToggleClick);
+        btnReset.addEventListener('click', onResetClick);
+        updateDisplay();
+
+        const cleanup = () => {
+          if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+          }
+          btnToggle.removeEventListener('click', onToggleClick);
+          btnReset.removeEventListener('click', onResetClick);
+        };
+
+        if (registerCleanup) registerCleanup(cleanup);
+      })();
+    </script>
+  </div>

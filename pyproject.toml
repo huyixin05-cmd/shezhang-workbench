@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "local-teach-agent"
+version = "0.1.0"
+description = "A local teaching agent: approve a lesson plan, make interactive pages and Manim animations, take them offline."
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+dependencies = [
+  "fastapi==0.142.2", "uvicorn==0.54.0", "httpx==0.28.1",
+  "pydantic==2.13.5", "playwright==1.63.0", "mcp==2.2.0", "av==19.0.0"
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.1.1", "pytest-asyncio==1.4.0"]
+
+[project.scripts]
+teach-agent = "teach_agent.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["teach_agent"]
+namespaces = false
+
+[tool.setuptools.package-data]
+teach_agent = ["static/*", "animation_templates/*.py", "vendor/**/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"

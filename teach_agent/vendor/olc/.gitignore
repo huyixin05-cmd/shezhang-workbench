@@ -1,0 +1,28 @@
+node_modules/
+tools/runtime-harness/node_modules/
+.DS_Store
+*.log
+
+# Generated outputs
+registry/*.json
+!registry/.gitkeep
+!registry/category-names.json
+!registry/quality-report.json
+site/dist/
+site/assets/registry.json
+site/assets/categories.json
+site/assets/tags.json
+site/assets/components/
+
+# Temporary documentation files
+INIT_GIT.md
+操作步骤.md
+docs/GITHUB_PAGES_SETUP.md
+
+# Demo folder
+demo/
+tmp-run/
+
+# Runtime data
+data/
+mcp-server/data/
