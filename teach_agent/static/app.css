@@ -3,3 +3,13 @@
 .teaching-step{border:1px solid var(--border,#dce7e3);border-radius:12px;padding:20px;margin:16px 0;background:#fafdfc}.teaching-step h3{margin:0}.step-actions{display:flex;gap:6px;flex-wrap:wrap}.step-actions button{padding:6px 10px;font-size:13px}#learning-design{margin:24px 0}#learning-design legend{font-weight:700}#learning-design textarea{min-height:86px}
 
 #plan-summary{line-height:1.8;margin:22px 0}#plan-summary h3{font-size:22px;margin-bottom:4px}#plan-summary p{margin:10px 0}#plan-summary strong{color:#244c42}#plan-summary ol{padding-left:24px}#plan-editor{border-top:1px solid var(--line);padding-top:16px}#plan-editor>summary{cursor:pointer;color:var(--green);font-size:14px}
+
+.brand{font-size:22px;letter-spacing:0;font-weight:650;white-space:nowrap;margin-bottom:36px}
+.welcome{width:min(800px,100%);margin:clamp(100px,26vh,260px) auto 60px;padding:0 42px}
+.welcome .composer{margin-top:0;padding:20px;border-color:#d7e2dc;box-shadow:0 3px 16px #163d2207}
+.welcome .composer textarea{min-height:150px;font-size:17px}
+.welcome .composer-footer{border-top:0;padding-top:10px}
+.welcome .composer-footer .primary{min-width:92px}
+.welcome .type-label select{padding-left:0;background:transparent}
+@media(max-width:800px){.brand{font-size:19px;margin-left:4px;margin-right:0}.welcome{padding:0 24px}}
+@media(max-width:560px){.sidebar{flex-wrap:wrap}.brand{font-size:18px;margin:0 auto 0 0}.sidebar-bottom{margin-left:0}.sidebar>button{margin-left:auto}.welcome{margin:18vh auto 40px;padding:0 18px}.welcome .composer-footer{flex-direction:row;align-items:center}.welcome .composer-footer .primary{width:auto}}
