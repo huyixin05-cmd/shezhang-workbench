@@ -13,3 +13,5 @@
 .welcome .type-label select{padding-left:0;background:transparent}
 @media(max-width:800px){.brand{font-size:19px;margin-left:4px;margin-right:0}.welcome{padding:0 24px}}
 @media(max-width:560px){.sidebar{flex-wrap:wrap}.brand{font-size:18px;margin:0 auto 0 0}.sidebar-bottom{margin-left:0}.sidebar>button{margin-left:auto}.welcome{margin:18vh auto 40px;padding:0 18px}.welcome .composer-footer{flex-direction:row;align-items:center}.welcome .composer-footer .primary{width:auto}}
+
+.request-heading{margin:0 0 20px;font-size:24px;letter-spacing:0;font-weight:600;line-height:1.5}.request-heading label{display:block;font-size:inherit;font-weight:inherit}.home-example{margin-top:14px;font-size:13px}

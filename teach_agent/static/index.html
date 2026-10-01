@@ -6,7 +6,9 @@
 <header id="work-header" class="topbar" hidden><span id="page-title"></span></header>
 <div id="notice" role="alert" hidden></div>
 <section id="welcome" class="welcome">
-<form id="request-form" class="composer"><label for="request" class="sr-only">教学需求</label><textarea id="request" required maxlength="6000" placeholder="输入你的需求…"></textarea><div class="composer-footer"><label class="type-label"><span class="sr-only">作品形式</span><select id="kind"><option value="auto">帮我选</option><option value="interactive">互动演示</option><option value="animation">教学动画</option></select></label><button class="primary" id="propose">开始</button></div></form>
+<h1 class="request-heading"><label for="request">输入您的需求</label></h1>
+<form id="request-form" class="composer"><textarea id="request" required maxlength="6000" placeholder="例如：做一个互动演示，让学生看懂力和加速度的关系。"></textarea><div class="composer-footer"><label class="type-label"><span class="sr-only">作品形式</span><select id="kind"><option value="auto">帮我选</option><option value="interactive">互动演示</option><option value="animation">教学动画</option></select></label><button class="primary" id="propose">开始</button></div></form>
+<button id="example-button" class="text-button home-example">看示例 ↗</button>
 </section>
 <section id="workspace" hidden>
 <div class="stepper"><span id="step-plan">1 确认教学方案</span><i></i><span id="step-build">2 制作与检查</span><i></i><span id="step-result">3 预览与带走</span></div>
