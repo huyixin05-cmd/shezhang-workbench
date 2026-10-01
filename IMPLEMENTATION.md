@@ -37,3 +37,5 @@ Final: Ruling: live-model quality/latency, WorkBuddy client, other systems/physi
 Final: Ruling: unsupported arbitrary animation themes, direct combined-version editing and project re-import remain documented first-release boundaries. Cost: additional local workflow steps for those cases.
 
 Tasks 1–5 implemented and verified within the preview boundary. Remote publishing not performed. The local branch is retained; no other checkout or worktree was deleted.
+
+Distribution check caught root dist/ ignore rule excluding vendored KaTeX dist from Git. Anchored output-directory ignores, added source-integrity regression and verified all 710 upstream files in the Git index. Final suite now 46 tests.
