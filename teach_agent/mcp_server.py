@@ -10,7 +10,7 @@ from mcp.server.mcpserver.exceptions import ToolError
 from .__main__ import default_data
 from .config import Settings
 
-server=MCPServer('Teach Agent',instructions='先准备教学方案并完整展示给老师，等待老师明确确认当前方案，再调用 confirm_and_make。不能替老师确认。生成较慢时用 job_status 查询。')
+server=MCPServer('Teach Agent',instructions='根据老师的一句话调用 prepare_lesson，自动完成需求分析、难点判断、教学顺序设计和复核，中途不要逐步要求确认。完成后展示简明完整方案（目标、难点、做法、演示顺序和暂定条件），仅在开始制作前等待老师一次明确确认当前方案，再调用 confirm_and_make。详细字段只在老师需要时展示。老师要修改时用 revise_plan 自动重做，展示修改后的完整方案。不能替老师确认。生成较慢时用 job_status 查询。')
 
 
 async def request(method,path,body=None,raw=False):

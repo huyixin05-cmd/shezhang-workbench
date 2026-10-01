@@ -6,6 +6,27 @@ const designLabels = {
 };
 const stepLabels = {title:'这一步的名称',question:'要解决的小问题',explanation:'讲解什么',
   action:'学生做什么 · 或观察什么镜头',observation:'应看到什么证据',takeaway:'应理解什么',check:'怎样检查理解 · 判断依据'};
+function showPlanSummary(plan){
+  const root=document.getElementById('plan-summary');root.replaceChildren();
+  const design=plan.learning_design;
+  const heading=document.createElement('h3');heading.textContent=plan.title;root.append(heading);
+  const meta=document.createElement('p');meta.className='small';
+  meta.textContent=plan.grade+' · '+(plan.kind==='animation'?'教学动画':'互动演示');root.append(meta);
+  for(const [label,value] of [
+    ['要讲明白',design?.request_analysis||plan.objective],
+    ['关键难点',design?.student_problem||plan.misconception],
+    ['准备怎么做',design?.design_response||plan.interaction],
+    ['学生最后能做到',design?.success_evidence||plan.check_question]]){
+    if(!value)continue;
+    const row=document.createElement('p'),name=document.createElement('strong'),text=document.createElement('span');
+    name.textContent=label+'：';text.textContent=value;row.append(name,text);root.append(row);
+  }
+  const label=document.createElement('strong');label.textContent='演示顺序';root.append(label);
+  const sequence=document.createElement('ol');
+  for(const title of plan.steps){const item=document.createElement('li');item.textContent=title;sequence.append(item);}root.append(sequence);
+  if(plan.assumptions?.length){const note=document.createElement('p');note.className='small';note.textContent='暂定条件：'+plan.assumptions.join('；');root.append(note);}
+  document.getElementById('plan-editor').open=false;
+}
 function teachingField(key,label,value,step=false){
   const wrapper=document.createElement('label');wrapper.textContent=label;
   const input=document.createElement(key==='title'?'input':'textarea');input.dataset.teachingField=key;
