@@ -110,7 +110,7 @@ class Store:
                 inputs['plan'] = p['plan']
                 if kind=='revision':
                     base=self._get(con,'versions',inputs.get('version_id'))
-                    if base['project_id']!=project_id or base['kind']!='interactive' or base['plan']!=p['plan']:
+                    if base['project_id']!=project_id or base['kind'] not in ('interactive','animation') or base['plan']!=p['plan']:
                         raise ValueError('基础版本与当前确认方案不一致，请重新确认制作')
             j = dict(id=uuid4().hex, project_id=project_id, kind=kind, input=inputs,
                      status='queued', stage='排队中', created_at=now(), updated_at=now(), error=None)

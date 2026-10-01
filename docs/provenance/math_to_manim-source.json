@@ -1,0 +1,70 @@
+{
+  "origin": "https://github.com/HarleyCoops/Math-To-Manim",
+  "revision": "0df6aa9d92b18d76862776a0425fda4d9f5cc023",
+  "files": [
+    {
+      "path": "LICENSE",
+      "sha256": "9c2f1d46cf0bf39b5d56c212d1daf6fc70d4961d293c547e047d41612f58d0ed"
+    },
+    {
+      "path": "sol/__init__.py",
+      "sha256": "22edbeb4e00b21675a7d2c8cee7f37969367128d6a039d3db04796b21ee18b5c"
+    },
+    {
+      "path": "sol/agents.py",
+      "sha256": "30f0dcf744ef6fec6b2384c7883796586fdba31d762248d2f0a5c35ba0f91409"
+    },
+    {
+      "path": "sol/cli.py",
+      "sha256": "b9e51ccf88f53653a11cea6bfa8c974347058d0fe074da81f31e62d6ccd133c8"
+    },
+    {
+      "path": "sol/client.py",
+      "sha256": "665ed2477861f7b0d84c2020046f8fe5a156cc00b892444d4a10bc7871e80b4d"
+    },
+    {
+      "path": "sol/contract.py",
+      "sha256": "246e168a2c6ac66e06c8c60bc81fb48210847f68138662f2e1da7152285ffeea"
+    },
+    {
+      "path": "sol/harness.py",
+      "sha256": "d9bb763e4d13a23d135cb20ec3722c3a9203ead8b34c12ea79f73698f4d9aef9"
+    },
+    {
+      "path": "sol/manifest_schema.py",
+      "sha256": "de9c3f4f0f0040d16b385bd11b6e610c45b79b888b19d33e908a3913c53caa5c"
+    },
+    {
+      "path": "sol/models.py",
+      "sha256": "80d88373d41e9f97ae0cfedb6a017e98973a998c22a531ecf787e0965b3ed686"
+    },
+    {
+      "path": "sol/offline.py",
+      "sha256": "f607ecd8ccfee413d2dd9bfdc9100fc5543117afdd61fe0f2b487c98025093b1"
+    },
+    {
+      "path": "sol/prereq_cache.py",
+      "sha256": "df3f37e1c2b58b7fabc64bdf729e1cfdc9d511e8ab3bde16b673e39a7a2b661c"
+    },
+    {
+      "path": "sol/rendering.py",
+      "sha256": "786f47b5dfc4a9c831d1814b89d41b7889b73a6e77c28847d49aac58d44dace4"
+    },
+    {
+      "path": "sol/scene_checks.py",
+      "sha256": "0980a21ecaaec9356a850010ce3f8e077f88dad81f9d7d1d4cd60408ffb2bd5a"
+    },
+    {
+      "path": "sol/service.py",
+      "sha256": "ade157d91c2094da40ea2933c3fd499ab4bb2b74b6da814d3f7ebb79994562db"
+    },
+    {
+      "path": "sol/staged.py",
+      "sha256": "4b7a7798b669932130e1039cd9325ebf2259f9625a9f595e2d7edf13cbe13fff"
+    },
+    {
+      "path": "sol/validation.py",
+      "sha256": "a79361af21a739ea1bdd89c39251ef8b0c0217b4bf03898d1e21d426d465b04f"
+    }
+  ]
+}

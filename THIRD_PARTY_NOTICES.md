@@ -29,3 +29,10 @@ Three original prompt files from https://github.com/clockless-org/html-anything 
 ## Manim workflow
 
 The controlled force-composition scene and local video inspection were adapted from the user's existing Manim teaching workflow. Manim is an optional separately installed renderer; no Manim environment or executable is included in source exports. Python dependencies retain their respective upstream licenses as installed by pip.
+
+
+## Math-To-Manim / native Sol
+
+Source: https://github.com/HarleyCoops/Math-To-Manim at `0df6aa9d92b18d76862776a0425fda4d9f5cc023`. MIT, copyright 2025–2026 Christian H. Cooper. The unchanged `sol/*.py` snapshot and LICENSE are under `teach_agent/vendor/math_to_manim/`; integrity hashes are in `docs/provenance/math_to_manim-source.json`. Product-specific binding, rendering and review adapters live outside the vendor directory. Native Codex CLI authentication is retained.
+
+The user's local `video-manim-toolkit` workflow guide, layout helper and text checker are preserved under `teach_agent/vendor/video_toolkit/`, with snapshot hashes in `docs/provenance/video_toolkit-source.json`. No separate upstream license was present in that local toolkit. Manim, Codex CLI, the Python runtime and optional LaTeX are separately installed tools, not bundled executables.

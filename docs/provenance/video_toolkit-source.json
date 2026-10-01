@@ -1,0 +1,18 @@
+{
+  "origin": "User local video-manim-toolkit",
+  "revision": "2026-10-01 local snapshot",
+  "files": [
+    {
+      "path": "check_text.py",
+      "sha256": "8a5a9ea1c7aa25dc116014ec0ba2449f7a5ad6ba8793be5510f6ca02fbe5f7ed"
+    },
+    {
+      "path": "video_guard.py",
+      "sha256": "3fe7f1ddef5ae7ccc9d33f05dcce871bf97d9b7bf69f4cd85381e397a18ee0c4"
+    },
+    {
+      "path": "VIDEO_WORKFLOW.md",
+      "sha256": "41c1ac798296ce3a456e9072e0bc8225b563087604ad5433e8c32b2959fd1330"
+    }
+  ]
+}

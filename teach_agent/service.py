@@ -96,6 +96,9 @@ class Service:
                     raise ValueError('方案缺少需求与难点分析、逐步教学设计')
                 if p['kind'] != 'auto' and plan['kind'] != p['kind']:
                     raise ValueError('模型未遵循所选成品类型')
+                if plan['kind'] == 'animation':
+                    from .animation_contract import validate_animation
+                    plan['animation'] = validate_animation(plan.get('animation'), allow_legacy=False)
                 self.materials.descriptions(plan['components'])
                 self.store.update_job(job['id'],stage='复核难点分析与讲解顺序')
                 review = await self.model.json([
@@ -128,10 +131,17 @@ class Service:
         (folder/'plan.json').write_text(json.dumps(plan,ensure_ascii=False,indent=2),encoding='utf-8')
         (folder/'THIRD_PARTY_NOTICES.txt').write_text(notices(),encoding='utf-8')
         if plan['kind'] == 'animation':
-            from .animation import render_animation
-            self.store.update_job(job['id'],stage='渲染教学动画')
-            report = await render_animation(plan,folder,self.settings.read().get('manim_python',''))
-            source = {'animation':plan['animation']}
+            self.store.update_job(job['id'], draft_folder=folder_id)
+            if plan['animation'].get('workflow') == 'sol':
+                from .animation_workflow import run_animation_workflow
+                previous = self.version_folder(self.store.version(job['input']['version_id'])) if job['input'].get('version_id') else None
+                source, report = await run_animation_workflow(plan, folder, self.settings.read(),
+                    lambda stage: self.store.update_job(job['id'], stage=stage),
+                    previous=previous, changes=job['input'].get('request'))
+            else:
+                from .animation import render_animation
+                report = await render_animation(plan,folder,self.settings.read().get('manim_python',''))
+                source = {'animation':plan['animation']}
         else:
             self.store.update_job(job['id'],stage='制作互动演示')
             previous = None

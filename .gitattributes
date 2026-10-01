@@ -1,1 +1,2 @@
 * text=auto eol=lf
+teach_agent/vendor/math_to_manim/** -text

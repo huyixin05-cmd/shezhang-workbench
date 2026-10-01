@@ -20,7 +20,8 @@ class Settings:
     def read(self):
         data = json.loads(self.path.read_text(encoding='utf-8')) if self.path.exists() else {}
         for field, env in [('base_url','TEACH_MODEL_URL'),('model','TEACH_MODEL_NAME'),
-                           ('api_key','TEACH_API_KEY'),('manim_python','TEACH_MANIM_PYTHON')]:
+                           ('api_key','TEACH_API_KEY'),('manim_python','TEACH_MANIM_PYTHON'),
+                           ('animation_codex','TEACH_ANIMATION_CODEX'),('animation_model','TEACH_ANIMATION_MODEL')]:
             if os.environ.get(env):
                 data[field] = os.environ[env]
         return data
@@ -29,7 +30,8 @@ class Settings:
         data = self.read()
         return dict(base_url=data.get('base_url',''), model=data.get('model',''),
                     has_key=bool(data.get('api_key')), configured=bool(data.get('base_url') and data.get('model')),
-                    max_tokens=data.get('max_tokens',12000), manim_python=data.get('manim_python',''))
+                    max_tokens=data.get('max_tokens',12000), manim_python=data.get('manim_python',''),
+                    animation_codex=data.get('animation_codex','codex'),animation_model=data.get('animation_model','gpt-5.6-sol'))
 
     def save(self, values):
         data = self.read()
@@ -39,7 +41,7 @@ class Settings:
                 raise ValueError('模型地址不能含账号、查询参数或片段')
             if url.scheme != 'https' and not (url.scheme == 'http' and url.hostname in ('127.0.0.1','localhost','::1')):
                 raise ValueError('模型地址须使用 HTTPS，本机模型可使用 HTTP')
-        for key in ('base_url','model','manim_python'):
+        for key in ('base_url','model','manim_python','animation_codex','animation_model'):
             if key in values:
                 data[key] = str(values[key]).strip()
         if values.get('api_key'):

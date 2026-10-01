@@ -110,7 +110,7 @@ def create_app(root, model=None, checker=None):
     @app.get('/api/status')
     def status():
         return dict(version='0.1.0',model=settings.public(),components=len(service.materials.items),
-                    animation_templates=['force_composition'],standalone_export=True)
+                    animation_workflow='sol',standalone_export=True)
 
     @app.get('/api/settings')
     def get_settings():
@@ -161,8 +161,12 @@ def create_app(root, model=None, checker=None):
         p=service.store.project(pid)
         if p['plan'] and p['plan']['kind']=='interactive':
             service.require_model()
-        if p['plan'] and p['plan']['kind']=='animation' and not p['plan'].get('animation'):
-            raise ValueError('这个动画主题尚无可执行模板，请修改方案或选择互动演示')
+        if p['plan'] and p['plan']['kind']=='animation':
+            from .animation_contract import validate_animation
+            from .animation_workflow import workflow_configuration
+            brief = validate_animation(p['plan'].get('animation'))
+            if brief.get('workflow') == 'sol':
+                workflow_configuration(settings.read())
         try:
             service.store.confirm(pid,body.revision)
             return service.submit(pid,'build',{'revision':body.revision})
@@ -171,12 +175,16 @@ def create_app(root, model=None, checker=None):
 
     @app.post('/api/projects/{pid}/revise')
     async def revise(pid: str, body: Revision):
-        service.require_model()
         v=service.store.version(body.version_id)
         if v['project_id'] != pid:
             raise HTTPException(404,'版本不属于当前作品')
-        if v['kind']!='interactive':
-            raise ValueError('请从原互动版本继续修改后重新加入视频；动画可调整方案参数重新制作')
+        if v['kind']=='interactive':
+            service.require_model()
+        elif v['kind']=='animation' and v['plan'].get('animation',{}).get('workflow')=='sol':
+            from .animation_workflow import workflow_configuration
+            workflow_configuration(settings.read())
+        else:
+            raise ValueError('请返回原作品或调整方案后重新制作')
         p=service.store.project(pid)
         if p['confirmed_revision'] != p['plan_revision'] or p['plan'] != v['plan']:
             raise HTTPException(409,'方案已变更，请先确认当前方案重新制作')

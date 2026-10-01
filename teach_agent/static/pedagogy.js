@@ -25,6 +25,10 @@ function showPlanSummary(plan){
   const sequence=document.createElement('ol');
   for(const title of plan.steps){const item=document.createElement('li');item.textContent=title;sequence.append(item);}root.append(sequence);
   if(plan.assumptions?.length){const note=document.createElement('p');note.className='small';note.textContent='暂定条件：'+plan.assumptions.join('；');root.append(note);}
+  if(plan.kind==='animation'&&plan.animation?.workflow==='sol'){
+    const brief=plan.animation, label=document.createElement('strong');label.textContent='动画画面 · '+brief.duration_seconds+' 秒 · '+brief.aspect_ratio;root.append(label);
+    const list=document.createElement('ol');for(const shot of brief.shots){const li=document.createElement('li');li.textContent=shot.title+'（'+shot.seconds+'秒）：'+shot.visual+'；'+shot.motion;list.append(li);}root.append(list);
+  }
   document.getElementById('plan-editor').open=false;
 }
 function teachingField(key,label,value,step=false){
@@ -84,3 +88,23 @@ function readTeachingDesign(){
 document.getElementById('add-teaching-step').onclick=()=>{
   const sequence=readTeachingSequence();if(sequence.length<8){sequence.push({flow:'act_then_explain'});renderTeachingSequence(sequence);}
 };
+
+function showStoryboard(brief){
+  const root=document.getElementById('storyboard-fields'),shots=document.getElementById('animation-shots');
+  root.hidden=brief?.workflow!=='sol';shots.replaceChildren();if(root.hidden)return;
+  document.getElementById('animation-aspect').value=brief.aspect_ratio;
+  brief.shots.forEach((shot,index)=>{
+    const card=document.createElement('section');card.className='teaching-step';
+    const h=document.createElement('h3');h.textContent='画面 '+(index+1);card.append(h);
+    for(const [key,label] of Object.entries({title:'名称',visual:'画什么',motion:'如何变化',explanation:'讲清什么',seconds:'时长 / 秒'})){
+      const wrap=document.createElement('label');wrap.textContent=label;const input=document.createElement(key==='seconds'?'input':'textarea');
+      input.dataset.shotField=key;input.required=true;input.value=shot[key];
+      if(key==='seconds'){input.type='number';input.min=2;input.max=60;input.step=.1;}else input.maxLength=800;
+      wrap.append(input);card.append(wrap);
+    }shots.append(card);
+  });
+}
+function readStoryboard(){
+  const shots=[...document.querySelectorAll('#animation-shots .teaching-step')].map(card=>Object.fromEntries([...card.querySelectorAll('[data-shot-field]')].map(el=>[el.dataset.shotField,el.dataset.shotField==='seconds'?Number(el.value):el.value.trim()])));
+  return {workflow:'sol',duration_seconds:Math.round(shots.reduce((sum,shot)=>sum+shot.seconds,0)*100)/100,aspect_ratio:document.getElementById('animation-aspect').value,shots};
+}

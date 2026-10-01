@@ -92,7 +92,8 @@ def assemble_page(html):
 
 def notices():
     return '\n\n'.join([
-        'Teach Agent includes Open Lab Components and KaTeX. Original license notices follow.',
+        'Teach Agent includes Open Lab Components, KaTeX and Math-To-Manim (Sol workflow). Original license notices follow.',
+        (VENDOR / 'math_to_manim/LICENSE').read_text(encoding='utf-8'),
         (VENDOR / 'olc/LICENSE').read_text(encoding='utf-8'),
         (VENDOR / 'katex/LICENSE').read_text(encoding='utf-8'),
         'mhchem upstream: Copyright (c) 2011-2015 The MathJax Consortium; Copyright (c) 2015-2018 Martin Hensel. KaTeX adaptation is MIT; retain upstream Apache-2.0 notice.',
@@ -108,9 +109,16 @@ def bundle(folder: Path, output: Path, editable=False):
     allowed = ['index.html', 'report.json', 'THIRD_PARTY_NOTICES.txt', 'assets/clip.mp4']
     if editable:
         allowed += ['plan.json', 'source.json']
+        allowed += ['animation/'+name for name in ['sol_scene.py','video_guard.py','VIDEO_WORKFLOW.md',
+            'approved_plan.json','01_intent.json','02_knowledge_map.json','03_curriculum.json',
+            '04_math_dossier.json','05_shot_list.json','06_scene_spec.json','review.json','validation.json','repairs.json']]
+        allowed += [p.relative_to(folder).as_posix() for p in (folder/'animation/review_frames').rglob('*')
+                    if p.suffix == '.png' or p.name == 'timestamps.json']
     with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as z:
         for relative in allowed:
             path = folder / relative
             if path.is_file() and not path.is_symlink():
+                if not path.resolve().is_relative_to(folder.resolve()):
+                    continue
                 z.write(path, relative)
     return output
