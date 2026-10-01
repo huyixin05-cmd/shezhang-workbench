@@ -27,6 +27,9 @@ namespaces = false
 [tool.setuptools.package-data]
 teach_agent = ["static/*", "animation_templates/*.py", "vendor/**/*", "prompt_library/*"]
 
+[tool.setuptools.exclude-package-data]
+teach_agent = ["**/__pycache__/*", "**/*.pyc"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 asyncio_mode = "auto"
