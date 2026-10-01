@@ -24,7 +24,7 @@ Exports embed the original script notices and include license notices; ZIP expor
 
 ## Prompt reference
 
-The teaching style prompt from https://github.com/clockless-org/html-anything at commit `1896831a62670eed7424b8f8e37e56c66cbf2351` (MIT-0) was consulted for staged teaching interactions and visible feedback. Teach Agent's prompts are written separately; the reference application is not embedded or presented as our code.
+Three original prompt files from https://github.com/clockless-org/html-anything at commit `1896831a62670eed7424b8f8e37e56c66cbf2351` (MIT-0) are preserved unchanged in `teach_agent/prompt_library/`, together with the original LICENSE. `SOURCES.json` records paths, hashes and selected sections. `prompt_sources.py` loads selected teaching, interaction and UI quality sections into actual model inputs; from `_design.md`, only spacing/radius/shadow scale bullets are selected. Local adaptation rules prioritize the confirmed teaching sequence, offline resources and consistent classroom visuals over upstream branding or layout defaults. The rest of the reference application and unrelated prompts/assets are not embedded.
 
 ## Manim workflow
 

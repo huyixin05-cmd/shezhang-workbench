@@ -5,12 +5,13 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 import uvicorn
 from teach_agent.app import create_app
 from test_api import Provider, PLAN
+from pedagogy_fixture import DESIGN
 
 
 class FixtureProvider(Provider):
     async def json(self,messages):
         if 'PLAN_SCHEMA' in messages[0]['content']:
-            return dict(PLAN,title='【界面测试·固定响应】力与加速度',components=['phy.apparatus.spring-scale.interactive'])
+            return dict(PLAN,learning_design=DESIGN,title='【界面测试·固定响应】力与加速度',components=['phy.apparatus.spring-scale.interactive'])
         if 'REVIEW_SCHEMA' in messages[0]['content']:
             return dict(passed=True,issues=[])
         return dict(html=Path('teach_agent/static/example.html').read_text(encoding='utf-8'),

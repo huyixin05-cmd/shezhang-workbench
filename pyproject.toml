@@ -25,7 +25,7 @@ include = ["teach_agent"]
 namespaces = false
 
 [tool.setuptools.package-data]
-teach_agent = ["static/*", "animation_templates/*.py", "vendor/**/*"]
+teach_agent = ["static/*", "animation_templates/*.py", "vendor/**/*", "prompt_library/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

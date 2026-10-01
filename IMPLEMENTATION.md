@@ -39,3 +39,5 @@ Final: Ruling: unsupported arbitrary animation themes, direct combined-version e
 Tasks 1–5 implemented and verified within the preview boundary. Remote publishing not performed. The local branch is retained; no other checkout or worktree was deleted.
 
 Distribution check caught root dist/ ignore rule excluding vendored KaTeX dist from Git. Anchored output-directory ignores, added source-integrity regression and verified all 710 upstream files in the Git index. Final suite now 46 tests.
+
+Teaching design update: integrated selected pinned html-anything prompt sections. Added request/difficulty/reason/teaching-response analysis and sequenced explanation/actions; no student-evidence prerequisite. Added bounded separate planning review, editable sequence UI and provenance in reports. 51 tests pass; fixed-response browser editing/reordering/persistence verified. Live model quality remains unverified.

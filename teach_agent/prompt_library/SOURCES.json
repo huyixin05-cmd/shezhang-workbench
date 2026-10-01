@@ -1,0 +1,40 @@
+{
+  "license": "MIT-0",
+  "runtime_sources": [
+    {
+      "origin": "https://github.com/clockless-org/html-anything",
+      "commit": "1896831a62670eed7424b8f8e37e56c66cbf2351",
+      "path": "prompts/styles/teaching.md",
+      "sha256": "67716b316e1fb74657c7f2653ff82c5e8549591d89c64f4e6dd68eef15583da9",
+      "sections": [
+        "Underlying System: Lesson Lab",
+        "Teaching Voice",
+        "Avoid"
+      ],
+      "selection": "selected sections"
+    },
+    {
+      "origin": "https://github.com/clockless-org/html-anything",
+      "commit": "1896831a62670eed7424b8f8e37e56c66cbf2351",
+      "path": "prompts/styles/_system.md",
+      "sha256": "61c53149d01b3d5e36dce9df97c4246b330b6982e9520dff979522fa983aecdb",
+      "sections": [
+        "Style Fidelity Contract",
+        "Interaction And Motion Contract",
+        "Anti-Slop Gate",
+        "UI Quality Gate"
+      ],
+      "selection": "selected sections"
+    },
+    {
+      "origin": "https://github.com/clockless-org/html-anything",
+      "commit": "1896831a62670eed7424b8f8e37e56c66cbf2351",
+      "path": "prompts/styles/_design.md",
+      "sha256": "a8a215e81367f6ba54d5567ca2b25ae8e267bf1bd5e0a1968a6825ca88e2eed0",
+      "sections": [
+        "Tone & rules"
+      ],
+      "selection": "spacing/radius/shadow scale bullets only"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+from pedagogy_fixture import DESIGN
 import time
 import pytest
 from fastapi.testclient import TestClient
@@ -12,7 +13,7 @@ PAGE = '<!doctype html><html><head><title>力</title></head><body><button id="b"
 class Provider:
     async def json(self, messages):
         if 'PLAN_SCHEMA' in messages[0]['content']:
-            return dict(PLAN)
+            return dict(PLAN,learning_design=DESIGN)
         if 'REVIEW_SCHEMA' in messages[0]['content']:
             return dict(passed=True, issues=[])
         return dict(html=PAGE, checks=[dict(action='click',selector='#b',expect_selector='#o',expect_text='1')])
@@ -92,7 +93,7 @@ def test_no_model_is_an_explicit_error(tmp_path):
 def test_review_issues_cannot_be_marked_as_success(tmp_path):
     class DisagreeingProvider(Provider):
         async def json(self,messages):
-            if 'REVIEW_SCHEMA' in messages[0]['content']:
+            if 'REVIEW_SCHEMA' in messages[0]['content'] and 'PLAN_REVIEW_SCHEMA' not in messages[0]['content']:
                 return {'passed':True,'issues':['合力为零不等于速度为零']}
             return await super().json(messages)
     app=create_app(tmp_path,model=DisagreeingProvider(),checker=checker)

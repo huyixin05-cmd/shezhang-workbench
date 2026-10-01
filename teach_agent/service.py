@@ -4,11 +4,12 @@ from pathlib import Path
 from uuid import uuid4
 from pydantic import ValidationError
 from .store import Store
-from .model import Model, Plan
+from .model import Model, Plan, ModelOutputError
 from .materials import Materials
 from .artifacts import assemble_page, add_notices, notices
 from .checking import check_page
-from .prompts import PLAN_SYSTEM, BUILD_SYSTEM, REVIEW_SYSTEM
+from .prompts import PLAN_SYSTEM, PLAN_REVIEW_SYSTEM, BUILD_SYSTEM, REVIEW_SYSTEM
+from .prompt_sources import prompt_sources
 
 
 class Service:
@@ -74,15 +75,44 @@ class Service:
 
     async def plan(self, job):
         p = self.store.project(job['project_id'])
-        raw = await self.model.json([
+        context = dict(request=p['request'],kind=p['kind'],previous_plan=p['plan'],
+                       changes=job['input'].get('request'))
+        messages = [
             {'role':'system','content':PLAN_SYSTEM},
-            {'role':'user','content':json.dumps(dict(request=p['request'],kind=p['kind'],previous_plan=p['plan'],
-                changes=job['input'].get('request'),catalog=self.materials.catalog()),ensure_ascii=False)}])
-        plan = Plan.model_validate(raw).model_dump()
-        if p['kind'] != 'auto' and plan['kind'] != p['kind']:
-            raise ValueError('模型未遵循所选成品类型，请重新生成方案')
-        self.materials.descriptions(plan['components'])
-        self.store.save_plan(p['id'],plan,job['input']['revision'])
+            {'role':'user','content':json.dumps(dict(context,catalog=self.materials.catalog()),ensure_ascii=False)}]
+        self.store.update_job(job['id'],prompt_sources=prompt_sources('plan'))
+        for attempt in range(2):
+            try:
+                raw = await self.model.json(messages)
+            except ModelOutputError as error:
+                if attempt:
+                    raise ValueError('方案修正后仍未返回有效 JSON，已有方案已保留') from error
+                messages.append({'role':'user','content':'上次响应无法解析。请按完整 JSON Schema 重新生成方案，只返回 JSON 对象。'})
+                self.store.update_job(job['id'],stage='修正教学设计（1/1）')
+                continue
+            try:
+                plan = Plan.model_validate(raw).model_dump()
+                if not plan['learning_design']:
+                    raise ValueError('方案缺少需求与难点分析、逐步教学设计')
+                if p['kind'] != 'auto' and plan['kind'] != p['kind']:
+                    raise ValueError('模型未遵循所选成品类型')
+                self.materials.descriptions(plan['components'])
+                self.store.update_job(job['id'],stage='复核难点分析与讲解顺序')
+                review = await self.model.json([
+                    {'role':'system','content':PLAN_REVIEW_SYSTEM},
+                    {'role':'user','content':json.dumps(dict(context,plan=plan),ensure_ascii=False)}])
+                if review.get('passed') is not True or review.get('issues') != []:
+                    raise ValueError('教学设计复核未通过：'+str(review.get('issues','复核结果无效'))[:1200])
+            except (ValidationError, ValueError) as error:
+                if attempt:
+                    raise ValueError('方案修正后仍未通过，已有方案已保留：'+str(error)[:700]) from error
+                messages += [{'role':'assistant','content':json.dumps(raw,ensure_ascii=False)},
+                             {'role':'user','content':'修正以下问题，返回完整方案 JSON：'+str(error)[:2000]}]
+                self.store.update_job(job['id'],stage='修正教学设计（1/1）')
+                continue
+            self.store.update_job(job['id'],pedagogy_review=review)
+            self.store.save_plan(p['id'],plan,job['input']['revision'])
+            return
 
     def version_folder(self, version):
         # Directory names are server-created UUIDs, never a model path.
@@ -146,6 +176,7 @@ class Service:
                 self.store.update_job(job['id'],draft_folder=folder_id)
                 raise ValueError('两轮修复后仍未通过检查，草稿保留：'+'；'.join(report['errors'])[:600])
         (folder/'source.json').write_text(json.dumps(source,ensure_ascii=False,indent=2),encoding='utf-8')
+        report['prompt_sources'] = prompt_sources('build') if plan['kind'] != 'animation' else []
         (folder/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
         return self.store.save_version(job['project_id'],dict(title=plan['title'],kind=plan['kind'],folder=folder_id,
             plan=plan,report=report,base_version=job['input'].get('version_id'),plan_revision=job['input'].get('revision')))

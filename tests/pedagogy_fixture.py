@@ -1,0 +1,11 @@
+DESIGN=dict(request_analysis='让学生理解速度大小与速度变化快慢是不同的量',
+    student_problem='容易把运动快慢与速度变化快慢混为一谈',
+    difficulty_reason='日常说的快同时指速度和变化，速度很大的画面容易掩盖速度变化为零。',
+    design_response='并排呈现高速匀速与低速加速场景，显示相邻等时间段的速度读数，再比较速度增量。',
+    success_evidence='学生能用同一时间内速度变化的大小判断加速度，并解释高速匀速时加速度为零。',
+    sequence=[dict(flow='act_then_explain',title='先暴露直觉',question='速度大是否意味着加速度大？',
+        explanation='先给出高速匀速场景，暂不公布结论。',action='学生预测加速度并说出依据。',
+        observation='相邻等时间段速度读数相同。',takeaway='运动快不代表速度正在变化。',check='指出判断依据是速度变化，而非速度大小。'),
+        dict(flow='act_then_explain',title='对比速度变化',question='什么才决定加速度？',explanation='比较相同时间内的速度变化，再引入加速度。',
+        action='调整相同时间内的速度增量，比较两种运动。',observation='速度增量变大时加速度读数增大。',
+        takeaway='加速度描述单位时间速度的变化。',check='给出新场景，让学生按速度变化而非末速度比较加速度。')])

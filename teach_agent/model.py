@@ -2,8 +2,33 @@ import asyncio
 import json
 import re
 import httpx
-from pydantic import BaseModel, Field, ConfigDict
-from typing import Literal
+from pydantic import BaseModel, Field, ConfigDict, StringConstraints, model_validator
+from typing import Annotated, Literal
+
+
+TeachingText = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=1200)]
+
+
+class TeachingStep(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    title: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=120)]
+    question: TeachingText
+    flow: Literal['act_then_explain', 'explain_then_act']
+    explanation: TeachingText
+    action: TeachingText
+    observation: TeachingText
+    takeaway: TeachingText
+    check: TeachingText
+
+
+class LearningDesign(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    request_analysis: TeachingText
+    student_problem: TeachingText
+    difficulty_reason: TeachingText
+    design_response: TeachingText
+    success_evidence: TeachingText
+    sequence: list[TeachingStep] = Field(min_length=2, max_length=8)
 
 
 class Plan(BaseModel):
@@ -20,20 +45,32 @@ class Plan(BaseModel):
     assumptions: list[str] = Field(default_factory=list, max_length=8)
     components: list[str] = Field(default_factory=list, max_length=8)
     animation: dict | None = None
+    # Older saved projects remain readable; new model proposals must supply this.
+    learning_design: LearningDesign | None = None
+
+    @model_validator(mode='after')
+    def align_steps(self):
+        if self.learning_design:
+            self.steps = [step.title for step in self.learning_design.sequence]
+        return self
+
+
+class ModelOutputError(ValueError):
+    """A model response can be corrected, unlike transport/configuration errors."""
 
 
 def parse_json(text):
     if not isinstance(text, str) or len(text) > 2_000_000:
-        raise ValueError('模型返回为空或过大')
+        raise ModelOutputError('模型返回为空或过大')
     text = text.strip()
     if text.startswith('```'):
         text = re.sub(r'^```(?:json)?\s*|\s*```$', '', text)
     try:
         value = json.loads(text)
     except json.JSONDecodeError as error:
-        raise ValueError('模型未返回完整有效的 JSON，请重试') from error
+        raise ModelOutputError('模型未返回完整有效的 JSON，请重试') from error
     if not isinstance(value, dict):
-        raise ValueError('模型必须返回 JSON 对象')
+        raise ModelOutputError('模型必须返回 JSON 对象')
     return value
 
 

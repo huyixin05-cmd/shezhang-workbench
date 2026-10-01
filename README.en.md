@@ -4,7 +4,9 @@ A local teaching agent with a browser workbench and MCP adapter. Describe a less
 
 **Preview 0.1.0.** Bring a Chat Completions-compatible model endpoint. There is no bundled model or free inference service. Only the controlled two-force composition Manim template is implemented for animation generation today.
 
-- Editable teaching plans with explicit revision-bound approval.
+- Teaching plans analyze the teacher's request, likely conceptual difficulties, why they are difficult, and how to explain them. Student records are not required.
+- Editable step sequences specify explanation/action order, observable results, takeaways and understanding checks, with explicit revision-bound approval.
+- A separate model review checks the proposed pedagogy, with at most one repair before teacher approval. Selected html-anything teaching and UI rules are loaded from pinned local originals; unrelated styles and source adapters are excluded.
 - Interactive HTML with bundled KaTeX/mhchem/fonts and 213 Open Lab Components.
 - Isolated browser checks, model content review, up to two repair attempts.
 - Existing Manim integration, H.264 MP4 import, combined offline ZIP exports.
