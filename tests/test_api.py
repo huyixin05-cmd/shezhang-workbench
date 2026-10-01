@@ -111,3 +111,34 @@ def test_second_service_cannot_interrupt_live_jobs(tmp_path):
         with pytest.raises(RuntimeError,match='已在运行'):
             with TestClient(second,base_url='http://127.0.0.1:8766'):
                 pass
+
+
+def test_cancel_in_progress_revision_preserves_existing_version(client):
+    import asyncio
+    created=client.post('/api/projects',json={'request':'力'}).json()
+    wait_job(client,created['job']['id']);pid=created['project']['id']
+    j=client.post(f'/api/projects/{pid}/confirm',json={'revision':1}).json()
+    vid=wait_job(client,j['id'])['version_id']
+    class Slow:
+        async def json(self,messages):
+            await asyncio.sleep(60)
+    client.app.state.service.model=Slow()
+    j=client.post(f'/api/projects/{pid}/revise',json={'version_id':vid,'request':'字大一些'}).json()
+    assert client.post('/api/jobs/'+j['id']+'/cancel').status_code==200
+    assert wait_job(client,j['id'])['status']=='cancelled'
+    assert [v['id'] for v in client.get('/api/projects/'+pid).json()['versions']]==[vid]
+
+
+def test_scoped_file_access_is_not_a_management_credential(client):
+    r=client.post('/api/projects',json={'request':'力'}).json()
+    wait_job(client,r['job']['id']);pid=r['project']['id']
+    j=client.post(f'/api/projects/{pid}/confirm',json={'revision':1}).json()
+    vid=wait_job(client,j['id'])['version_id']
+    access=client.get('/api/versions/'+vid+'/access')
+    assert access.status_code==200
+    url=access.json()['url']
+    response=client.get(url+'?format=html',headers={'Authorization':'','Origin':'null'})
+    assert response.status_code==200
+    assert response.headers['content-disposition'].startswith('attachment')
+    assert client.get('/api/settings',headers={'Authorization':'Bearer '+url.rsplit('/',1)[1]}).status_code==401
+    assert client.get('/files/not-a-capability?format=html',headers={'Authorization':''}).status_code==404

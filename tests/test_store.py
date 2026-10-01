@@ -48,3 +48,13 @@ def test_missing_records_do_not_leak_arbitrary_paths(tmp_path):
     s = Store(tmp_path)
     with pytest.raises(KeyError):
         s.version('../../config.json')
+def test_revision_enqueue_rechecks_approval_and_base_version(tmp_path):
+    from teach_agent.store import Store
+    s=Store(tmp_path);p=s.create_project('force','interactive')
+    plan={'title':'old'}
+    p=s.save_plan(p['id'],plan,0);s.confirm(p['id'],1)
+    v=s.save_version(p['id'],{'plan':plan,'kind':'interactive'})
+    s.save_plan(p['id'],{'title':'new'},1)
+    with pytest.raises(ValueError):
+        s.new_job(p['id'],'revision',{'revision':1,'plan':plan,'version_id':v['id']})
+

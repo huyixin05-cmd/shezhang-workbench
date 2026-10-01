@@ -19,3 +19,21 @@ Task 5 in progress: launchers, packaging, docs and CI definition written. Final 
 Ruling: pin current official MCP SDK 2.2 and use its MCPServer and snake_case result fields, established from installed source. Cost: older SDKs require adaptation.
 Ruling: combined versions retain the source interactive version and require editing that version then reattaching video. Editable ZIP contains source, not a project-import feature. Cost: an extra attachment step until richer editing is implemented.
 Ruling: preserve the standalone branch and source distribution for local iteration; no remote destination/account is configured yet. No GitHub publication claim.
+
+
+Final verification: 45 tests passed in 5.53s; 4 Manim label-boundary cases passed. Real ZIP downloaded through UI and relocated/extracted to a new Chinese directory; isolated browser verified interaction and local MP4 loading. Editable install and wheel build passed. See VERIFICATION.md for explicit fixture/live boundaries.
+
+Final review: fresh read-only reviewer on whole first-release code (f10e648). Four important findings accepted and fixed in one pass; no deferred minor findings.
+Final: fixed CSP placement bypass — four malicious-prefix regression cases RED→GREEN.
+Final: fixed outdated revision enqueue — test_revision_enqueue_rechecks_approval_and_base_version RED→GREEN.
+Final: fixed inaccessible prior versions — reproduced in actual UI, added independent entry, verified current plan remains unconfirmed while existing output opens.
+Final: fixed clipped animation labels — tests/check_manim_layout.py RED→GREEN, rendered edge case inspected.
+Final: fixed blank iframe after visibility lifecycle — actual iframe body had zero dimensions; fresh sandboxed frame shows real content and nonzero dimensions.
+Final: fixed file transfer compatibility — scoped file access test RED→GREEN, actual browser ZIP download and isolated offline video loading verified.
+
+Ruling: restrict HTML to an unambiguous doctype/html/head prefix rather than trying to repair every malformed document. Cost: unusual but harmless model HTML may require regeneration.
+Ruling: use one-hour random capabilities scoped to one version for local media/downloads. No management token in URLs; host remains loopback-only. Cost: preview must be reopened after expiry; holders of a file link can read only that version during its lifetime.
+Final: Ruling: live-model quality/latency, WorkBuddy client, other systems/physical computers and all-component quality require future environments/fixtures. These are explicitly unverified; shipping a preview does not certify them. Cost: compatibility and pedagogical quality still need real-world acceptance.
+Final: Ruling: unsupported arbitrary animation themes, direct combined-version editing and project re-import remain documented first-release boundaries. Cost: additional local workflow steps for those cases.
+
+Tasks 1–5 implemented and verified within the preview boundary. Remote publishing not performed. The local branch is retained; no other checkout or worktree was deleted.

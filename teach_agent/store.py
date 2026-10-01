@@ -103,11 +103,15 @@ class Store:
                    for j in self._all(con, 'jobs')):
                 raise ValueError('这个作品已有任务，请完成或取消后再操作')
             inputs = dict(inputs)
-            if kind == 'build':
+            if kind in ('build','revision'):
                 revision = inputs.get('revision')
                 if not p['plan'] or revision != p['plan_revision'] or revision != p['confirmed_revision']:
                     raise ValueError('方案尚未确认，不能开始制作')
                 inputs['plan'] = p['plan']
+                if kind=='revision':
+                    base=self._get(con,'versions',inputs.get('version_id'))
+                    if base['project_id']!=project_id or base['kind']!='interactive' or base['plan']!=p['plan']:
+                        raise ValueError('基础版本与当前确认方案不一致，请重新确认制作')
             j = dict(id=uuid4().hex, project_id=project_id, kind=kind, input=inputs,
                      status='queued', stage='排队中', created_at=now(), updated_at=now(), error=None)
             self._put(con, 'jobs', j)

@@ -6,6 +6,8 @@
 
 > 0.1.0 预览版。需要自行配置兼容 Chat Completions 的模型服务；当前没有随项目提供的模型或免费额度。动画生成目前只支持两力合成模板。不要把这版理解为“任意课程都已能高质量生成”。
 
+![本地教学工作台](docs/images/workbench.png)
+
 [English](README.en.md) · [验证记录](VERIFICATION.md) · [第三方来源](THIRD_PARTY_NOTICES.md)
 
 ## 目前能做什么

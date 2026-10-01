@@ -1,5 +1,6 @@
 import json
 import secrets
+import time
 from contextlib import asynccontextmanager
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -13,7 +14,7 @@ from pydantic import BaseModel, Field
 from .config import Settings
 from .service import Service
 from .model import Plan
-from .artifacts import bundle
+from .artifacts import bundle, CSP
 
 
 class NewProject(BaseModel):
@@ -43,6 +44,7 @@ class Revision(BaseModel):
 def create_app(root, model=None, checker=None):
     settings = Settings(root)
     service = Service(settings,model,checker)
+    file_access = {}
 
     @asynccontextmanager
     async def lifespan(app):
@@ -72,7 +74,7 @@ def create_app(root, model=None, checker=None):
         if hostname not in ('127.0.0.1','localhost','::1'):
             return JSONResponse({'detail':'仅允许本机访问'},status_code=403)
         origin = request.headers.get('origin')
-        if origin is not None and origin != 'http://'+host:
+        if origin is not None and origin != 'http://'+host and not request.url.path.startswith('/files/'):
             return JSONResponse({'detail':'不允许跨站访问'},status_code=403)
         if request.url.path.startswith('/api/'):
             actual = request.headers.get('authorization','')
@@ -191,7 +193,7 @@ def create_app(root, model=None, checker=None):
     @app.get('/api/versions/{ident}/html')
     def version_html(ident: str):
         v=service.store.version(ident)
-        return HTMLResponse((service.version_folder(v)/'index.html').read_text(encoding='utf-8'))
+        return HTMLResponse((service.version_folder(v)/'index.html').read_text(encoding='utf-8'),headers={'Content-Security-Policy':CSP})
 
     @app.get('/api/versions/{ident}/download')
     def download(ident: str, format: Literal['html','video','zip','project']='html'):
@@ -210,6 +212,33 @@ def create_app(root, model=None, checker=None):
         bundle(folder,output,editable=format=='project')
         return FileResponse(output,filename='project.zip' if format=='project' else 'lesson.zip',media_type='application/zip',
                             background=BackgroundTask(output.unlink,missing_ok=True))
+
+    @app.get('/api/versions/{ident}/access')
+    def access(ident: str):
+        service.store.version(ident)
+        return create_access(ident)
+
+    def create_access(ident):
+        now=time.monotonic()
+        for key,entry in list(file_access.items()):
+            if entry[1]<now:
+                file_access.pop(key,None)
+        capability=secrets.token_urlsafe(32)
+        file_access[capability]=(ident,now+3600)
+        return {'url':'/files/'+capability,'expires_in':3600}
+
+    @app.get('/files/{capability}')
+    def scoped_file(capability: str, format: Literal['html','video','zip','project']='html'):
+        entry=file_access.get(capability)
+        if entry is None or entry[1]<time.monotonic():
+            raise HTTPException(404,'下载链接已过期，请重新打开作品')
+        if entry[0]=='builtin-force':
+            response=HTMLResponse(example().body,headers={'Content-Disposition':'attachment; filename="force-example.html"'})
+        else:
+            response=download(entry[0],format)
+        response.headers['Content-Security-Policy']=CSP
+        response.headers['Access-Control-Allow-Origin']='*'
+        return response
 
     @app.post('/api/import-video')
     async def import_existing(request: Request, title: str='已有教学动画'):
@@ -232,5 +261,9 @@ def create_app(root, model=None, checker=None):
         source=(static/'example.html').read_text(encoding='utf-8')
         page=service.materials.expand(source,['phy.apparatus.spring-scale.interactive'])
         return HTMLResponse(add_notices(assemble_page(page)))
+
+    @app.get('/api/examples/force/access')
+    def example_access():
+        return create_access('builtin-force')
 
     return app

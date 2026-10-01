@@ -20,8 +20,10 @@ async def check_page(path, steps):
             context = await browser.new_context(viewport={'width':1280,'height':800}, service_workers='block',
                                                 accept_downloads=False)
             uri = path.resolve().as_uri()
+            video_path=path.parent/'assets/clip.mp4'
+            video_uri=video_path.resolve().as_uri() if video_path.is_file() else None
             async def guard(route):
-                if route.request.url == uri and route.request.is_navigation_request():
+                if (route.request.url == uri and route.request.is_navigation_request()) or (route.request.url==video_uri and route.request.resource_type=='media'):
                     await route.continue_()
                 else:
                     await route.abort()
@@ -32,6 +34,8 @@ async def check_page(path, steps):
             page.set_default_timeout(4000)
             await page.goto(uri, wait_until='load', timeout=20000)
             await page.evaluate('document.fonts.ready')
+            if await page.locator('video').count():
+                await page.wait_for_function("Array.from(document.querySelectorAll('video')).every(v=>v.readyState>=2 && Number.isFinite(v.duration) && v.duration>0)",timeout=15000)
             for step in steps:
                 if step.get('action') not in ('click','fill','check','select'):
                     raise ValueError('不支持的交互检查动作')

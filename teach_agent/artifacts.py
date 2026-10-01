@@ -24,6 +24,50 @@ class ResourceCheck(HTMLParser):
                 raise ValueError('课件资源必须内嵌，不能依赖外网或本机路径')
 
 
+class DocumentPrefix(HTMLParser):
+    """Require a simple real document prefix; insert policy by parser position."""
+    def __init__(self, source):
+        super().__init__()
+        self.source=source
+        self.root_seen=False
+        self.head_end=None
+
+    def handle_starttag(self, tag, attrs):
+        if self.head_end is not None:
+            return
+        if tag=='html' and not self.root_seen:
+            if any(k.lower().startswith('on') for k,_ in attrs):
+                raise ValueError('html 根节点不能包含事件处理器')
+            self.root_seen=True
+        elif tag=='head' and self.root_seen:
+            if attrs:
+                raise ValueError('head 请使用无属性标签')
+            line,col=self.getpos()
+            self.head_end=sum(len(x) for x in self.source.splitlines(keepends=True)[:line-1])+col+len(self.get_starttag_text())
+        else:
+            raise ValueError('文档必须依次以 doctype（可选）、html、head 开始，脚本放在 head 内或之后')
+
+    def handle_data(self,data):
+        if self.head_end is None and data.strip():
+            raise ValueError('head 之前不能有正文或其他内容')
+
+    def handle_comment(self,data):
+        if self.head_end is None:
+            raise ValueError('请将注释放在 head 内或之后')
+
+    def handle_decl(self,decl):
+        if self.head_end is None and (self.root_seen or decl.lower()!='doctype html'):
+            raise ValueError('请使用标准 HTML doctype')
+
+    def handle_pi(self,data):
+        if self.head_end is None:
+            raise ValueError('head 之前不能有处理指令')
+
+    def handle_endtag(self,tag):
+        if self.head_end is None:
+            raise ValueError('文档开头结构不完整')
+
+
 def assemble_page(html):
     if not isinstance(html, str) or not html.strip() or len(html) > 8_000_000:
         raise ValueError('课件为空或超过大小限制')
@@ -32,13 +76,18 @@ def assemble_page(html):
     if not re.search(r'<head[\s>]', html, re.I):
         raise ValueError('课件缺少 head')
     ResourceCheck().feed(html)
+    prefix=DocumentPrefix(html)
+    prefix.feed(html)
+    prefix.close()
+    if prefix.head_end is None:
+        raise ValueError('课件缺少实际的 head 标签')
     for url in re.findall(r'url\(\s*[\"\']?([^\)\"\']+)', html, re.I):
         if not url.startswith(('data:', '#')):
             raise ValueError('样式引用了未打包资源')
     if re.search(r'@import\s', html, re.I):
         raise ValueError('样式不能在线导入')
     tag = '<meta http-equiv="Content-Security-Policy" content="' + html_module.escape(CSP, quote=True) + '">'
-    return re.sub(r'(<head\b[^>]*>)', lambda m: m.group(1) + tag, html, count=1, flags=re.I)
+    return html[:prefix.head_end]+tag+html[prefix.head_end:]
 
 
 def notices():

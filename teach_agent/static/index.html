@@ -14,7 +14,7 @@
 </section>
 <section id="workspace" hidden>
 <div class="stepper"><span id="step-plan">1 确认教学方案</span><i></i><span id="step-build">2 制作与检查</span><i></i><span id="step-result">3 预览与带走</span></div>
-<div id="progress" hidden><div><strong id="progress-stage"></strong><p id="progress-detail"></p></div><button id="cancel-job" class="quiet">取消任务</button></div>
+<button id="existing-versions" class="text-button" hidden>查看已有版本</button><div id="progress" hidden><div><strong id="progress-stage"></strong><p id="progress-detail"></p></div><button id="cancel-job" class="quiet">取消任务</button></div>
 <section id="plan-panel" class="panel" hidden><div class="panel-heading"><div><div class="eyebrow">先看看是不是你想要的</div><h2>教学方案</h2></div><span id="plan-revision" class="badge"></span></div>
 <p class="muted">可以直接改下面的内容，也可以在下方说一句修改要求。确认后才开始制作。</p>
 <form id="plan-form"><div class="form-grid"><label>作品名称<input name="title" required maxlength="120"></label><label>适用学生<input name="grade" required maxlength="100"></label><label>成品形式<select name="kind"><option value="interactive">互动演示</option><option value="animation">教学动画</option></select></label><label>希望学生弄懂什么<textarea name="objective" required></textarea></label><label>容易产生的误解<textarea name="misconception"></textarea></label><label>怎样操作或演示<textarea name="interaction" required></textarea></label><label class="wide">讲解步骤 · 每行一步<textarea name="steps" rows="4" required></textarea></label><label>观察重点<textarea name="observation" required></textarea></label><label>检查理解的问题<textarea name="check_question" required></textarea></label><label class="wide">暂定条件 · 每行一条<textarea name="assumptions" rows="2"></textarea></label></div>
