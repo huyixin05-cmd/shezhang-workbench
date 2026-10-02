@@ -9,8 +9,26 @@ CSP = "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'
 
 
 class ResourceCheck(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.styles = []
+        self.in_style = False
+
     def handle_starttag(self, tag, attrs):
         values = dict(attrs)
+        if tag == 'style':
+            self.in_style = True
+        if values.get('style'):
+            self.styles.append(values['style'])
+        # SVG paint servers and effects use CSS URL syntax outside style="...".
+        for key in ('fill','stroke','filter','clip-path','mask','cursor','marker',
+                    'marker-start','marker-mid','marker-end'):
+            if values.get(key):
+                self.styles.append(values[key])
+        if tag in ('animate','set') and values.get('attributename','').lower() in (
+                'fill','stroke','filter','clip-path','mask','cursor','marker',
+                'marker-start','marker-mid','marker-end','style'):
+            self.styles.extend(values[k] for k in ('from','to','values') if values.get(k))
         if tag in ('iframe', 'object', 'embed', 'base', 'form'):
             raise ValueError('课件包含不允许的外部容器或表单')
         if tag == 'meta' and values.get('http-equiv', '').lower() in ('refresh', 'content-security-policy'):
@@ -22,6 +40,14 @@ class ResourceCheck(HTMLParser):
                 if tag in ('video', 'source') and value == 'assets/clip.mp4':
                     continue
                 raise ValueError('课件资源必须内嵌，不能依赖外网或本机路径')
+
+    def handle_data(self, data):
+        if self.in_style:
+            self.styles.append(data)
+
+    def handle_endtag(self, tag):
+        if tag == 'style':
+            self.in_style = False
 
 
 class DocumentPrefix(HTMLParser):
@@ -75,16 +101,18 @@ def assemble_page(html):
         raise ValueError('课件缺少完整 HTML 结构')
     if not re.search(r'<head[\s>]', html, re.I):
         raise ValueError('课件缺少 head')
-    ResourceCheck().feed(html)
+    resources = ResourceCheck()
+    resources.feed(html)
     prefix=DocumentPrefix(html)
     prefix.feed(html)
     prefix.close()
     if prefix.head_end is None:
         raise ValueError('课件缺少实际的 head 标签')
-    for url in re.findall(r'url\(\s*[\"\']?([^\)\"\']+)', html, re.I):
+    css = '\n'.join(resources.styles)
+    for url in re.findall(r'url\(\s*[\"\']?([^\)\"\']+)', css, re.I):
         if not url.startswith(('data:', '#')):
             raise ValueError('样式引用了未打包资源')
-    if re.search(r'@import\s', html, re.I):
+    if re.search(r'@import\s', css, re.I):
         raise ValueError('样式不能在线导入')
     tag = '<meta http-equiv="Content-Security-Policy" content="' + html_module.escape(CSP, quote=True) + '">'
     return html[:prefix.head_end]+tag+html[prefix.head_end:]
