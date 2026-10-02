@@ -4,7 +4,7 @@ from pathlib import Path
 import pytest
 from pydantic import ValidationError
 
-BRIEF = dict(workflow='sol',duration_seconds=12,aspect_ratio='16:9',shots=[
+BRIEF = dict(workflow='manim',duration_seconds=12,aspect_ratio='16:9',shots=[
     dict(title='比较运动',visual='并排的匀速与加速小车',motion='小车向右运动并显示等时间位置',explanation='比较相同时间内的位移变化',seconds=6),
     dict(title='解释差别',visual='对应的位置与速度读数',motion='逐步出现速度增量与结论',explanation='速度与速度变化是不同的量',seconds=6)])
 
@@ -63,7 +63,7 @@ class LessonScene(VideoScene):
 class FixedPipeline:
     def __init__(self): self.calls=[]
     def run(self,work,request,**kwargs):
-        from sol.models import ARTIFACT_NAMES
+        from teach_agent.animation_validation import ARTIFACT_NAMES
         self.calls.append(kwargs)
         for name in ARTIFACT_NAMES:
             (work/name).write_text(SCENE if name.endswith('.py') else '{"fixture":true}',encoding='utf-8')
@@ -107,14 +107,22 @@ def test_review_cannot_modify_scene_after_render(tmp_path,monkeypatch):
     assert not (tmp_path/'worker-result.json').exists()
 
 
-def test_missing_login_stops_before_generation(monkeypatch):
-    from types import SimpleNamespace
-    from teach_agent.animation_worker import check_runtime
-    def run(command,**kwargs):
-        return SimpleNamespace(returncode=1 if command[1]=='login' else 0,stdout='',stderr='Not logged in')
-    monkeypatch.setattr('teach_agent.animation_worker.subprocess.run',run)
-    with pytest.raises(ValueError,match='尚未登录'):
-        check_runtime({'manim_python':'python','codex':'codex'})
+def test_review_service_failure_does_not_regenerate_scene(tmp_path,monkeypatch):
+    from teach_agent.model import ModelServiceError
+    worker,pipeline,renders,render,review=worker_fixture(tmp_path,monkeypatch)
+    def unavailable(*args):raise ModelServiceError('模型输出被截断')
+    with pytest.raises(ModelServiceError):
+        worker.produce(tmp_path,{'manim_python':'fixture'},pipeline=pipeline,renderer=render,
+            reviewer=unavailable,preflight=lambda _: {})
+    assert len(pipeline.calls)==1
+    assert renders==[('l',0)]
+
+
+def test_missing_shared_model_is_clear():
+    import sys
+    from teach_agent.animation_workflow import workflow_configuration
+    with pytest.raises(ValueError,match='模型地址'):
+        workflow_configuration({'manim_python':sys.executable})
 
 
 def test_animation_api_confirmation_and_revision(tmp_path,monkeypatch):

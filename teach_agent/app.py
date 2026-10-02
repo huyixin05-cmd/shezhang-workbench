@@ -110,7 +110,7 @@ def create_app(root, model=None, checker=None):
     @app.get('/api/status')
     def status():
         return dict(version='0.1.0',model=settings.public(),components=len(service.materials.items),
-                    animation_workflow='sol',standalone_export=True)
+                    animation_workflow='manim',standalone_export=True)
 
     @app.get('/api/settings')
     def get_settings():
@@ -165,7 +165,7 @@ def create_app(root, model=None, checker=None):
             from .animation_contract import validate_animation
             from .animation_workflow import workflow_configuration
             brief = validate_animation(p['plan'].get('animation'))
-            if brief.get('workflow') == 'sol':
+            if brief.get('workflow') in ('manim','sol'):
                 workflow_configuration(settings.read())
         try:
             service.store.confirm(pid,body.revision)
@@ -180,7 +180,7 @@ def create_app(root, model=None, checker=None):
             raise HTTPException(404,'版本不属于当前作品')
         if v['kind']=='interactive':
             service.require_model()
-        elif v['kind']=='animation' and v['plan'].get('animation',{}).get('workflow')=='sol':
+        elif v['kind']=='animation' and v['plan'].get('animation',{}).get('workflow')in ('manim','sol'):
             from .animation_workflow import workflow_configuration
             workflow_configuration(settings.read())
         else:

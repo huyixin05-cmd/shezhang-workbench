@@ -25,7 +25,7 @@ function showPlanSummary(plan){
   const sequence=document.createElement('ol');
   for(const title of plan.steps){const item=document.createElement('li');item.textContent=title;sequence.append(item);}root.append(sequence);
   if(plan.assumptions?.length){const note=document.createElement('p');note.className='small';note.textContent='暂定条件：'+plan.assumptions.join('；');root.append(note);}
-  if(plan.kind==='animation'&&plan.animation?.workflow==='sol'){
+  if(plan.kind==='animation'&&['manim','sol'].includes(plan.animation?.workflow)){
     const brief=plan.animation, label=document.createElement('strong');label.textContent='动画画面 · '+brief.duration_seconds+' 秒 · '+brief.aspect_ratio;root.append(label);
     const list=document.createElement('ol');for(const shot of brief.shots){const li=document.createElement('li');li.textContent=shot.title+'（'+shot.seconds+'秒）：'+shot.visual+'；'+shot.motion;list.append(li);}root.append(list);
   }
@@ -91,7 +91,7 @@ document.getElementById('add-teaching-step').onclick=()=>{
 
 function showStoryboard(brief){
   const root=document.getElementById('storyboard-fields'),shots=document.getElementById('animation-shots');
-  root.hidden=brief?.workflow!=='sol';shots.replaceChildren();if(root.hidden)return;
+  root.hidden=!['manim','sol'].includes(brief?.workflow);shots.replaceChildren();if(root.hidden)return;
   document.getElementById('animation-aspect').value=brief.aspect_ratio;
   brief.shots.forEach((shot,index)=>{
     const card=document.createElement('section');card.className='teaching-step';
@@ -106,5 +106,5 @@ function showStoryboard(brief){
 }
 function readStoryboard(){
   const shots=[...document.querySelectorAll('#animation-shots .teaching-step')].map(card=>Object.fromEntries([...card.querySelectorAll('[data-shot-field]')].map(el=>[el.dataset.shotField,el.dataset.shotField==='seconds'?Number(el.value):el.value.trim()])));
-  return {workflow:'sol',duration_seconds:Math.round(shots.reduce((sum,shot)=>sum+shot.seconds,0)*100)/100,aspect_ratio:document.getElementById('animation-aspect').value,shots};
+  return {workflow:'manim',duration_seconds:Math.round(shots.reduce((sum,shot)=>sum+shot.seconds,0)*100)/100,aspect_ratio:document.getElementById('animation-aspect').value,shots};
 }

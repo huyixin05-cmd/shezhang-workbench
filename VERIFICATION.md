@@ -1,6 +1,6 @@
 # 0.1.0 本地验收记录
 
-2026-10-01，Windows / Python 3.12。此文件区分产品流程验证与真实模型质量验证。
+更新至2026-10-02，Windows / Python 3.12。此文件区分产品流程验证与真实模型质量验证。下方2026-10-01的 Codex CLI 记录为历史方案，已由直接模型 API 流程替代；当前不需要 Codex 或登录。
 
 ## 已实际完成
 
@@ -61,3 +61,14 @@
 - 最终回归：69 项测试通过（6.85秒）；JavaScript语法检查通过。独立审查3项问题已修复并有回归：导出静态校验报告、阻止简单危险别名/导入成员/渲染配置绕过、用 Windows Job Object 管理整棵子进程树（包括父进程先退出）。未修改上游原文件，来源哈希检查通过。
 
 - 实际浏览器（独立测试数据）：固定提供方准备动画分镜 → 将第二段6秒改为8秒 → 保存后摘要自动合计14秒 → 点击一次制作 → 真实工作流预检准确提示 Codex CLI 尚未登录，没有产生虚假成品。生产首页保持简洁，未增加工作流介绍。
+
+
+## 直接模型 API 工作流（2026-10-02，当前实现）
+
+- 移除产品中的 Codex CLI 启动、登录检查和独立动画模型配置，统一使用已有 Chat Completions 设置。供应商不需要支持工具调用，必须支持图片内容块。
+- 已确认的教学目标、难点分析、顺序和分镜直接复用；程序组织学科实现要点、场景代码、实际图片复核、修复和最终渲染。
+- 78项自动测试通过：共享配置、不寻找CLI、旧方案兼容、HTTP图片实际携带PNG数据、图像请求失败不降级、无CLI模块运行导入、场景与修复数据传递，以及原有确认、版本和导出测试。
+- 本地固定HTTP响应服务 + 真实独立工作进程 + 真实 Manim 0.20.1 完整跑通：4次API请求（学科要点、场景、预览图片、成片图片），约6秒1280×720 H.264视频，可编辑ZIP包含源码和校验报告。作品全目录扫描未发现测试密钥，也不生成 worker-input.json。此项为协议/执行集成验收，模型响应和复核结论为固定测试数据，不是实际AI质量验收。
+- 仍需配置真实模型 API，完成不同学科的教学质量、画面质量和响应速度验收。
+
+2026-10-02 final review: fixed the one important finding by classifying HTTP-200 incompatible envelopes, output truncation and response-size limits as ModelServiceError. They stop visual review without regenerating scenes. Two HTTP boundary regressions first failed, then passed; worker regression verifies no repair or final render on service failure. Final suite: 81 tests passed. Browser UI walkthrough this turn was blocked by the browser URL policy, so no fresh visual/UI acceptance claim; JavaScript syntax and backend/API integration remain verified.

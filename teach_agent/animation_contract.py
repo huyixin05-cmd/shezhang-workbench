@@ -15,7 +15,7 @@ class Shot(BaseModel):
 
 class AnimationBrief(BaseModel):
     model_config = ConfigDict(extra='forbid')
-    workflow: Literal['sol'] = 'sol'
+    workflow: Literal['manim','sol'] = 'manim'
     duration_seconds: float = Field(ge=4,le=300,allow_inf_nan=False)
     aspect_ratio: Literal['16:9','9:16'] = '16:9'
     shots: list[Shot] = Field(min_length=2,max_length=8)
@@ -28,7 +28,7 @@ class AnimationBrief(BaseModel):
 
 
 def validate_animation(value, *, allow_legacy=True):
-    if isinstance(value,dict) and value.get('workflow')=='sol':
+    if isinstance(value,dict) and value.get('workflow') in ('manim','sol'):
         return AnimationBrief.model_validate(value).model_dump()
     if allow_legacy and isinstance(value,dict) and value.get('template')=='force_composition':
         from .animation import validate_params

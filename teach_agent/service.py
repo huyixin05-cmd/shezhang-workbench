@@ -132,7 +132,7 @@ class Service:
         (folder/'THIRD_PARTY_NOTICES.txt').write_text(notices(),encoding='utf-8')
         if plan['kind'] == 'animation':
             self.store.update_job(job['id'], draft_folder=folder_id)
-            if plan['animation'].get('workflow') == 'sol':
+            if plan['animation'].get('workflow') in ('manim','sol'):
                 from .animation_workflow import run_animation_workflow
                 previous = self.version_folder(self.store.version(job['input']['version_id'])) if job['input'].get('version_id') else None
                 source, report = await run_animation_workflow(plan, folder, self.settings.read(),

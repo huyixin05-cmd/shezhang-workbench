@@ -63,6 +63,10 @@ class ModelOutputError(ValueError):
     """A model response can be corrected, unlike transport/configuration errors."""
 
 
+class ModelServiceError(ValueError):
+    """Connectivity/capability failures must not trigger scene regeneration."""
+
+
 def parse_json(text):
     if not isinstance(text, str) or len(text) > 2_000_000:
         raise ModelOutputError('模型返回为空或过大')
@@ -85,7 +89,7 @@ class Model:
     async def json(self, messages):
         config = self.settings.read()
         if not config.get('base_url') or not config.get('model'):
-            raise ValueError('请先在设置中填写模型地址和模型名')
+            raise ModelServiceError('请先在设置中填写模型地址和模型名')
         headers = {'Content-Type': 'application/json'}
         if config.get('api_key'):
             headers['Authorization'] = 'Bearer ' + config['api_key']
@@ -101,20 +105,23 @@ class Model:
                             await asyncio.sleep(1)
                             continue
                         if response.status_code != 200:
-                            raise ValueError(f'模型服务返回 HTTP {response.status_code}，请检查配置或额度')
+                            images=any(isinstance(m.get('content'),list) and any(x.get('type')=='image_url' for x in m['content']) for m in messages)
+                            if images and response.status_code in (400,413,415,422):
+                                raise ModelServiceError(f'动画看图请求被模型服务拒绝（HTTP {response.status_code}），请确认模型支持图片输入，并检查请求大小或参数')
+                            raise ModelServiceError(f'模型服务返回 HTTP {response.status_code}，请检查配置或额度')
                         raw = bytearray()
                         async for chunk in response.aiter_bytes():
                             raw.extend(chunk)
                             if len(raw) > 3_000_000:
-                                raise ValueError('模型响应超过大小限制')
+                                raise ModelServiceError('模型响应超过大小限制')
                     data = json.loads(raw)
                     choice = data['choices'][0]
                     if choice.get('finish_reason') == 'length':
-                        raise ValueError('模型输出被截断，请提高输出上限或缩小内容范围')
+                        raise ModelServiceError('模型输出被截断，请提高输出上限或缩小内容范围')
                     return parse_json(choice['message']['content'])
                 except httpx.TimeoutException as error:
-                    raise ValueError('模型响应超时，请稍后重试') from error
+                    raise ModelServiceError('模型响应超时，请稍后重试') from error
                 except httpx.HTTPError as error:
-                    raise ValueError('无法连接模型服务，请检查地址和网络') from error
+                    raise ModelServiceError('无法连接模型服务，请检查地址和网络') from error
                 except (KeyError, IndexError, TypeError, json.JSONDecodeError) as error:
-                    raise ValueError('模型响应格式不兼容 Chat Completions') from error
+                    raise ModelServiceError('模型响应格式不兼容 Chat Completions') from error

@@ -1,4 +1,4 @@
-"""Async workbench boundary around the native Sol worker."""
+"""Async boundary around the program-owned animation worker."""
 import asyncio
 import json
 import os
@@ -6,6 +6,8 @@ from pathlib import Path
 import shutil
 import sys
 import time
+import subprocess
+from urllib.parse import urlsplit
 from .process_tree import ProcessTree
 
 from .animation_contract import validate_animation
@@ -40,12 +42,16 @@ def workflow_configuration(config):
     python=Path(config.get('manim_python',''))
     if not config.get('manim_python') or not python.is_file():
         raise ValueError('请在设置中选择已有 Manim 环境的 Python')
-    command=config.get('animation_codex') or 'codex'
-    codex=shutil.which(command)
-    if not codex:
-        raise ValueError('动画工作流需要 Codex CLI，请安装并登录，或在设置中填写其路径')
-    return dict(manim_python=str(python.resolve()),codex=codex,
-                model=config.get('animation_model') or 'gpt-5.6-sol')
+    if not config.get('base_url') or not config.get('model'):
+        raise ValueError('请先在设置中填写模型地址和模型名；动画使用同一模型，需要支持图片输入和代码生成')
+    url=urlsplit(config['base_url'])
+    if url.username or url.password or url.query or url.fragment or not url.hostname or (
+        url.scheme!='https' and not (url.scheme=='http' and url.hostname in ('localhost','127.0.0.1','::1'))):
+        raise ValueError('模型地址须为 HTTPS 或本机 HTTP，不能含账号或查询参数')
+    result={key:config[key] for key in ('base_url','model','api_key','max_tokens') if key in config}
+    result['manim_python']=str(python.resolve())
+    if len(json.dumps(result).encode('utf-8'))>24000:raise ValueError('模型配置过长，请检查设置')
+    return result
 
 
 def clean_environment():
@@ -68,14 +74,17 @@ async def run_animation_workflow(plan, folder, config, progress, previous=None, 
             if source.is_file() and not source.is_symlink():
                 shutil.copyfile(source,work/('previous_'+name))
     request=dict(**runtime,changes=changes)
-    (work/'worker-input.json').write_text(json.dumps(request,ensure_ascii=False),encoding='utf-8')
+    payload=json.dumps(request,ensure_ascii=False).encode('utf-8')
+    if len(payload)>32768:raise ValueError('动画请求过长，请缩短修改要求')
     log=work/'worker.log'
     with log.open('wb') as output:
         tree=ProcessTree([sys.executable,'-m','teach_agent.animation_worker',str(work)],
-            cwd=str(ROOT.parent),env=clean_environment(),stdout=output,stderr=output)
+            cwd=str(ROOT.parent),env=clean_environment(),stdin=subprocess.PIPE,stdout=output,stderr=output)
         process=tree.process
         started=time.monotonic();last=None
         try:
+            # Credentials travel only through a private pipe, never files/arguments/environment.
+            process.stdin.write(payload);process.stdin.close()
             while process.poll() is None:
                 if time.monotonic()-started>3600:raise ValueError('动画制作超时，已保留草稿和日志')
                 status=work/'progress.json'
@@ -101,6 +110,6 @@ async def run_animation_workflow(plan, folder, config, progress, previous=None, 
     (folder/'assets').mkdir(exist_ok=True);shutil.copyfile(video,folder/'assets/clip.mp4')
     (folder/'index.html').write_text(video_page(plan['title']),encoding='utf-8')
     source=dict(animation=plan['animation'],scene=owned_file(work,'sol_scene.py').read_text(encoding='utf-8'))
-    report=dict(result,video=metadata,workflow='sol',browser_checked=False,
+    report=dict(result,video=metadata,workflow='manim',browser_checked=False,
                 scientific_correctness='生成场景与抽帧经过模型复核；教学效果仍需老师预览')
     return source,report
