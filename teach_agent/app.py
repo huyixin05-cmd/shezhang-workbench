@@ -198,6 +198,10 @@ def create_app(root, model=None, checker=None):
     async def cancel(ident: str):
         return service.cancel(ident)
 
+    @app.get('/api/versions/{ident}')
+    def version(ident: str):
+        return service.store.version(ident)
+
     @app.get('/api/versions/{ident}/html')
     def version_html(ident: str):
         v=service.store.version(ident)

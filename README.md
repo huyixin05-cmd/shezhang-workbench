@@ -2,7 +2,7 @@
 
 **老师说一个教学需求，先确认教学方案，再制作能带走的互动演示和动画。**
 
-本地运行的开源智能体，带浏览器工作台和 MCP 接口。不需要维护公网网站。
+本地运行的开源智能体，主要通过 WorkBuddy 等支持 MCP 的工具对话使用；网页是可选的查看和操作入口。不需要维护公网网站。
 
 > 0.1.0 预览版。需要自行配置兼容 Chat Completions 的模型服务；当前没有随项目提供的模型或免费额度。互动与动画共用一套模型 API，动画需要图片输入和代码生成能力；无需安装 Codex。真实模型生成质量尚未验收。不要把这版理解为“任意课程都已能高质量生成”。
 
@@ -22,12 +22,17 @@
 - 制作完成后继续修改互动作品和工作流动画，保留旧版本；任务可取消，重启后中断状态可见。
 - MCP 和网页共用同一个本机服务、作品库及确认流程。
 
-## Windows 开始使用
+## Windows：在 WorkBuddy 里使用
 
 1. 安装 Python 3.11 或更新版本，下载并解压本项目。
-2. 双击 `start.cmd`。第一次会安装锁定依赖；无 Edge/Chrome 时下载检查用 Chromium。保留启动窗口，关闭它会停止制作服务。
-3. 在“设置”填模型服务地址（通常以 `/v1` 结尾）、模型名称和 API 密钥。本地无密钥模型可以留空密钥。
-4. 输入需求 → 编辑方案 → 确认制作 → 预览 → 保存。
+2. 双击 `setup-workbuddy.cmd`。首次安装依赖及需要的检查浏览器，然后在本机向导填写模型地址、模型名称和密钥；密钥输入不显示，也不进入聊天。已有配置可直接保留。暂不做动画可跳过 Manim 路径。
+3. 向导生成 `.data/workbuddy-mcp.json`，其中已经填好本机绝对路径。在 WorkBuddy 的「插件 → MCP 服务器 → 配置 MCP」中添加这个文件里的 `teach-agent` 服务，保留其他已有服务。连接方式见 [WorkBuddy 官方说明](https://www.workbuddy.ai/docs/zh/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/MCP-Guide)。
+4. 连接后直接说：“用舍长工作台，做一个让初二学生理解浮力的互动演示。”智能体自动分析并整理方案；你可以说“改成先做实验”，或确认开始制作。
+5. 制作完会返回本地 HTML、MP4 或完整离线包路径。继续说“把字调大”“第二段慢一点”即可修改并保留旧版本。
+
+**无需先打开网页。** MCP 首次调用会自动启动本地服务；已有服务时直接复用。制作期间保持 MCP 连接：断开由它启动的服务会停止未完成任务，旧成品保留；重新连接后可查看状态。退出复用已有服务的连接不会关闭该服务。
+
+网页仍可使用：双击 `start.cmd`，或在聊天中说“打开舍长工作台”。网页与对话共用作品、配置和版本。`start.cmd` 启动的服务需保留启动窗口；已由 MCP 启动时会直接打开已有服务。
 
 制作时，需求、方案及相关内容会发送给所配置的模型服务。导出的成品在使用时不需要模型。
 
@@ -40,7 +45,9 @@ python -m venv .venv
 # 先激活虚拟环境
 python -m pip install -e '.[dev]'
 python -m playwright install chromium
-python -m teach_agent --data-dir .data --open
+python -m teach_agent.onboarding --data-dir .data
+# 将向导生成的 MCP 配置添加到客户端；网页是可选入口：
+# python -m teach_agent --data-dir .data --open
 ```
 
 已在 Windows / Python 3.12 验证，macOS/Linux 尚未实机验证。首次安装和使用在线模型需要网络。
@@ -74,7 +81,7 @@ python -m teach_agent --data-dir .data --open
 
 ## 接入 WorkBuddy 等支持 MCP 的工具
 
-先启动本机工作台。在客户端新增 **stdio MCP 服务**，把下面路径改成自己的绝对路径，数据目录必须与工作台一致：
+`setup-workbuddy.cmd` 已生成可直接使用的配置。手工配置其他客户端时，新增 **stdio MCP 服务**，将以下路径改为自己的绝对路径。无需事先启动网页，数据目录与网页一致即可共享作品：
 
 ```json
 {
@@ -92,9 +99,11 @@ python -m teach_agent --data-dir .data --open
 }
 ```
 
-可用工具包括 `prepare_lesson`、`read_lesson`、`revise_plan`、`confirm_and_make`、`revise_lesson`、`job_status`、`cancel_job` 和 `export_lesson`。宿主必须先展示方案，等老师明确确认，才调用制作工具。`teacher_confirmed` 是宿主遵守的人机交互约定，不是抵抗恶意宿主的权限机制。
+对话流程：`prepare_lesson` → `wait_for_lesson` 返回完整方案摘要 → 老师确认 → `confirm_and_make` → `wait_for_lesson` → `export_lesson` 返回本地文件。等待工具每次最多等待25秒，返回真实阶段；宿主继续等待即可。默认按成品选择 HTML / MP4 / ZIP，不用老师判断格式。方案修改用 `revise_plan`，成品修改用 `revise_lesson`；还可查看作品、查看进度、取消任务。仅在老师要看网页时使用 `open_workbench`。
 
-已用官方 Python SDK 验证 MCP 初始化、工具发现与拒绝未确认制作；WorkBuddy 客户端尚未实测，其配置界面以客户端实际支持为准。MCP 入口不自动复用宿主内部模型，仍使用本工作台的模型配置。
+宿主必须先展示方案，等老师明确确认，才调用制作工具。`teacher_confirmed` 是宿主遵守的人机交互约定，不是抵抗恶意宿主的权限机制。WorkBuddy 自身的工具调用授权由客户端控制，与产品的一次教学方案确认不同。
+
+已用官方 Python SDK 验证冷启动、工具发现、完整方案准备、修改方案、拒绝旧方案确认、制作、修改、导出，以及并发启动复用和退出。集成测试采用固定模型与检查器响应，只验证流程。**WorkBuddy 客户端实际对话尚未实测**，宿主是否正确执行工具指令仍需验收。MCP 入口不自动复用宿主内部模型，仍使用本工作台的模型配置。
 
 ## 开发与边界
 

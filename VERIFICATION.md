@@ -72,3 +72,12 @@
 - 仍需配置真实模型 API，完成不同学科的教学质量、画面质量和响应速度验收。
 
 2026-10-02 final review: fixed the one important finding by classifying HTTP-200 incompatible envelopes, output truncation and response-size limits as ModelServiceError. They stop visual review without regenerating scenes. Two HTTP boundary regressions first failed, then passed; worker regression verifies no repair or final render on service failure. Final suite: 81 tests passed. Browser UI walkthrough this turn was blocked by the browser URL policy, so no fresh visual/UI acceptance claim; JavaScript syntax and backend/API integration remain verified.
+
+## WorkBuddy 对话主入口（2026-10-02）
+
+- MCP 不再要求先启动网页；首次工具调用自动启动本机服务，复用同数据目录的已运行服务。可在对话里准备和修改方案、一次确认制作、等待进度、修改成品、导出绝对路径。网页仅在需要时打开。
+- 新增 `setup-workbuddy.cmd` 本机配置向导，生成包含实际 Python、源码和数据路径的 MCP JSON；密钥不写入 MCP JSON。PowerShell 启动器语法检查通过；本机实际生成配置文件成功，首次依赖下载及 WorkBuddy 配置界面未重走。
+- 官方 MCP SDK 通过真实 stdio 子进程验证：没有服务时冷启动、失效地址恢复、计划与修改、拒绝旧版本确认、一次确认制作、修改保留版本、导出真实本地 HTML。模型和浏览器检查器使用固定测试响应，此测试证明编排与协议，不证明 AI 内容质量。
+- 验证连接退出的所有权、同时启动复用，以及动画/组合成品默认 MP4/ZIP 格式。并发启动回归先失败，修复 Uvicorn 的启动失败退出行为后通过。
+- 独立只读审查发现首次初始化访问码的半写竞争。改为同目录临时文件写完整后原子发布；受控竞争回归先失败、再通过，不覆盖并发胜者的访问码。
+- 完整测试：88 项通过（14.17 秒）。WorkBuddy 客户端真实对话、真实模型质量和耗时仍未验收；模型服务未配置。MCP 不自动使用宿主模型额度，客户端自身的工具授权规则不由本项目控制。

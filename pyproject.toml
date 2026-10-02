@@ -19,6 +19,8 @@ dev = ["pytest==9.1.1", "pytest-asyncio==1.4.0"]
 
 [project.scripts]
 teach-agent = "teach_agent.__main__:main"
+teach-agent-mcp = "teach_agent.mcp_server:main"
+teach-agent-setup = "teach_agent.onboarding:main"
 
 [tool.setuptools.packages.find]
 include = ["teach_agent"]

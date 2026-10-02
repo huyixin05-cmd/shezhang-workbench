@@ -1,6 +1,7 @@
 import json
 import os
 import secrets
+import tempfile
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -12,9 +13,18 @@ class Settings:
         self.path = self.root / 'config.json'
         token_path = self.root / 'session-token'
         if not token_path.exists():
-            with token_path.open('x', encoding='utf-8') as f:
-                f.write(secrets.token_urlsafe(32))
-            token_path.chmod(0o600)
+            fd, temporary = tempfile.mkstemp(prefix='session-token-',suffix='.tmp',dir=self.root)
+            temporary = Path(temporary)
+            try:
+                with os.fdopen(fd,'w',encoding='utf-8') as f:
+                    f.write(secrets.token_urlsafe(32))
+                temporary.chmod(0o600)
+                # Publish only complete bytes, without replacing a concurrent winner.
+                os.link(temporary,token_path)
+            except FileExistsError:
+                pass
+            finally:
+                temporary.unlink(missing_ok=True)
         self.token = token_path.read_text().strip()
 
     def read(self):

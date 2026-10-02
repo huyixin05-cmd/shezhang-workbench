@@ -1,4 +1,4 @@
-param([int]$Port = 8765)
+param([int]$Port = 8765, [switch]$WorkBuddy)
 $ErrorActionPreference = 'Stop'
 Set-Location -LiteralPath $PSScriptRoot
 $env:PYTHONUTF8 = '1'
@@ -27,5 +27,10 @@ if (!(Test-Path -LiteralPath 'C:\Program Files (x86)\Microsoft\Edge\Application\
     & $pythonPath -m playwright install chromium
     if ($LASTEXITCODE -ne 0) { throw 'Browser installation failed. Retry after checking your network.' }
 }
-& $pythonPath -m teach_agent --data-dir $env:TEACH_DATA_DIR --port $Port --open
-if ($LASTEXITCODE -ne 0) { throw 'The workbench did not start. Check whether it is already running.' }
+if ($WorkBuddy) {
+    & $pythonPath -m teach_agent.onboarding --data-dir $env:TEACH_DATA_DIR
+    if ($LASTEXITCODE -ne 0) { throw 'Setup did not finish. Check the message above and retry.' }
+} else {
+    & $pythonPath -m teach_agent --data-dir $env:TEACH_DATA_DIR --port $Port --open
+    if ($LASTEXITCODE -ne 0) { throw 'The workbench did not start. Check whether it is already running.' }
+}
