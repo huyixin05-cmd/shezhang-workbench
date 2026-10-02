@@ -81,4 +81,8 @@ window.updateComponent=(id,props)=>{
             raise ValueError('器材占位符不完整')
         if '<!--TEACH_MATH-->' in html:
             html = html.replace('<!--TEACH_MATH-->', self.math_bundle, 1).replace('<!--TEACH_MATH-->', '')
+        if '<!--TEACH_INTERACTION-->' in html:
+            script = (Path(__file__).parent / 'static/interaction.js').read_text(encoding='utf-8')
+            script = re.sub('</script', r'<\\/script', script, flags=re.I)
+            html = html.replace('<!--TEACH_INTERACTION-->', '<script>'+script+'</script>', 1).replace('<!--TEACH_INTERACTION-->', '')
         return html

@@ -43,3 +43,10 @@ def prompt_sources(stage):
                  sha256=hashlib.sha256((ROOT/name).read_bytes()).hexdigest(), sections=headings,
                  selection='spacing/radius/shadow scale bullets only' if name == '_design.md' else 'selected sections')
             for name, headings in selected.items()]
+
+
+def interaction_sources():
+    package = Path(__file__).parent
+    return [dict(path=path, sha256=hashlib.sha256((package/path).read_bytes()).hexdigest(),
+                 origin='Teach Agent original implementation; behavioral references in interaction-guide.md')
+            for path in ('experiment_library/interaction-guide.md', 'static/interaction.js')]

@@ -40,3 +40,7 @@ Official SDK tests exercise cold startup and no-extra-API host generation, plus 
 Run `python -m pytest tests -q`. See [verification](VERIFICATION.md) and [third-party notices](THIRD_PARTY_NOTICES.md). Real-model generation quality/latency and another physical computer remain unverified. Component inclusion is not a claim that every component is scientifically or behaviorally validated.
 
 MIT for original code; vendored components retain their upstream licenses. This is a loopback-only single-user tool, not a multi-user hosted service.
+
+## Experiment source collection
+
+27 independently licensed upstream source snapshots (~104 MB) and 5 reference-only entries are available in Settings → 实验源码与参考, or via MCP `list_experiment_resources` and `export_experiment_source`. These are source resources, not 27 integrated or validated experiments. Original licenses and immutable snapshot hashes are preserved. See [the inventory](docs/experiments/README.md). Both generation entry points now use a shared interaction guide and an original offline drag/frame/fixed-timestep helper, retaining the existing apparatus style.

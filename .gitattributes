@@ -1,2 +1,4 @@
 * text=auto eol=lf
 teach_agent/vendor/math_to_manim/** -text
+teach_agent/experiment_library/archives/* -text
+teach_agent/experiment_library/licenses/** -text

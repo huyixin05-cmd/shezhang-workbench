@@ -17,7 +17,12 @@ async def test_official_mcp_stdio_lists_planning_and_confirmation_tools(tmp_path
             await session.initialize()
             tools=await session.list_tools()
             names={t.name for t in tools.tools}
-            assert {'prepare_lesson','read_lesson','revise_plan','confirm_and_make','job_status','export_lesson'} <= names
+            assert {'prepare_lesson','read_lesson','revise_plan','confirm_and_make','job_status','export_lesson',
+                    'list_experiment_resources','export_experiment_source'} <= names
+            resources=payload(await session.call_tool('list_experiment_resources',{'query':'光学'}))
+            assert any(item['id']=='ricktu288--ray-optics' for item in resources['resources'])
+            exported=payload(await session.call_tool('export_experiment_source',{'resource_id':'pfalstad--ripplegl'}))
+            assert Path(exported['path']).is_file()
             result=await session.call_tool('confirm_and_make',{'project_id':'x','revision':1,'teacher_confirmed':False})
             assert result.is_error
             assert '明确确认' in result.content[0].text

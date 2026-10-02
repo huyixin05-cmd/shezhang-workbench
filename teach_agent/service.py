@@ -9,7 +9,7 @@ from .materials import Materials
 from .artifacts import assemble_page, add_notices, notices
 from .checking import check_page
 from .prompts import PLAN_SYSTEM, PLAN_REVIEW_SYSTEM, BUILD_SYSTEM, REVIEW_SYSTEM
-from .prompt_sources import prompt_sources
+from .prompt_sources import prompt_sources, interaction_sources
 
 
 class Service:
@@ -218,6 +218,7 @@ class Service:
                 raise ValueError('两轮修复后仍未通过检查，草稿保留：'+'；'.join(report['errors'])[:600])
         (folder/'source.json').write_text(json.dumps(source,ensure_ascii=False,indent=2),encoding='utf-8')
         report['prompt_sources'] = prompt_sources('build') if plan['kind'] != 'animation' else []
+        report['interaction_sources'] = interaction_sources() if plan['kind'] != 'animation' else []
         (folder/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
         return self.store.save_version(job['project_id'],dict(title=plan['title'],kind=plan['kind'],folder=folder_id,
             plan=plan,report=report,base_version=job['input'].get('version_id'),plan_revision=job['input'].get('revision')))

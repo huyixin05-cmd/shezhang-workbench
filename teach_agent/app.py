@@ -117,6 +117,7 @@ def create_app(root, model=None, checker=None):
             "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; frame-src 'self' blob:; media-src 'self' blob:; connect-src 'self'; object-src 'none'; base-uri 'none'"})
 
     app.mount('/static',StaticFiles(directory=static),name='static')
+    app.mount('/experiments',StaticFiles(directory=Path(__file__).parent/'experiment_library',html=True),name='experiments')
 
     @app.get('/api/status')
     def status():

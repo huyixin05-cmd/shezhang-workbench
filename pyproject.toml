@@ -22,12 +22,15 @@ teach-agent = "teach_agent.__main__:main"
 teach-agent-mcp = "teach_agent.mcp_server:main"
 teach-agent-setup = "teach_agent.onboarding:main"
 
+[tool.setuptools]
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+
 [tool.setuptools.packages.find]
 include = ["teach_agent"]
 namespaces = false
 
 [tool.setuptools.package-data]
-teach_agent = ["static/*", "animation_templates/*.py", "vendor/**/*", "prompt_library/*"]
+teach_agent = ["static/*", "animation_templates/*.py", "vendor/**/*", "prompt_library/*", "experiment_library/**/*", "experiment_library/*"]
 
 [tool.setuptools.exclude-package-data]
 teach_agent = ["**/__pycache__/*", "**/*.pyc"]

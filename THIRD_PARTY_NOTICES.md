@@ -1,5 +1,17 @@
 # Third-party notices
 
+## Independent experiment source collection (2026-10-02)
+
+`teach_agent/experiment_library/archives/` contains 27 unchanged upstream source ZIP snapshots, provided as an independent collection, not imported by the runtime or embedded in generated lessons. `catalog.json` records each origin, immutable commit, SHA-256, license, setup requirements and supplemental notice paths. Original nested notices and third-party licenses remain inside each ZIP. Source availability does not imply that an experiment has been built, tested, or integrated.
+
+The collection includes 3 MIT, 2 Apache-2.0, 14 GPL-3.0, 1 GPL-2.0, 1 GPL-2.0-or-later, 1 LGPL-3.0 and 5 AGPL-3.0 root licenses. Each remains under its own terms; the root Teach Agent MIT license does not relicense these works. The five Virtual Labs experiments also carry a content-policy notice linking to the upstream CC BY-NC-SA 4.0 policy for teaching content. Preserve that distinction when reusing text, images or other assets. PhET dependencies and branding may have separate terms; no trademark endorsement or right to rebrand is asserted.
+
+RippleGL's GPL-2.0-or-later grant is in `src/com/falstad/ripple/client/RippleSim.java`; its original header and the complete GPL v2 text are supplied separately under `licenses/pfalstad--ripplegl/`. `export_experiment_source` preserves the unmodified upstream file contents and appends attribution and supplemental notices. The catalog's `sha256` refers to the original ZIP, not the augmented export. Web downloads for RippleGL and the five Virtual Labs experiments are prebuilt under `downloads/` with those supplemental notices included; `download_sha256` verifies the actual web download. The remaining upstream ZIPs already include their root licenses. Rebuild the catalog and supplemented downloads with `python scripts/build_experiment_catalog.py`.
+
+VirtualChemLab's root LICENSE is MIT; its commercial activation/purchase documentation is also preserved. This collection is source for inspection and development, not an activated desktop product or a recommendation to purchase a license. OpenLabs is proprietary and is not copied. Four further entries remain links because redistribution of the intended materials has not been fully verified; see the catalog for individual reasons.
+
+`static/interaction.js` and `experiment_library/interaction-guide.md` are original Teach Agent work under this project's MIT license. They implement general interaction techniques, with behavioral references documented in the guide. They do not copy GPL/AGPL implementations. Generation loads the short local guide, never archived repository instructions or arbitrary upstream source files.
+
 Original Teach Agent code is MIT. Files under `teach_agent/vendor/` retain their original licenses and attribution; they are not claimed as original Teach Agent artwork or code.
 
 ## Open Lab Components

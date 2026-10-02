@@ -1,0 +1,2 @@
+# License service dependencies are covered by requirements.lock (admin + ops extras).
+-r requirements.lock

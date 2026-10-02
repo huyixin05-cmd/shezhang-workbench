@@ -1,0 +1,4 @@
+软件根目录许可为 AGPL-3.0。Virtual Labs 教学内容另有 CC BY-NC-SA 4.0 政策；不要把教学文字、图片视为 MIT 或可无限制商用。
+https://github.com/virtual-labs/virtual-chemistry-lab-dei/blob/master/license.org
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+原始快照未改动，包含原许可；本合集未逐项区分内容资产。

@@ -1,0 +1,600 @@
+[
+  {
+    "id": "HackerYard--openlabs",
+    "name": "OpenLabs",
+    "origin": "https://github.com/hackeryard/openlabs",
+    "license": "NOASSERTION",
+    "status": "reference_only",
+    "setup": "仅保存参考链接；本项目未收录该源码。",
+    "keywords": "OpenLabs HackerYard/openlabs 物理 实验",
+    "usage": "专有许可明确不授予复制、修改或分发权；仅保留链接。"
+  },
+  {
+    "id": "LearnChemE--LearnChemE.github.io",
+    "name": "LearnChemE 模拟合集",
+    "origin": "https://github.com/LearnChemE/LearnChemE.github.io",
+    "license": "未确认",
+    "status": "reference_only",
+    "setup": "仅保存参考链接；本项目未收录该源码。",
+    "keywords": "LearnChemE 模拟合集 LearnChemE/LearnChemE.github.io 物理 实验",
+    "usage": "未找到整个仓库的统一开源授权；逐项授权待核实。"
+  },
+  {
+    "id": "bhoomika-254--virtual-lab",
+    "name": "Virtual Lab 理化实验",
+    "origin": "https://github.com/bhoomika-254/virtual-lab",
+    "license": "未确认",
+    "status": "reference_only",
+    "setup": "仅保存参考链接；本项目未收录该源码。",
+    "keywords": "Virtual Lab 理化实验 bhoomika-254/virtual-lab 物理 实验",
+    "usage": "未找到明确再分发许可；仅保留链接。"
+  },
+  {
+    "id": "concord-consortium--lab",
+    "name": "Concord 科学模型框架",
+    "origin": "https://github.com/concord-consortium/lab",
+    "license": "MIT",
+    "status": "source_archive",
+    "setup": "按原始 README 安装构建工具；此处保存完整源码快照，未逐项构建验收。",
+    "keywords": "Concord 科学模型框架 concord-consortium/lab 物理 实验",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/concord-consortium--lab.zip",
+    "commit": "79ef76bbc0f8cae65b8593a7ada969878c580305",
+    "sha256": "1c88787da8653999262b656f8847bb27adf07ead2121aa56ee92ead1bddb2397",
+    "bytes": 8624728,
+    "files": 1177,
+    "license_files": [
+      "licenses/concord-consortium--lab/LICENSE"
+    ],
+    "download": "archives/concord-consortium--lab.zip",
+    "download_sha256": "1c88787da8653999262b656f8847bb27adf07ead2121aa56ee92ead1bddb2397"
+  },
+  {
+    "id": "myphysicslab--myphysicslab",
+    "name": "myPhysicsLab 力学实验库",
+    "origin": "https://github.com/myphysicslab/myphysicslab",
+    "license": "Apache-2.0",
+    "status": "source_archive",
+    "setup": "按原始 README 安装构建工具；此处保存完整源码快照，未逐项构建验收。",
+    "keywords": "myPhysicsLab 力学实验库 myphysicslab/myphysicslab 物理 实验",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/myphysicslab--myphysicslab.zip",
+    "commit": "4b0bb8e1fa3b00889bb20dfa0d238674ac2e0b3c",
+    "sha256": "cad9a73a385c7a51a7520a18c1a2dc9e0d9e170529edde70f707e3e6c8d29cb5",
+    "bytes": 6340322,
+    "files": 530,
+    "license_files": [
+      "licenses/myphysicslab--myphysicslab/LICENSE"
+    ],
+    "download": "archives/myphysicslab--myphysicslab.zip",
+    "download_sha256": "cad9a73a385c7a51a7520a18c1a2dc9e0d9e170529edde70f707e3e6c8d29cb5"
+  },
+  {
+    "id": "pfalstad--ripplegl",
+    "name": "RippleGL 波纹水槽",
+    "origin": "https://github.com/pfalstad/ripplegl",
+    "license": "GPL-2.0-or-later",
+    "status": "source_archive",
+    "setup": "Java/GWT 源码，需编译成网页；未在本项目构建。",
+    "keywords": "RippleGL 波纹水槽 pfalstad/ripplegl 物理 实验",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/pfalstad--ripplegl.zip",
+    "commit": "28c479d268983cfca49d2b61322932ac8469348e",
+    "sha256": "f406b88efae1c9ba03751c48bc91870dc60825b5dbe77d7e8b0116ca9ee30efb",
+    "bytes": 156191,
+    "files": 144,
+    "license_files": [
+      "licenses/pfalstad--ripplegl/SOURCE-NOTICE.txt",
+      "licenses/pfalstad--ripplegl/GPL-2.0.txt"
+    ],
+    "download": "downloads/pfalstad--ripplegl.zip",
+    "download_sha256": "a4cdf0c3e041a4e620132110d52b2f4fed94daa947bc639d3454014c5954694e"
+  },
+  {
+    "id": "phetsims--acid-base-solutions",
+    "name": "酸碱溶液",
+    "origin": "https://github.com/phetsims/acid-base-solutions",
+    "license": "GPL-3.0",
+    "status": "source_archive",
+    "setup": "独立实验源码；需按 README 获取 PhET 共享库与 Node 构建环境，不能仅双击源码 HTML。",
+    "keywords": "酸碱溶液 phetsims/acid-base-solutions 化学 分子 溶液",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/phetsims--acid-base-solutions.zip",
+    "commit": "0b9e5c9254d50a6647e6dd468d88c88bad7b7ebe",
+    "sha256": "5c4ff4af16dbf5f588affc813a4bc84cb75bfeff8a67a12b7945f16b027603f6",
+    "bytes": 12824639,
+    "files": 93,
+    "license_files": [
+      "licenses/phetsims--acid-base-solutions/LICENSE"
+    ],
+    "download": "archives/phetsims--acid-base-solutions.zip",
+    "download_sha256": "5c4ff4af16dbf5f588affc813a4bc84cb75bfeff8a67a12b7945f16b027603f6"
+  },
+  {
+    "id": "phetsims--beers-law-lab",
+    "name": "比尔定律",
+    "origin": "https://github.com/phetsims/beers-law-lab",
+    "license": "GPL-3.0",
+    "status": "source_archive",
+    "setup": "独立实验源码；需按 README 获取 PhET 共享库与 Node 构建环境，不能仅双击源码 HTML。",
+    "keywords": "比尔定律 phetsims/beers-law-lab 化学 分子 溶液",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/phetsims--beers-law-lab.zip",
+    "commit": "df9701f6658a11862a37350d2adb88988b46292d",
+    "sha256": "246b9f10f07cf6d1a181eadf0152112f4ea93b1ac9e601861129667c7597c672",
+    "bytes": 8837190,
+    "files": 138,
+    "license_files": [
+      "licenses/phetsims--beers-law-lab/LICENSE"
+    ],
+    "download": "archives/phetsims--beers-law-lab.zip",
+    "download_sha256": "246b9f10f07cf6d1a181eadf0152112f4ea93b1ac9e601861129667c7597c672"
+  },
+  {
+    "id": "phetsims--bending-light",
+    "name": "光的折射",
+    "origin": "https://github.com/phetsims/bending-light",
+    "license": "GPL-3.0",
+    "status": "source_archive",
+    "setup": "独立实验源码；需按 README 获取 PhET 共享库与 Node 构建环境，不能仅双击源码 HTML。",
+    "keywords": "光的折射 phetsims/bending-light 物理 实验",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/phetsims--bending-light.zip",
+    "commit": "fc3a9de5031d9d95333404edf880338f2e803ed9",
+    "sha256": "acd39f17148343d14c308a5c1361e80d22ba07468c150fdbd035905f71742527",
+    "bytes": 6345322,
+    "files": 113,
+    "license_files": [
+      "licenses/phetsims--bending-light/LICENSE"
+    ],
+    "download": "archives/phetsims--bending-light.zip",
+    "download_sha256": "acd39f17148343d14c308a5c1361e80d22ba07468c150fdbd035905f71742527"
+  },
+  {
+    "id": "phetsims--build-a-molecule",
+    "name": "搭建分子",
+    "origin": "https://github.com/phetsims/build-a-molecule",
+    "license": "GPL-3.0",
+    "status": "source_archive",
+    "setup": "独立实验源码；需按 README 获取 PhET 共享库与 Node 构建环境，不能仅双击源码 HTML。",
+    "keywords": "搭建分子 phetsims/build-a-molecule 化学 分子 溶液",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/phetsims--build-a-molecule.zip",
+    "commit": "23ea5bd5da66b15bb610c44ca024bd8f06f56cbf",
+    "sha256": "5cc48050470bee473d8ad00d88a617de8225e6f2dfcac9565ffeb588d4a3c906",
+    "bytes": 3494612,
+    "files": 98,
+    "license_files": [
+      "licenses/phetsims--build-a-molecule/LICENSE"
+    ],
+    "download": "archives/phetsims--build-a-molecule.zip",
+    "download_sha256": "5cc48050470bee473d8ad00d88a617de8225e6f2dfcac9565ffeb588d4a3c906"
+  },
+  {
+    "id": "phetsims--buoyancy",
+    "name": "浮力",
+    "origin": "https://github.com/phetsims/buoyancy",
+    "license": "GPL-3.0",
+    "status": "source_archive",
+    "setup": "独立实验源码；需按 README 获取 PhET 共享库与 Node 构建环境，不能仅双击源码 HTML。",
+    "keywords": "浮力 phetsims/buoyancy 物理 实验",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/phetsims--buoyancy.zip",
+    "commit": "161d0b993543399c8af0b1b854c0f3c1b188eb4c",
+    "sha256": "40145b80140ea7fa0fc5d85d16239efed8b1ddeac80478611f67c48e19c5964f",
+    "bytes": 2611374,
+    "files": 40,
+    "license_files": [
+      "licenses/phetsims--buoyancy/LICENSE"
+    ],
+    "download": "archives/phetsims--buoyancy.zip",
+    "download_sha256": "40145b80140ea7fa0fc5d85d16239efed8b1ddeac80478611f67c48e19c5964f"
+  },
+  {
+    "id": "phetsims--circuit-construction-kit-dc",
+    "name": "直流电路",
+    "origin": "https://github.com/phetsims/circuit-construction-kit-dc",
+    "license": "GPL-3.0",
+    "status": "source_archive",
+    "setup": "独立实验源码；需按 README 获取 PhET 共享库与 Node 构建环境，不能仅双击源码 HTML。",
+    "keywords": "直流电路 phetsims/circuit-construction-kit-dc 物理 实验",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/phetsims--circuit-construction-kit-dc.zip",
+    "commit": "3630c8846ff8c82a645924d0c8d441c342a6b6c0",
+    "sha256": "956e00d559598b4560f1257d7559a72912939220b6cd8117335202481b77bff4",
+    "bytes": 2966324,
+    "files": 36,
+    "license_files": [
+      "licenses/phetsims--circuit-construction-kit-dc/LICENSE"
+    ],
+    "download": "archives/phetsims--circuit-construction-kit-dc.zip",
+    "download_sha256": "956e00d559598b4560f1257d7559a72912939220b6cd8117335202481b77bff4"
+  },
+  {
+    "id": "phetsims--collision-lab",
+    "name": "碰撞实验",
+    "origin": "https://github.com/phetsims/collision-lab",
+    "license": "GPL-3.0",
+    "status": "source_archive",
+    "setup": "独立实验源码；需按 README 获取 PhET 共享库与 Node 构建环境，不能仅双击源码 HTML。",
+    "keywords": "碰撞实验 phetsims/collision-lab 物理 实验",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/phetsims--collision-lab.zip",
+    "commit": "2d4a2a29d695ae56e18d38f3f22bec9771d9491b",
+    "sha256": "8a51e087db05dd3384b4825bc42cf426ddb3c6af61390689540a56d7bb3d359c",
+    "bytes": 2088555,
+    "files": 109,
+    "license_files": [
+      "licenses/phetsims--collision-lab/LICENSE"
+    ],
+    "download": "archives/phetsims--collision-lab.zip",
+    "download_sha256": "8a51e087db05dd3384b4825bc42cf426ddb3c6af61390689540a56d7bb3d359c"
+  },
+  {
+    "id": "phetsims--concentration",
+    "name": "溶液浓度",
+    "origin": "https://github.com/phetsims/concentration",
+    "license": "GPL-3.0",
+    "status": "source_archive",
+    "setup": "独立实验源码；需按 README 获取 PhET 共享库与 Node 构建环境，不能仅双击源码 HTML。",
+    "keywords": "溶液浓度 phetsims/concentration 化学 分子 溶液",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/phetsims--concentration.zip",
+    "commit": "da86373a85a703a4caed9e8cddd58cce7f13cf28",
+    "sha256": "eda35b0b40297b79073cc068e1df82f0d4b114689d664e73a22a904f7c3f464d",
+    "bytes": 458868,
+    "files": 22,
+    "license_files": [
+      "licenses/phetsims--concentration/LICENSE"
+    ],
+    "download": "archives/phetsims--concentration.zip",
+    "download_sha256": "eda35b0b40297b79073cc068e1df82f0d4b114689d664e73a22a904f7c3f464d"
+  },
+  {
+    "id": "phetsims--gas-properties",
+    "name": "气体性质",
+    "origin": "https://github.com/phetsims/gas-properties",
+    "license": "GPL-3.0",
+    "status": "source_archive",
+    "setup": "独立实验源码；需按 README 获取 PhET 共享库与 Node 构建环境，不能仅双击源码 HTML。",
+    "keywords": "气体性质 phetsims/gas-properties 物理 实验",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/phetsims--gas-properties.zip",
+    "commit": "22fbbe16630fcfa94f236152159f71903e22faf0",
+    "sha256": "c8ff2cd80ac49e66abb3f02f5784293b56d3ecb72ce00a3f3c414e49548c9f5c",
+    "bytes": 4700602,
+    "files": 165,
+    "license_files": [
+      "licenses/phetsims--gas-properties/LICENSE"
+    ],
+    "download": "archives/phetsims--gas-properties.zip",
+    "download_sha256": "c8ff2cd80ac49e66abb3f02f5784293b56d3ecb72ce00a3f3c414e49548c9f5c"
+  },
+  {
+    "id": "phetsims--masses-and-springs",
+    "name": "砝码与弹簧",
+    "origin": "https://github.com/phetsims/masses-and-springs",
+    "license": "GPL-3.0",
+    "status": "source_archive",
+    "setup": "独立实验源码；需按 README 获取 PhET 共享库与 Node 构建环境，不能仅双击源码 HTML。",
+    "keywords": "砝码与弹簧 phetsims/masses-and-springs 物理 实验",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/phetsims--masses-and-springs.zip",
+    "commit": "baa8be74d620a679f0797fb3d5996a1a8ef0e093",
+    "sha256": "12b8a94f97cf7c0a09e88088e2fb7ed81bed0e9d6e73b42b332b82622cc8f59a",
+    "bytes": 3904235,
+    "files": 85,
+    "license_files": [
+      "licenses/phetsims--masses-and-springs/LICENSE"
+    ],
+    "download": "archives/phetsims--masses-and-springs.zip",
+    "download_sha256": "12b8a94f97cf7c0a09e88088e2fb7ed81bed0e9d6e73b42b332b82622cc8f59a"
+  },
+  {
+    "id": "phetsims--molecule-shapes",
+    "name": "分子形状",
+    "origin": "https://github.com/phetsims/molecule-shapes",
+    "license": "GPL-3.0",
+    "status": "source_archive",
+    "setup": "独立实验源码；需按 README 获取 PhET 共享库与 Node 构建环境，不能仅双击源码 HTML。",
+    "keywords": "分子形状 phetsims/molecule-shapes 化学 分子 溶液",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/phetsims--molecule-shapes.zip",
+    "commit": "1aee7cee7bcbea4276a6a416ff943acac13e9506",
+    "sha256": "8c21ea8c20079238df11477d8c870c122206f6faec5ae5f41b0cfec96a461257",
+    "bytes": 1053167,
+    "files": 81,
+    "license_files": [
+      "licenses/phetsims--molecule-shapes/LICENSE"
+    ],
+    "download": "archives/phetsims--molecule-shapes.zip",
+    "download_sha256": "8c21ea8c20079238df11477d8c870c122206f6faec5ae5f41b0cfec96a461257"
+  },
+  {
+    "id": "phetsims--ph-scale",
+    "name": "pH 标度",
+    "origin": "https://github.com/phetsims/ph-scale",
+    "license": "GPL-3.0",
+    "status": "source_archive",
+    "setup": "独立实验源码；需按 README 获取 PhET 共享库与 Node 构建环境，不能仅双击源码 HTML。",
+    "keywords": "pH 标度 phetsims/ph-scale 化学 分子 溶液",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/phetsims--ph-scale.zip",
+    "commit": "84adf32e782a512e3604f9f7f832ce8a751864b7",
+    "sha256": "d8f665d02d0a23520cffc0e7248a567cc9bed9d3c8a6016c41284c0cdca53265",
+    "bytes": 2599314,
+    "files": 124,
+    "license_files": [
+      "licenses/phetsims--ph-scale/LICENSE"
+    ],
+    "download": "archives/phetsims--ph-scale.zip",
+    "download_sha256": "d8f665d02d0a23520cffc0e7248a567cc9bed9d3c8a6016c41284c0cdca53265"
+  },
+  {
+    "id": "phetsims--reactants-products-and-leftovers",
+    "name": "反应物与剩余物",
+    "origin": "https://github.com/phetsims/reactants-products-and-leftovers",
+    "license": "GPL-3.0",
+    "status": "source_archive",
+    "setup": "独立实验源码；需按 README 获取 PhET 共享库与 Node 构建环境，不能仅双击源码 HTML。",
+    "keywords": "反应物与剩余物 phetsims/reactants-products-and-leftovers 化学 分子 溶液",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/phetsims--reactants-products-and-leftovers.zip",
+    "commit": "e8238cb08a0756fc9af6d4ea135d8481c1608657",
+    "sha256": "892199c383acceaa7c013403f3a5a1aff8fd3c817d8739c5c3276db2f610682a",
+    "bytes": 6788046,
+    "files": 101,
+    "license_files": [
+      "licenses/phetsims--reactants-products-and-leftovers/LICENSE"
+    ],
+    "download": "archives/phetsims--reactants-products-and-leftovers.zip",
+    "download_sha256": "892199c383acceaa7c013403f3a5a1aff8fd3c817d8739c5c3276db2f610682a"
+  },
+  {
+    "id": "phetsims--states-of-matter",
+    "name": "物态变化",
+    "origin": "https://github.com/phetsims/states-of-matter",
+    "license": "GPL-3.0",
+    "status": "source_archive",
+    "setup": "独立实验源码；需按 README 获取 PhET 共享库与 Node 构建环境，不能仅双击源码 HTML。",
+    "keywords": "物态变化 phetsims/states-of-matter 物理 实验",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/phetsims--states-of-matter.zip",
+    "commit": "9380195ad45c4b2cd5c2a09a220c4a2b011b4c8c",
+    "sha256": "82c6ab6d316bb88e23279b261c2978757f4f8edf2e8c86f18d581edf32f990b0",
+    "bytes": 8743157,
+    "files": 113,
+    "license_files": [
+      "licenses/phetsims--states-of-matter/LICENSE"
+    ],
+    "download": "archives/phetsims--states-of-matter.zip",
+    "download_sha256": "82c6ab6d316bb88e23279b261c2978757f4f8edf2e8c86f18d581edf32f990b0"
+  },
+  {
+    "id": "phetsims--wave-interference",
+    "name": "波的干涉",
+    "origin": "https://github.com/phetsims/wave-interference",
+    "license": "MIT",
+    "status": "source_archive",
+    "setup": "独立实验源码；需按 README 获取 PhET 共享库与 Node 构建环境，不能仅双击源码 HTML。",
+    "keywords": "波的干涉 phetsims/wave-interference 物理 实验",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/phetsims--wave-interference.zip",
+    "commit": "5443da094116592a549b45eb362a90600a87e4f5",
+    "sha256": "a2bd845ffb3450d30cecaacc6657cea5e741ace1b123cd96f54ee95d1ef1671c",
+    "bytes": 6097651,
+    "files": 171,
+    "license_files": [
+      "licenses/phetsims--wave-interference/LICENSE"
+    ],
+    "download": "archives/phetsims--wave-interference.zip",
+    "download_sha256": "a2bd845ffb3450d30cecaacc6657cea5e741ace1b123cd96f54ee95d1ef1671c"
+  },
+  {
+    "id": "qilaidev--virtual-chem-lab",
+    "name": "VirtualChemLab 化学实验室",
+    "origin": "https://github.com/qilaidev/virtual-chem-lab",
+    "license": "MIT",
+    "status": "source_archive",
+    "setup": "Python + PySide6/Qt6 桌面程序，按上游 README 安装；不是网页组件。",
+    "keywords": "VirtualChemLab 化学实验室 qilaidev/virtual-chem-lab 化学 分子 溶液",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。 根目录为 MIT，但上游还包含商业激活/购买文档；这里收录源码，不提供已激活的桌面产品。",
+    "archive": "archives/qilaidev--virtual-chem-lab.zip",
+    "commit": "24ec93543f24e1a7498e5230fd7179a54d123263",
+    "sha256": "a524a73bfde9e158f95ee91ef18df7ff9afb7d0fe7a43d36f7a3fd13ea9539b3",
+    "bytes": 3026510,
+    "files": 928,
+    "license_files": [
+      "licenses/qilaidev--virtual-chem-lab/LICENSE",
+      "licenses/qilaidev--virtual-chem-lab/LICENSE_PURCHASE_GUIDE.md",
+      "licenses/qilaidev--virtual-chem-lab/requirements-license.txt"
+    ],
+    "download": "archives/qilaidev--virtual-chem-lab.zip",
+    "download_sha256": "a524a73bfde9e158f95ee91ef18df7ff9afb7d0fe7a43d36f7a3fd13ea9539b3"
+  },
+  {
+    "id": "ricktu288--ray-optics",
+    "name": "Ray Optics 光学搭建",
+    "origin": "https://github.com/ricktu288/ray-optics",
+    "license": "Apache-2.0",
+    "status": "source_archive",
+    "setup": "按原始 README 安装构建工具；此处保存完整源码快照，未逐项构建验收。",
+    "keywords": "Ray Optics 光学搭建 ricktu288/ray-optics 物理 实验",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/ricktu288--ray-optics.zip",
+    "commit": "e55947ecf4cc86724085ec07b774f85e4b7dea46",
+    "sha256": "5487c2a723792635d5477301d48a8ebbb7d66dd0895e2aca6b64ed710539dfb0",
+    "bytes": 5807696,
+    "files": 1079,
+    "license_files": [
+      "licenses/ricktu288--ray-optics/LICENSE"
+    ],
+    "download": "archives/ricktu288--ray-optics.zip",
+    "download_sha256": "5487c2a723792635d5477301d48a8ebbb7d66dd0895e2aca6b64ed710539dfb0"
+  },
+  {
+    "id": "sharpie7--circuitjs1",
+    "name": "CircuitJS 电路搭建",
+    "origin": "https://github.com/sharpie7/circuitjs1",
+    "license": "GPL-2.0",
+    "status": "source_archive",
+    "setup": "Java/GWT 源码，需编译成网页；未在本项目构建。",
+    "keywords": "CircuitJS 电路搭建 sharpie7/circuitjs1 物理 实验",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/sharpie7--circuitjs1.zip",
+    "commit": "dd47cf43a1baa91e2d6ae0f5884ccf0f589989bf",
+    "sha256": "22e5e904a333cc56f6ef4ada338940d28371369e549308481e0fcf98b89e18dd",
+    "bytes": 846398,
+    "files": 590,
+    "license_files": [
+      "licenses/sharpie7--circuitjs1/COPYING.txt"
+    ],
+    "download": "archives/sharpie7--circuitjs1.zip",
+    "download_sha256": "22e5e904a333cc56f6ef4ada338940d28371369e549308481e0fcf98b89e18dd"
+  },
+  {
+    "id": "stepheneb--energy2d",
+    "name": "Energy2D 热学（Java）",
+    "origin": "https://github.com/stepheneb/energy2d",
+    "license": "LGPL-3.0",
+    "status": "source_archive",
+    "setup": "Java 源码；需 Java/上游构建工具，不是浏览器运行版。",
+    "keywords": "Energy2D 热学（Java） stepheneb/energy2d 物理 实验",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。",
+    "archive": "archives/stepheneb--energy2d.zip",
+    "commit": "65c14d04cc612199eb5fdc4ea1b7689759ebd326",
+    "sha256": "13f0dd666ebe9e559324ebe4e09cedfdf9ad7468a21c0a8a341cceafb965b64d",
+    "bytes": 2915000,
+    "files": 358,
+    "license_files": [
+      "licenses/stepheneb--energy2d/LICENSE"
+    ],
+    "download": "archives/stepheneb--energy2d.zip",
+    "download_sha256": "13f0dd666ebe9e559324ebe4e09cedfdf9ad7468a21c0a8a341cceafb965b64d"
+  },
+  {
+    "id": "sufyanaslam44--Virtua-Chem-Sim",
+    "name": "Virtua Chem Sim（Unity）",
+    "origin": "https://github.com/sufyanaslam44/Virtua-Chem-Sim",
+    "license": "未确认",
+    "status": "reference_only",
+    "setup": "仅保存参考链接；本项目未收录该源码。",
+    "keywords": "Virtua Chem Sim（Unity） sufyanaslam44/Virtua-Chem-Sim 物理 实验",
+    "usage": "未找到明确再分发许可；仅保留链接。"
+  },
+  {
+    "id": "virtual-labs--exp-compound-pendulum-iitk",
+    "name": "复摆实验",
+    "origin": "https://github.com/virtual-labs/exp-compound-pendulum-iitk",
+    "license": "AGPL-3.0",
+    "status": "source_archive",
+    "setup": "按实验源码的 HTML 和资源结构运行，第三方依赖与教学内容许可需分别核对。",
+    "keywords": "复摆实验 virtual-labs/exp-compound-pendulum-iitk 物理 实验",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。 Virtual Labs 教学内容另受 CC BY-NC-SA 4.0 政策约束。",
+    "archive": "archives/virtual-labs--exp-compound-pendulum-iitk.zip",
+    "commit": "11f8dcc93cf91c1ee57dbc23f9f6a8be283d0226",
+    "sha256": "2453358664feebdafb22f0b45697a8710f0338b8f487decc73425d90c79e7fbd",
+    "bytes": 301085,
+    "files": 35,
+    "license_files": [
+      "licenses/virtual-labs--exp-compound-pendulum-iitk/LICENSE",
+      "licenses/virtual-labs--exp-compound-pendulum-iitk/CONTENT-POLICY.txt"
+    ],
+    "download": "downloads/virtual-labs--exp-compound-pendulum-iitk.zip",
+    "download_sha256": "c60174a8ecccbef7db99af0af881963a842589e064a5214c2eff41d95853cae0"
+  },
+  {
+    "id": "virtual-labs--exp-electrochemical-equivalent-of-copper-iitk",
+    "name": "铜的电化学当量",
+    "origin": "https://github.com/virtual-labs/exp-electrochemical-equivalent-of-copper-iitk",
+    "license": "AGPL-3.0",
+    "status": "source_archive",
+    "setup": "按实验源码的 HTML 和资源结构运行，第三方依赖与教学内容许可需分别核对。",
+    "keywords": "铜的电化学当量 virtual-labs/exp-electrochemical-equivalent-of-copper-iitk 化学 分子 溶液",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。 Virtual Labs 教学内容另受 CC BY-NC-SA 4.0 政策约束。",
+    "archive": "archives/virtual-labs--exp-electrochemical-equivalent-of-copper-iitk.zip",
+    "commit": "2614bbe036f70f83292ce31c602254d85e8fbf9e",
+    "sha256": "47eabf3a1896a1f96a36bf4d6ca11df880ead404c1ed83005ce3859004cdd3a6",
+    "bytes": 175920,
+    "files": 34,
+    "license_files": [
+      "licenses/virtual-labs--exp-electrochemical-equivalent-of-copper-iitk/LICENSE",
+      "licenses/virtual-labs--exp-electrochemical-equivalent-of-copper-iitk/CONTENT-POLICY.txt"
+    ],
+    "download": "downloads/virtual-labs--exp-electrochemical-equivalent-of-copper-iitk.zip",
+    "download_sha256": "ba1444a785dad9ec64074c26e5cd14bfb9189aee967382c77dd081bf578a7bc4"
+  },
+  {
+    "id": "virtual-labs--exp-newtons-ring-experiment-iitk",
+    "name": "牛顿环",
+    "origin": "https://github.com/virtual-labs/exp-newtons-ring-experiment-iitk",
+    "license": "AGPL-3.0",
+    "status": "source_archive",
+    "setup": "按实验源码的 HTML 和资源结构运行，第三方依赖与教学内容许可需分别核对。",
+    "keywords": "牛顿环 virtual-labs/exp-newtons-ring-experiment-iitk 物理 实验",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。 Virtual Labs 教学内容另受 CC BY-NC-SA 4.0 政策约束。",
+    "archive": "archives/virtual-labs--exp-newtons-ring-experiment-iitk.zip",
+    "commit": "0726d7a558dff2403599c34a1b17357005b67ed7",
+    "sha256": "865006b12d8abea68e9ad099f310b865ebcd9dbabcc1e6550bcb79e0006c5192",
+    "bytes": 1385736,
+    "files": 70,
+    "license_files": [
+      "licenses/virtual-labs--exp-newtons-ring-experiment-iitk/LICENSE",
+      "licenses/virtual-labs--exp-newtons-ring-experiment-iitk/CONTENT-POLICY.txt"
+    ],
+    "download": "downloads/virtual-labs--exp-newtons-ring-experiment-iitk.zip",
+    "download_sha256": "c5f543d9a0b0cafb2068b30fe5cd3987c8cefb31f73d6bec54f78eff8cf89ea8"
+  },
+  {
+    "id": "virtual-labs--exp-series-lcr-circuit-iitk",
+    "name": "串联 LCR 电路",
+    "origin": "https://github.com/virtual-labs/exp-series-lcr-circuit-iitk",
+    "license": "AGPL-3.0",
+    "status": "source_archive",
+    "setup": "按实验源码的 HTML 和资源结构运行，第三方依赖与教学内容许可需分别核对。",
+    "keywords": "串联 LCR 电路 virtual-labs/exp-series-lcr-circuit-iitk 物理 实验",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。 Virtual Labs 教学内容另受 CC BY-NC-SA 4.0 政策约束。",
+    "archive": "archives/virtual-labs--exp-series-lcr-circuit-iitk.zip",
+    "commit": "dd75812f4e922fedd08fe37701a76f1e70b50d81",
+    "sha256": "d68cedf5743972d2eaeabbd3141d9caf2ee367529f288950a1168e68d9b39f69",
+    "bytes": 65745,
+    "files": 36,
+    "license_files": [
+      "licenses/virtual-labs--exp-series-lcr-circuit-iitk/LICENSE",
+      "licenses/virtual-labs--exp-series-lcr-circuit-iitk/CONTENT-POLICY.txt"
+    ],
+    "download": "downloads/virtual-labs--exp-series-lcr-circuit-iitk.zip",
+    "download_sha256": "2e12dbcf766d9e95067290fbd1b54651deb8a7bd91792b1c286ac4dd38c74614"
+  },
+  {
+    "id": "virtual-labs--exp-single-slit-diffraction-iitk",
+    "name": "单缝衍射",
+    "origin": "https://github.com/virtual-labs/exp-single-slit-diffraction-iitk",
+    "license": "AGPL-3.0",
+    "status": "source_archive",
+    "setup": "按实验源码的 HTML 和资源结构运行，第三方依赖与教学内容许可需分别核对。",
+    "keywords": "单缝衍射 virtual-labs/exp-single-slit-diffraction-iitk 物理 实验",
+    "usage": "保留原始许可和第三方声明；独立源码资源，不会自动插入生成的课件。 Virtual Labs 教学内容另受 CC BY-NC-SA 4.0 政策约束。",
+    "archive": "archives/virtual-labs--exp-single-slit-diffraction-iitk.zip",
+    "commit": "118e36f7ef15bad606c73729b1c9ffcc366763da",
+    "sha256": "04c2f656c0a6dfce2ec894aff65598a6d8450369738565c11cff393330b57f9d",
+    "bytes": 570493,
+    "files": 38,
+    "license_files": [
+      "licenses/virtual-labs--exp-single-slit-diffraction-iitk/LICENSE",
+      "licenses/virtual-labs--exp-single-slit-diffraction-iitk/CONTENT-POLICY.txt"
+    ],
+    "download": "downloads/virtual-labs--exp-single-slit-diffraction-iitk.zip",
+    "download_sha256": "17ef3dc9781df6d841e58e8683ed3edb3eb01be00347be510750a7af20a13108"
+  },
+  {
+    "id": "virtual-labs--virtual-chemistry-lab-dei",
+    "name": "Virtual Chemistry Lab DEI",
+    "origin": "https://github.com/virtual-labs/virtual-chemistry-lab-dei",
+    "license": "NOASSERTION",
+    "status": "reference_only",
+    "setup": "仅保存参考链接；本项目未收录该源码。",
+    "keywords": "Virtual Chemistry Lab DEI virtual-labs/virtual-chemistry-lab-dei 物理 实验",
+    "usage": "软件 AGPL-3.0、教学内容 CC BY-NC-SA 4.0，旧实验内容与代码未逐项拆分核对；本次不整包收录。"
+  }
+]
