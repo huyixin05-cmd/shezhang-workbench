@@ -2,6 +2,7 @@ import asyncio
 import json
 import re
 import httpx
+from urllib.parse import urlsplit
 from pydantic import BaseModel, Field, ConfigDict, StringConstraints, model_validator
 from typing import Annotated, Literal
 from .animation_contract import AnimationBrief, validate_animation
@@ -95,7 +96,7 @@ class Model:
             headers['Authorization'] = 'Bearer ' + config['api_key']
         payload = dict(model=config['model'], messages=messages, temperature=0.3,
                        max_tokens=config.get('max_tokens', 12000))
-        async with httpx.AsyncClient(timeout=httpx.Timeout(180, connect=15),
+        async with httpx.AsyncClient(timeout=httpx.Timeout(config.get('request_timeout',180), connect=15),
                                     follow_redirects=False, trust_env=False) as client:
             for attempt in range(2):
                 try:
@@ -105,6 +106,20 @@ class Model:
                             await asyncio.sleep(1)
                             continue
                         if response.status_code != 200:
+                            url=urlsplit(config['base_url'])
+                            if (config.get('host_bridge') is True and url.scheme=='http' and
+                                    url.hostname=='127.0.0.1' and url.path.startswith('/api/host-model/')):
+                                raw=bytearray()
+                                async for chunk in response.aiter_bytes():
+                                    raw.extend(chunk)
+                                    if len(raw)>8000:break
+                                try:
+                                    detail=json.loads(raw).get('detail')
+                                except (ValueError,AttributeError):
+                                    detail=None
+                                if isinstance(detail,str):
+                                    detail=detail.replace(config.get('api_key') or '\x00','[已隐藏]')
+                                    raise ModelServiceError(detail[:1000])
                             images=any(isinstance(m.get('content'),list) and any(x.get('type')=='image_url' for x in m['content']) for m in messages)
                             if images and response.status_code in (400,413,415,422):
                                 raise ModelServiceError(f'动画看图请求被模型服务拒绝（HTTP {response.status_code}），请确认模型支持图片输入，并检查请求大小或参数')

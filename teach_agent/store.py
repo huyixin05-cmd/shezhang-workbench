@@ -71,9 +71,9 @@ class Store:
         with self.tx() as con:
             return [v for v in self._all(con, 'jobs') if project_id is None or v['project_id'] == project_id]
 
-    def create_project(self, request, kind):
+    def create_project(self, request, kind, generation_mode='api'):
         p = dict(id=uuid4().hex, request=request, kind=kind, title=request[:40],
-                 plan=None, plan_revision=0, confirmed_revision=None, created_at=now())
+                 plan=None, plan_revision=0, confirmed_revision=None, created_at=now(),generation_mode=generation_mode)
         with self.tx() as con:
             self._put(con, 'projects', p)
         return p
@@ -103,6 +103,7 @@ class Store:
                    for j in self._all(con, 'jobs')):
                 raise ValueError('这个作品已有任务，请完成或取消后再操作')
             inputs = dict(inputs)
+            inputs.setdefault('generation_mode',p.get('generation_mode','api'))
             if kind in ('build','revision'):
                 revision = inputs.get('revision')
                 if not p['plan'] or revision != p['plan_revision'] or revision != p['confirmed_revision']:

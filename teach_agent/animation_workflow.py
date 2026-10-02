@@ -48,7 +48,7 @@ def workflow_configuration(config):
     if url.username or url.password or url.query or url.fragment or not url.hostname or (
         url.scheme!='https' and not (url.scheme=='http' and url.hostname in ('localhost','127.0.0.1','::1'))):
         raise ValueError('模型地址须为 HTTPS 或本机 HTTP，不能含账号或查询参数')
-    result={key:config[key] for key in ('base_url','model','api_key','max_tokens') if key in config}
+    result={key:config[key] for key in ('base_url','model','api_key','max_tokens','request_timeout','host_bridge') if key in config}
     result['manim_python']=str(python.resolve())
     if len(json.dumps(result).encode('utf-8'))>24000:raise ValueError('模型配置过长，请检查设置')
     return result

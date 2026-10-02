@@ -4,7 +4,7 @@ from pathlib import Path
 from uuid import uuid4
 from pydantic import ValidationError
 from .store import Store
-from .model import Model, Plan, ModelOutputError
+from .model import Model, Plan, ModelOutputError, ModelServiceError
 from .materials import Materials
 from .artifacts import assemble_page, add_notices, notices
 from .checking import check_page
@@ -18,13 +18,37 @@ class Service:
         self.store = Store(settings.root)
         self.materials = Materials()
         self.model = model or Model(settings)
+        from .host_model import HostBroker
+        self.host = HostBroker()
+        self.server_url = None
         self.checker = checker or check_page
         self.tasks = {}
         self.lock = asyncio.Lock()
+        self.host_lock = asyncio.Lock()
 
-    def require_model(self):
+    def project_for_job(self,job):
+        project=self.store.project(job['project_id'])
+        return dict(project,generation_mode=job['input'].get('generation_mode',project.get('generation_mode','api')))
+
+    def require_model(self, generation_mode='api'):
+        if generation_mode=='host':
+            return
         if isinstance(self.model, Model) and not self.settings.public()['configured']:
             raise ValueError('请先在设置中配置模型，然后开始生成')
+
+    async def model_json(self,job,messages):
+        if self.project_for_job(job).get('generation_mode')=='host':
+            return await self.host.ask(job['id'],messages)
+        return await self.model.json(messages)
+
+    def model_configuration(self,project,job_id=None):
+        config=self.settings.read()
+        if project.get('generation_mode')=='host':
+            if not self.server_url:
+                raise ValueError('对话动画需要运行本机制作服务')
+            config.update(base_url=self.server_url+'/api/host-model/'+(job_id or '0'*32)+'/v1',
+                model='conversation-host',api_key=self.settings.token,request_timeout=960,host_bridge=True)
+        return config
 
     def submit(self, pid, kind, inputs):
         job = self.store.new_job(pid, kind, inputs)
@@ -43,12 +67,13 @@ class Service:
         task = self.tasks.get(ident)
         if task:
             task.cancel()
+        self.host.cancel(ident)
         return self.store.update_job(ident, status='cancelled', stage='已取消')
 
     async def run(self, job):
         ident = job['id']
         try:
-            async with self.lock:
+            async with (self.host_lock if self.project_for_job(job).get('generation_mode')=='host' else self.lock):
                 if self.store.job(ident)['status'] == 'cancelled':
                     return
                 self.store.update_job(ident,status='running',stage='整理教学方案' if job['kind']=='plan' else '制作中')
@@ -72,6 +97,8 @@ class Service:
             if key:
                 message = message.replace(key,'[已隐藏]')
             self.store.update_job(ident,status='failed',stage='需要处理',error=message)
+        finally:
+            self.host.cancel(ident)
 
     async def plan(self, job):
         p = self.store.project(job['project_id'])
@@ -83,7 +110,7 @@ class Service:
         self.store.update_job(job['id'],prompt_sources=prompt_sources('plan'))
         for attempt in range(2):
             try:
-                raw = await self.model.json(messages)
+                raw = await self.model_json(job,messages)
             except ModelOutputError as error:
                 if attempt:
                     raise ValueError('方案修正后仍未返回有效 JSON，已有方案已保留') from error
@@ -101,11 +128,13 @@ class Service:
                     plan['animation'] = validate_animation(plan.get('animation'), allow_legacy=False)
                 self.materials.descriptions(plan['components'])
                 self.store.update_job(job['id'],stage='复核难点分析与讲解顺序')
-                review = await self.model.json([
+                review = await self.model_json(job,[
                     {'role':'system','content':PLAN_REVIEW_SYSTEM},
                     {'role':'user','content':json.dumps(dict(context,plan=plan),ensure_ascii=False)}])
                 if review.get('passed') is not True or review.get('issues') != []:
                     raise ValueError('教学设计复核未通过：'+str(review.get('issues','复核结果无效'))[:1200])
+            except ModelServiceError:
+                raise
             except (ValidationError, ValueError) as error:
                 if attempt:
                     raise ValueError('方案修正后仍未通过，已有方案已保留：'+str(error)[:700]) from error
@@ -135,7 +164,7 @@ class Service:
             if plan['animation'].get('workflow') in ('manim','sol'):
                 from .animation_workflow import run_animation_workflow
                 previous = self.version_folder(self.store.version(job['input']['version_id'])) if job['input'].get('version_id') else None
-                source, report = await run_animation_workflow(plan, folder, self.settings.read(),
+                source, report = await run_animation_workflow(plan, folder, self.model_configuration(self.project_for_job(job),job['id']),
                     lambda stage: self.store.update_job(job['id'], stage=stage),
                     previous=previous, changes=job['input'].get('request'))
             else:
@@ -153,7 +182,7 @@ class Service:
                      change=job['input'].get('request')),ensure_ascii=False)}]
             report = None
             for attempt in range(3):
-                source = await self.model.json(messages)
+                source = await self.model_json(job,messages)
                 (folder/'source.json').write_text(json.dumps(source,ensure_ascii=False),encoding='utf-8')
                 try:
                     raw_html = source.get('html')
@@ -167,12 +196,14 @@ class Service:
                     self.store.update_job(job['id'],stage='检查交互与离线资源')
                     report = await asyncio.wait_for(self.checker(folder/'index.html',source.get('checks')),timeout=90)
                     self.store.update_job(job['id'],stage='复核教学内容')
-                    review = await self.model.json([{'role':'system','content':REVIEW_SYSTEM},
+                    review = await self.model_json(job,[{'role':'system','content':REVIEW_SYSTEM},
                         {'role':'user','content':json.dumps(dict(plan=plan,html=raw_html),ensure_ascii=False)}])
                     if review.get('passed') is not True or review.get('issues') != []:
                         report['errors'].append('教学复核：'+str(review.get('issues','复核结果无效'))[:1200])
                     report['model_review'] = review
                     report['passed'] = report.get('passed') is True and not report['errors']
+                except ModelServiceError:
+                    raise
                 except ValueError as error:
                     report = dict(passed=False,errors=[str(error)],browser_checked=False)
                 (folder/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')

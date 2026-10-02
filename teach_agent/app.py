@@ -20,10 +20,17 @@ from .artifacts import bundle, CSP
 class NewProject(BaseModel):
     request: str = Field(min_length=1,max_length=6000)
     kind: Literal['auto','interactive','animation'] = 'auto'
+    generation_mode: Literal['api','host'] = 'api'
+
+
+class HostResult(BaseModel):
+    result: dict | None = None
+    error: str | None = Field(default=None,max_length=800)
 
 
 class Confirmation(BaseModel):
     revision: int = Field(ge=0)
+    generation_mode: Literal['api','host'] | None = None
 
 
 class EditPlan(BaseModel):
@@ -34,11 +41,13 @@ class EditPlan(BaseModel):
 class Rethink(BaseModel):
     revision: int = Field(ge=0)
     request: str = Field(min_length=1,max_length=6000)
+    generation_mode: Literal['api','host'] | None = None
 
 
 class Revision(BaseModel):
     version_id: str
     request: str = Field(min_length=1,max_length=4000)
+    generation_mode: Literal['api','host'] | None = None
 
 
 def create_app(root, model=None, checker=None):
@@ -52,6 +61,7 @@ def create_app(root, model=None, checker=None):
         with instance_lock(settings.root):
             service.store.recover()
             if getattr(app.state,'server_url',None):
+                service.server_url=app.state.server_url
                 (settings.root/'server.json').write_text(json.dumps({'url':app.state.server_url}),encoding='utf-8')
             try:
                 yield
@@ -82,7 +92,8 @@ def create_app(root, model=None, checker=None):
                 return JSONResponse({'detail':'请从启动器打开工作台，或输入本机访问码'},status_code=401)
             length = request.headers.get('content-length','0')
             video_upload = request.url.path=='/api/import-video' or request.url.path.endswith('/video')
-            if not length.isdigit() or int(length)>(200_000_000 if video_upload else 4_000_000):
+            host_model=request.url.path.startswith('/api/host-model/')
+            if not length.isdigit() or int(length)>(200_000_000 if video_upload else 30_000_000 if host_model else 4_000_000):
                 return JSONResponse({'detail':'请求内容过大'},status_code=413)
         response = await call_next(request)
         response.headers['X-Content-Type-Options'] = 'nosniff'
@@ -110,7 +121,7 @@ def create_app(root, model=None, checker=None):
     @app.get('/api/status')
     def status():
         return dict(version='0.1.0',model=settings.public(),components=len(service.materials.items),
-                    animation_workflow='manim',standalone_export=True)
+                    animation_workflow='manim',standalone_export=True,host_generation=True)
 
     @app.get('/api/settings')
     def get_settings():
@@ -129,10 +140,10 @@ def create_app(root, model=None, checker=None):
 
     @app.post('/api/projects')
     async def new_project_async(body: NewProject):
-        service.require_model()
+        service.require_model(body.generation_mode)
         if not body.request.strip():
             raise ValueError('请先描述教学需求')
-        p=service.store.create_project(body.request,body.kind)
+        p=service.store.create_project(body.request,body.kind,body.generation_mode)
         j=service.submit(p['id'],'plan',{'revision':0})
         return dict(project=p,job=j)
 
@@ -151,44 +162,49 @@ def create_app(root, model=None, checker=None):
 
     @app.post('/api/projects/{pid}/rethink')
     async def rethink(pid: str, body: Rethink):
-        service.require_model()
+        service.require_model(body.generation_mode or service.store.project(pid).get('generation_mode','api'))
         if service.store.project(pid)['plan_revision'] != body.revision:
             raise HTTPException(409,'方案已更新，请刷新')
-        return service.submit(pid,'plan',body.model_dump())
+        return service.submit(pid,'plan',body.model_dump(exclude_none=True))
 
     @app.post('/api/projects/{pid}/confirm')
     async def confirm(pid: str, body: Confirmation):
         p=service.store.project(pid)
+        if body.generation_mode:
+            p=dict(p,generation_mode=body.generation_mode)
         if p['plan'] and p['plan']['kind']=='interactive':
-            service.require_model()
+            service.require_model(p.get('generation_mode','api'))
         if p['plan'] and p['plan']['kind']=='animation':
             from .animation_contract import validate_animation
             from .animation_workflow import workflow_configuration
             brief = validate_animation(p['plan'].get('animation'))
             if brief.get('workflow') in ('manim','sol'):
-                workflow_configuration(settings.read())
+                workflow_configuration(service.model_configuration(p))
         try:
             service.store.confirm(pid,body.revision)
-            return service.submit(pid,'build',{'revision':body.revision})
+            return service.submit(pid,'build',body.model_dump(exclude_none=True))
         except ValueError as error:
             raise HTTPException(409,str(error)) from error
 
     @app.post('/api/projects/{pid}/revise')
     async def revise(pid: str, body: Revision):
         v=service.store.version(body.version_id)
+        p=service.store.project(pid)
+        if body.generation_mode:
+            p=dict(p,generation_mode=body.generation_mode)
         if v['project_id'] != pid:
             raise HTTPException(404,'版本不属于当前作品')
         if v['kind']=='interactive':
-            service.require_model()
+            service.require_model(p.get('generation_mode','api'))
         elif v['kind']=='animation' and v['plan'].get('animation',{}).get('workflow')in ('manim','sol'):
             from .animation_workflow import workflow_configuration
-            workflow_configuration(settings.read())
+            workflow_configuration(service.model_configuration(p))
         else:
             raise ValueError('请返回原作品或调整方案后重新制作')
         p=service.store.project(pid)
         if p['confirmed_revision'] != p['plan_revision'] or p['plan'] != v['plan']:
             raise HTTPException(409,'方案已变更，请先确认当前方案重新制作')
-        return service.submit(pid,'revision',dict(body.model_dump(),plan=v['plan'],revision=p['plan_revision']))
+        return service.submit(pid,'revision',dict(body.model_dump(exclude_none=True),plan=v['plan'],revision=p['plan_revision']))
 
     @app.get('/api/jobs/{ident}')
     def job(ident: str):
@@ -197,6 +213,34 @@ def create_app(root, model=None, checker=None):
     @app.post('/api/jobs/{ident}/cancel')
     async def cancel(ident: str):
         return service.cancel(ident)
+
+    def host_job(ident):
+        job=service.store.job(ident)
+        if (job['status']!='running' or
+                service.project_for_job(job).get('generation_mode')!='host'):
+            raise ValueError('该任务未等待对话模型，或已经结束')
+        return job
+
+    @app.get('/api/host-requests/{ident}')
+    async def host_request(ident: str):
+        service.store.job(ident)
+        return service.host.pending(ident)
+
+    @app.post('/api/host-requests/{ident}/{request_id}')
+    async def host_result(ident: str, request_id: str, body: HostResult):
+        host_job(ident)
+        return service.host.submit(ident,request_id,body.result,body.error)
+
+    @app.post('/api/host-model/{ident}/v1/chat/completions')
+    async def host_animation_model(ident: str, request: Request):
+        job=host_job(ident)
+        if job['kind'] not in ('build','revision') or job['input'].get('plan',{}).get('kind')!='animation':
+            raise ValueError('该模型通道仅供已经确认的动画制作使用')
+        data=await request.json()
+        if not isinstance(data,dict) or not isinstance(data.get('messages'),list):
+            raise ValueError('动画模型请求格式无效')
+        result=await service.host.ask(ident,data['messages'])
+        return {'choices':[{'message':{'role':'assistant','content':json.dumps(result,ensure_ascii=False)},'finish_reason':'stop'}]}
 
     @app.get('/api/versions/{ident}')
     def version(ident: str):

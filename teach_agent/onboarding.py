@@ -58,7 +58,15 @@ def main():
     settings=Settings(args.data_dir)
     if not args.config_only:
         try:
-            configure(settings)
+            print('WorkBuddy 对话制作默认使用当前对话模型，无需单独 API 密钥。')
+            if input('也配置独立网页使用的模型 API？[y/N] ').strip().lower()=='y':
+                configure(settings)
+            else:
+                manim=input('已有 Manim 环境的 Python 路径（暂不制作动画可留空）：').strip().strip('"')
+                if manim:
+                    if not Path(manim).is_file():
+                        raise ValueError('Manim Python 路径不存在')
+                    settings.save({'manim_python':manim})
         except (ValueError,EOFError,KeyboardInterrupt) as error:
             print('\n设置未完成：'+str(error),file=sys.stderr)
             raise SystemExit(1)
