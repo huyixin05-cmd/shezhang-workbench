@@ -49,6 +49,9 @@ def workflow_configuration(config):
         url.scheme!='https' and not (url.scheme=='http' and url.hostname in ('localhost','127.0.0.1','::1'))):
         raise ValueError('模型地址须为 HTTPS 或本机 HTTP，不能含账号或查询参数')
     result={key:config[key] for key in ('base_url','model','api_key','max_tokens','request_timeout','host_bridge') if key in config}
+    from .narration import SPEECH_FIELDS,SpeechService
+    result.update({key:config[key] for key in SPEECH_FIELDS if key in config})
+    if result.get('speech_enabled'):SpeechService(result)
     result['manim_python']=str(python.resolve())
     if len(json.dumps(result).encode('utf-8'))>24000:raise ValueError('模型配置过长，请检查设置')
     return result
@@ -112,4 +115,8 @@ async def run_animation_workflow(plan, folder, config, progress, previous=None, 
     source=dict(animation=plan['animation'],scene=owned_file(work,'sol_scene.py').read_text(encoding='utf-8'))
     report=dict(result,video=metadata,workflow='manim',browser_checked=False,
                 scientific_correctness='生成场景与抽帧经过模型复核；教学效果仍需老师预览')
+    if (work/'narration-report.json').is_file():
+        report['narration']=json.loads(owned_file(work,'narration-report.json').read_text(encoding='utf-8'))
+        page=folder/'index.html'
+        page.write_text(page.read_text(encoding='utf-8').replace('</body>','<p>配音由 AI 合成。</p></body>'),encoding='utf-8')
     return source,report

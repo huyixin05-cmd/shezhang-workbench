@@ -8,7 +8,7 @@ from typing import Literal
 from uuid import uuid4
 from starlette.background import BackgroundTask
 from fastapi import FastAPI, Request, HTTPException
-from fastapi.responses import FileResponse, JSONResponse, HTMLResponse
+from fastapi.responses import FileResponse, JSONResponse, HTMLResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from .config import Settings
@@ -134,6 +134,25 @@ def create_app(root, model=None, checker=None):
         if not isinstance(data,dict):
             raise ValueError('设置必须为对象')
         return settings.save(data)
+
+    @app.post('/api/speech-preview')
+    def speech_preview():
+        from .narration import SpeechService
+        from tempfile import TemporaryDirectory
+        import wave
+        import io
+        speech=SpeechService(settings.read())
+        # A fixed sample avoids arbitrary uploads and tests a real observation pause.
+        with TemporaryDirectory(prefix='speech-preview-') as folder:
+            first,_=speech.synthesize('先别急着看公式。两辆小车的质量相同，你觉得哪辆车的速度变化更快？','自然提问，邀请学生观察。',folder)
+            second,_=speech.synthesize('对照着看，合力更大的那辆车，速度变化得更快。','平静解释，强调合力和速度变化。',folder)
+            with wave.open(str(first),'rb') as source:pcm=source.readframes(source.getnframes())
+            pcm+=b'\0'*(24000*2*2)
+            with wave.open(str(second),'rb') as source:pcm+=source.readframes(source.getnframes())
+            target=io.BytesIO()
+            with wave.open(target,'wb') as out:
+                out.setparams((1,2,24000,0,'NONE',''));out.writeframes(pcm)
+        return Response(target.getvalue(),media_type='audio/wav')
 
     @app.get('/api/projects')
     def projects():

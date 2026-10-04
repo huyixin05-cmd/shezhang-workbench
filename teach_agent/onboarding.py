@@ -25,7 +25,7 @@ def write_mcp_config(source_root, data_root):
 
 def configure(settings):
     public=settings.public()
-    print('制作流程需要一个兼容 Chat Completions 的模型 API。不会自动使用 WorkBuddy 的模型额度。')
+    print('独立网页制作使用兼容 Chat Completions 的模型 API；WorkBuddy 对话模式仍使用当前对话模型。')
     if public['configured']:
         print('已有模型：'+public['model'])
         if input('重新配置？[y/N] ').strip().lower()!='y':

@@ -139,7 +139,9 @@ def bundle(folder: Path, output: Path, editable=False):
         allowed += ['plan.json', 'source.json']
         allowed += ['animation/'+name for name in ['sol_scene.py','video_guard.py','VIDEO_WORKFLOW.md',
             'approved_plan.json','01_intent.json','02_knowledge_map.json','03_curriculum.json',
-            '04_math_dossier.json','05_shot_list.json','06_scene_spec.json','review.json','validation.json','repairs.json']]
+            '04_math_dossier.json','05_shot_list.json','06_scene_spec.json','review.json','validation.json','repairs.json',
+            'narration-script.json','narration-timeline.json','narration-report.json','narration-review.json']]
+        allowed += [p.relative_to(folder).as_posix() for p in (folder/'animation/speech').glob('*.wav')]
         allowed += [p.relative_to(folder).as_posix() for p in (folder/'animation/review_frames').rglob('*')
                     if p.suffix == '.png' or p.name == 'timestamps.json']
     with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as z:

@@ -30,7 +30,9 @@ class Settings:
     def read(self):
         data = json.loads(self.path.read_text(encoding='utf-8')) if self.path.exists() else {}
         for field, env in [('base_url','TEACH_MODEL_URL'),('model','TEACH_MODEL_NAME'),
-                           ('api_key','TEACH_API_KEY'),('manim_python','TEACH_MANIM_PYTHON')]:
+                           ('api_key','TEACH_API_KEY'),('manim_python','TEACH_MANIM_PYTHON'),
+                           ('speech_base_url','TEACH_SPEECH_URL'),('speech_model','TEACH_SPEECH_MODEL'),
+                           ('speech_voice','TEACH_SPEECH_VOICE'),('speech_api_key','TEACH_SPEECH_API_KEY')]:
             if os.environ.get(env):
                 data[field] = os.environ[env]
         return data
@@ -39,7 +41,10 @@ class Settings:
         data = self.read()
         return dict(base_url=data.get('base_url',''), model=data.get('model',''),
                     has_key=bool(data.get('api_key')), configured=bool(data.get('base_url') and data.get('model')),
-                    max_tokens=data.get('max_tokens',12000), manim_python=data.get('manim_python',''))
+                    max_tokens=data.get('max_tokens',12000), manim_python=data.get('manim_python',''),
+                    speech_enabled=data.get('speech_enabled',False),speech_base_url=data.get('speech_base_url',''),
+                    speech_model=data.get('speech_model',''),speech_voice=data.get('speech_voice',''),
+                    speech_instructions=data.get('speech_instructions',False),has_speech_key=bool(data.get('speech_api_key')))
 
     def save(self, values):
         data = self.read()
@@ -51,13 +56,25 @@ class Settings:
                 raise ValueError('模型地址不能含账号、查询参数或片段')
             if url.scheme != 'https' and not (url.scheme == 'http' and url.hostname in ('127.0.0.1','localhost','::1')):
                 raise ValueError('模型地址须使用 HTTPS，本机模型可使用 HTTP')
-        for key in ('base_url','model','manim_python'):
+        if values.get('speech_base_url'):
+            from .narration import validate_speech_url
+            validate_speech_url(values['speech_base_url'])
+        for key in ('speech_enabled','speech_instructions'):
+            if key in values:
+                if not isinstance(values[key],bool):raise ValueError('语音开关必须为布尔值')
+                data[key]=values[key]
+        for key in ('base_url','model','manim_python','speech_base_url','speech_model','speech_voice'):
             if key in values:
                 data[key] = str(values[key]).strip()
         if values.get('api_key'):
             data['api_key'] = values['api_key'].strip()
         if values.get('clear_key'):
             data.pop('api_key', None)
+        if values.get('speech_api_key'):data['speech_api_key']=str(values['speech_api_key']).strip()
+        if values.get('clear_speech_key'):data.pop('speech_api_key',None)
+        if data.get('speech_enabled'):
+            from .narration import SpeechService
+            SpeechService(data)
         if 'max_tokens' in values:
             count = int(values['max_tokens'])
             if not 1024 <= count <= 32000:

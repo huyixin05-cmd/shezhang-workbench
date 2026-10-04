@@ -38,7 +38,7 @@ def produce(work,config,*,pipeline=None,renderer=render_scene,reviewer=visual_re
     if brief['aspect_ratio']=='9:16':
         with (work/'video_guard.py').open('a',encoding='utf-8') as f:
             f.write('\nSAFE_X = 2.1\nSAFE_Y = 3.82\nCONTENT_MAX_W = 4.0\nCONTENT_MAX_H = 5.45\n')
-    protected={name:(work/name).read_bytes() for name in ['approved_plan.json','video_guard.py']}
+    protected={name:(work/name).read_bytes() for name in ['approved_plan.json']}
     def unchanged_inputs():
         if any(owned_file(work,name).read_bytes()!=value for name,value in protected.items()):
             raise ValueError('工作流修改了已确认方案或运行辅助文件，已停止制作')
@@ -55,6 +55,11 @@ def produce(work,config,*,pipeline=None,renderer=render_scene,reviewer=visual_re
     history=[]
     progress(work,'正在编排动画画面…')
     pipeline.run(work,request)
+    unchanged_inputs()
+    protected['video_guard.py']=(work/'video_guard.py').read_bytes()
+    if config.get('speech_enabled'):
+        for path in [work/'narration-timeline.json',*list((work/'speech').glob('*.wav'))]:
+            protected[path.relative_to(work).as_posix()]=path.read_bytes()
     for attempt in range(3):
         unchanged_inputs()
         try:
@@ -95,7 +100,8 @@ def main():
     except Exception as error:
         # Provider credentials are never written to the run directory or traceback.
         message=str(error)[:1200] if isinstance(error,ValueError) else f'动画工作流失败（{type(error).__name__}），请检查模型设置与运行环境；日志已保留'
-        if config.get('api_key'): message=message.replace(config['api_key'],'[已隐藏]')
+        for key in ('api_key','speech_api_key'):
+            if config.get(key):message=message.replace(config[key],'[已隐藏]')
         write_json(work/'worker-result.json',dict(passed=False,error=message))
         sys.exit(1)
 

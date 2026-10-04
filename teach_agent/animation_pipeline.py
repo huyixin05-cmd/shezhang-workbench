@@ -66,6 +66,11 @@ SCENE_PROMPT = '''ANIMATION_SCENE
 横屏坐标宽14.222高8，竖屏宽4.5高8，内容留出边距。总运行时间包括标题和字幕的播放时间。
 参考 runtime 中的 Manim 和 LaTeX 信息。若无 LaTeX，仅在能完整表达简单关系时用 Text；不要丢失复杂公式含义。
 修复时依据反馈修改当前代码，保留未受影响的教学内容；有 previous_scene 时在其基础上处理老师的修改要求。
+有 narration_timeline 时，必须继承 NarratedScene；只能定义 construct，不能覆盖 setup/tear_down/cue/finish_lesson。
+按顺序调用 self.cue(id)，它会等待实测配音起点；调用后立即呈现本句 focus 中的动作，动作不得超出下一 cue 起点。
+必须最后 self.finish_lesson()。声音已由辅助类自动添加，不要自行添加音轨、修改辅助类属性或设置时间。
+标题必须在第一个cue之后与讲解同时出现；提问后在 pause_after 时间内保留问题画面，到下一句才揭晓。
+解释对应的变化要持续可见，避免整段静止念稿；不要使用会额外消耗时间的默认 caption 等待。
 '''
 
 
@@ -86,11 +91,17 @@ class AnimationPipeline:
             dossier=structured(self.model,[{'role':'system','content':DOSSIER_PROMPT},
                 {'role':'user','content':json.dumps({'approved_plan':plan},ensure_ascii=False)}],Dossier)
             write_json(work/'04_math_dossier.json',dossier)
+            config=getattr(self.model,'config',{})
+            if config.get('speech_enabled'):
+                from .narration import prepare_narration
+                prepare_narration(work,plan,self.model,config,changes=request.get('changes'))
         context={'approved_plan':plan,'dossier':json.loads(owned_file(work,'04_math_dossier.json').read_text(encoding='utf-8')),
             'runtime':json.loads(owned_file(work,'runtime.json').read_text(encoding='utf-8')),
             'helper':owned_file(work,'video_guard.py').read_text(encoding='utf-8'),
             'workflow_guide':owned_file(work,'VIDEO_WORKFLOW.md').read_text(encoding='utf-8'),
             'changes':request.get('changes'),'repair_feedback':feedback}
+        if (work/'narration-timeline.json').is_file():
+            context['narration_timeline']=json.loads(owned_file(work,'narration-timeline.json').read_text(encoding='utf-8'))
         for filename,key in [('previous_sol_scene.py','previous_scene'),('sol_scene.py','current_scene')]:
             if (work/filename).is_file(): context[key]=owned_file(work,filename).read_text(encoding='utf-8')
         result=structured(self.model,[{'role':'system','content':SCENE_PROMPT},
@@ -105,6 +116,8 @@ def review_frames(work,plan,config,frames,tag):
     work=Path(work)
     evidence=[owned_file(work,p.relative_to(work)).relative_to(work).as_posix() for p in frames]
     context={'approved_plan':plan,'code':owned_file(work,'sol_scene.py').read_text(encoding='utf-8'),'evidence':evidence}
+    if (work/'narration-timeline.json').is_file():
+        context['narration_timeline']=json.loads(owned_file(work,'narration-timeline.json').read_text(encoding='utf-8'))
     timestamps={}
     for parent in {p.parent for p in frames}:
         if (parent/'timestamps.json').is_file():
@@ -120,6 +133,7 @@ def review_frames(work,plan,config,frames,tag):
     messages=[{'role':'system','content':'''ANIMATION_VISUAL_REVIEW
 对照老师确认的方案检查实际图片：图形和公式是否正确、中文字是否清楚、有无遮挡或越界、分镜关键步骤是否落实。
 逐张查看图片，并结合时间戳与代码判断；抽帧不足以证明完整运动连续性，请如实说明局限。
+有配音时间线时，对照每句focus、提问停顿和揭晓顺序，检查画面与讲解一致；没有音频输入，不能宣称听过或确认声音自然。
 只返回 JSON：{"status":"approved或needs_repair","defects":["具体问题及画面位置"],"observations":["实际看到的画面依据"],"evidence":["已检查的所有图片相对路径"]}。
 有任何问题必须 needs_repair；不要仅因视频可以解码就通过。图片无法读取时明确说明，不能伪造已看图。
 '''},{'role':'user','content':content}]

@@ -70,6 +70,16 @@ def render_scene(work, python, scene_name, quality, brief, attempt):
     work=Path(work).resolve()
     if not re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*',scene_name):raise ValueError('动画场景名称无效')
     source=(work/'sol_scene.py').read_text(encoding='utf-8');inspect_source(source)
+    narrated=(work/'narration-timeline.json').is_file()
+    if narrated:
+        tree=ast.parse(source)
+        classes=[n for n in tree.body if isinstance(n,ast.ClassDef)]
+        if len(classes)!=1 or not any(isinstance(b,ast.Name) and b.id=='NarratedScene' for b in classes[0].bases):
+            raise ValueError('有声动画必须继承 NarratedScene')
+        if any(isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef)) and n.name!='construct' for n in classes[0].body):
+            raise ValueError('有声场景只能定义 construct，不能覆盖配音时钟')
+        if any(isinstance(n,ast.Attribute) and (n.attr.startswith('_speech') or n.attr=='add_sound') for n in ast.walk(tree)):
+            raise ValueError('有声场景不能修改配音时钟或自行添加音轨')
     vertical=brief['aspect_ratio']=='9:16'
     resolution=('480,854' if vertical else '854,480') if quality=='l' else ('720,1280' if vertical else '1280,720')
     name=f'{"preview" if quality=="l" else "final"}-{attempt}'
@@ -86,10 +96,19 @@ def render_scene(work, python, scene_name, quality, brief, attempt):
     log=stdout+'\n'+stderr
     (output/'render.log').write_text(log,encoding='utf-8')
     if returncode:raise ValueError('Manim 渲染错误：'+log[-4500:])
+    if narrated and 'NARRATION_TIMELINE_OK' not in log:raise ValueError('动画没有完成配音时间线检查')
     if re.search(r'\[layout\].*WARN',log):raise ValueError('画面布局检查发现越界或文字重叠：'+log[-3000:])
     candidates=[p for p in output.rglob('*.mp4') if 'partial_movie_files' not in p.parts]
     if len(candidates)!=1:raise ValueError('渲染未产生唯一新成片')
     video=candidates[0];metadata=inspect_video(video)
+    if narrated:
+        with av.open(str(video)) as container:
+            if not container.streams.audio:raise ValueError('成片缺少配音音轨')
+            stream=container.streams.audio[0]
+            audio_duration=float(stream.duration*stream.time_base) if stream.duration else 0
+        timeline=json.loads((work/'narration-timeline.json').read_text(encoding='utf-8'))
+        if audio_duration+.15<max(c['end'] for c in timeline['cues']):raise ValueError('成片配音被截断')
+        if abs(metadata['duration']-timeline['duration'])>.2:raise ValueError('成片长度偏离配音时间线')
     if video.is_symlink() or not video.resolve().is_relative_to(output):raise ValueError('视频路径越出渲染目录')
     if abs(metadata['duration']-brief['duration_seconds'])>max(2,brief['duration_seconds']*.2):
         raise ValueError(f"实际时长 {metadata['duration']} 秒与分镜目标 {brief['duration_seconds']} 秒差异过大")
